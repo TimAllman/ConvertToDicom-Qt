@@ -4,4 +4,6 @@
 build*
 *.app
 *.o
+*.pro.user
+Makefile
 
