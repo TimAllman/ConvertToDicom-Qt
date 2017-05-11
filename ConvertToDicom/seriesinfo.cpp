@@ -22,8 +22,11 @@
 
 #include "loggername.h"
 #include "seriesinfo.h"
+#include "settings.h"
 #include "dumpmetadatadictionary.h"
 #include "dicomattributesdialog.h"
+
+#include <QDir>
 
 #include <string>
 #include <iomanip>
@@ -45,17 +48,38 @@ SeriesInfo::SeriesInfo()
      m_imagePositionPatient[1] = 0.0;
      m_imagePositionPatient[2] = 0.0;
 
-     DicomAttributesDialog* dlg = DicomAttributesDialog::getInstance();
-     connect()
-
 
 };
+
+void SeriesInfo::loadSettings()
+{
+    // Fill up with the saved settings
+    // The defaults are set here as well.
+    Settings settings; // uses preset program information
+
+    setOverwriteFiles(settings.value(Settings::OverwriteFilesKey, false).toBool());
+    setInputDir(settings.value(Settings::InputDirKey, QDir::homePath()).toString());
+    setOutputDir(settings.value(Settings::OutputDirKey, QDir::homePath()).toString());
+    setTimeIncrement(settings.value(Settings::TimeIncrementKey, 1.0).toFloat());
+    setPatientsName(settings.value(Settings::PatientsNameKey, "").toString());
+    setPatientsID(settings.value(Settings::PatientsIDKey, 0).toString());
+    setPatientsDOB(settings.value(Settings::PatientsDOBKey, QDateTime::currentDateTime()).toString());
+    setPatientsSex(settings.value(Settings::PatientsSexKey, "Unspecified").toString());
+    setSeriesDescription(settings.value(Settings::SeriesDescriptionKey, "").toString());
+    setSeriesNumber(settings.value(Settings::SeriesNumberKey, "0").toString());
+    setSeriesPositionPatient(settings.value(Settings::SeriesPatientPositionKey, "FFS").toString());
+    setStudyDescription(settings.value(Settings::StudyDescriptionKey, "").toString());
+    setStudyID(settings.value(Settings::StudyIDKey, "0").toString());
+    setStudyModality(settings.value(Settings::StudyModalityKey, "Unknown").toString());
+    setStudyDateTime(settings.value(Settings::StudyDateTimeKey, QDateTime::currentDateTime()).toString());
+    setStudyStudyUID(settings.value(Settings::StudyStudyUIDKey, "").toString());
+}
 
 itk::MetaDataDictionary SeriesInfo::makeDictionary() const
 {
     LOG4CPLUS_TRACE(logger, "Enter");
 
-    // fill the dictionary from our Dicom info.
+    // fill the dictionary from our Dicom
     if (dict.GetKeys().size() == 0)
     {
         std::string date = m_studyDateTime.toString().toStdString();

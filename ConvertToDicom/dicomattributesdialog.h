@@ -36,21 +36,9 @@ public:
     explicit DicomAttributesDialog(QWidget *parent = 0);
     ~DicomAttributesDialog();
 
-    /**
-     * @brief getInstance
-     * This returns the last created instance but there should be no more than one instance of a dialog.
-     * This was done to allow the instance address to be available for signal and slot connections.
-     * @return The last created instance.
-     */
-    static DicomAttributesDialog* getInstance()
-    {
-        return instance;
-    }
-
 private:
     Ui::DicomAttributesDialog *ui;
 
-    static DicomAttributesDialog* instance;
 
 };
 

@@ -35,26 +35,26 @@ class Settings : public QSettings
 
 public:
     // Keys for preferences.
-    const QString LoggingLevelKey;
-    const QString OverwriteFilesKey;
-    const QString InputDirKey;
-    const QString OutputDirKey;
-    const QString TimeIncrementKey;
+    static QString LoggingLevelKey;
+    static QString OverwriteFilesKey;
+    static QString InputDirKey;
+    static QString OutputDirKey;
+    static QString TimeIncrementKey;
 
-    const QString PatientsNameKey;
-    const QString PatientsIDKey;
-    const QString PatientsDOBKey;
-    const QString PatientsSexKey;
+    static QString PatientsNameKey;
+    static QString PatientsIDKey;
+    static QString PatientsDOBKey;
+    static QString PatientsSexKey;
 
-    const QString StudyDescriptionKey;
-    const QString StudyIDKey;
-    const QString StudyModalityKey;
-    const QString StudyDateTimeKey;
-    const QString StudyStudyUIDKey;
+    static QString StudyDescriptionKey;
+    static QString StudyIDKey;
+    static QString StudyModalityKey;
+    static QString StudyDateTimeKey;
+    static QString StudyStudyUIDKey;
 
-    const QString SeriesDescriptionKey;
-    const QString SeriesNumberKey;
-    const QString SeriesPatientPositionKey;
+    static QString SeriesDescriptionKey;
+    static QString SeriesNumberKey;
+    static QString SeriesPatientPositionKey;
 
     /**
      * @brief Settings

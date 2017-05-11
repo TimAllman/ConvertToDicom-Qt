@@ -27,11 +27,11 @@ DicomAttributesDialog::DicomAttributesDialog(QWidget *parent) :
     ui(new Ui::DicomAttributesDialog)
 {
     ui->setupUi(this);
-
-    instance = this;
 }
 
 DicomAttributesDialog::~DicomAttributesDialog()
 {
     delete ui;
 }
+
+//////////////////////////////////////////////////////////////////////

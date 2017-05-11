@@ -29,15 +29,26 @@
 #include <QDir>
 #include <QDateTime>
 
+QString Settings::LoggingLevelKey = "LoggingLevel";
+QString Settings::OverwriteFilesKey = "OverwriteFiles";
+QString Settings::InputDirKey = "InputDir";
+QString Settings::OutputDirKey = "OutputDir";
+QString Settings::TimeIncrementKey = "TimeIncrement";
+QString Settings::PatientsNameKey = "PatientsName";
+QString Settings::PatientsIDKey = "PatientsID";
+QString Settings::PatientsDOBKey = "PatientsDOB";
+QString Settings::PatientsSexKey = "PatientsSex";
+QString Settings::StudyDescriptionKey = "StudyDescription";
+QString Settings::StudyIDKey = "StudyID";
+QString Settings::StudyModalityKey = "StudyModality";
+QString Settings::StudyDateTimeKey = "StudyDateTime";
+QString Settings::StudyStudyUIDKey = "StudyStudyUID";
+QString Settings::SeriesDescriptionKey = "SeriesDescription";
+QString Settings::SeriesNumberKey = "SeriesNumber";
+QString Settings::SeriesPatientPositionKey = "SeriesPatientPosition";
+
 Settings::Settings()
-    : logger(log4cplus::Logger::getInstance(std::string(LOGGER_NAME) + ".Settings")),
-      LoggingLevelKey("LoggingLevel"), OverwriteFilesKey("OverwriteFiles"), InputDirKey("InputDir"),
-      OutputDirKey("OutputDir"), TimeIncrementKey("TimeIncrement"), PatientsNameKey("PatientsName"),
-      PatientsIDKey("PatientsID"), PatientsDOBKey("PatientsDOB"), PatientsSexKey("PatientsSex"),
-      StudyDescriptionKey("StudyDescription"), StudyIDKey("StudyID"), StudyModalityKey("StudyModality"),
-      StudyDateTimeKey("StudyDateTime"), StudyStudyUIDKey("StudyStudyUID"),
-      SeriesDescriptionKey("SeriesDescription"), SeriesNumberKey("SeriesNumber"),
-      SeriesPatientPositionKey("SeriesPatientPosition")
+    : logger(log4cplus::Logger::getInstance(std::string(LOGGER_NAME) + ".Settings"))
 {
     LOG4CPLUS_TRACE(logger, "Enter");
 
@@ -50,28 +61,10 @@ Settings::Settings()
 
 void Settings::loadSettings(SeriesInfo& info)
 {
+    This should go into SeriesInfo
+
     LOG4CPLUS_TRACE(logger, "Enter");
 
-    // Fill info with the saved settings
-    // The defaults are set here as well.
-    QSettings settings; // uses preset program information
-
-    info.setOverwriteFiles(settings.value(OverwriteFilesKey, false).toBool());
-    info.setInputDir(settings.value(InputDirKey, QDir::homePath()).toString());
-    info.setOutputDir(settings.value(OutputDirKey, QDir::homePath()).toString());
-    info.setTimeIncrement(settings.value(TimeIncrementKey, 1.0).toFloat());
-    info.setPatientsName(settings.value(PatientsNameKey, "").toString());
-    info.setPatientsID(settings.value(PatientsIDKey, 0).toString());
-    info.setPatientsDOB(settings.value(PatientsDOBKey, QDateTime::currentDateTime()).toString());
-    info.setPatientsSex(settings.value(PatientsSexKey, "Unspecified").toString());
-    info.setSeriesDescription(settings.value(SeriesDescriptionKey, "").toString());
-    info.setSeriesNumber(settings.value(SeriesNumberKey, "0").toString());
-    info.setSeriesPositionPatient(settings.value(SeriesPatientPositionKey, "FFS").toString());
-    info.setStudyDescription(settings.value(StudyDescriptionKey, "").toString());
-    info.setStudyID(settings.value(StudyIDKey, "0").toString());
-    info.setStudyModality(settings.value(StudyModalityKey, "Unknown").toString());
-    info.setStudyDateTime(settings.value(StudyDateTimeKey, QDateTime::currentDateTime()).toString());
-    info.setStudyStudyUID(settings.value(StudyStudyUIDKey, "").toString());
 
     LOG4CPLUS_DEBUG(logger, "Loaded current settings and set default settings.");
 }

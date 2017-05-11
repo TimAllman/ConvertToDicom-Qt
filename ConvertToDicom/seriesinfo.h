@@ -32,6 +32,12 @@
 #include <QVector>
 #include <QDateTime>
 
+/**
+ * @brief The SeriesInfo class
+ * This class contains all of the DICOM and other information needed to do the conversions.
+ * It is set up as a singleton class because only one should ever be created and it allows
+ * the instance to be accessed globally.
+ */
 class SeriesInfo : public QObject
 {
     Q_OBJECT
@@ -53,16 +59,6 @@ public:
         return m_overwriteFiles;
     }
 
-//    /**
-//     * @brief setOverwriteFiles
-//     * Set flag which indicates whether generated files will overwrite existing files.
-//     * @param overwriteFiles Set flag to this value.
-//     */
-//    void setOverwriteFiles(bool overwriteFiles)
-//    {
-//        m_overwriteFiles = overwriteFiles;
-//    }
-
     /**
      * @brief inputDir
      * Get the directory containing the files to be converted.
@@ -73,24 +69,9 @@ public:
         return m_inputDir;
     }
 
-    /**
-     * @brief setInputDir
-     * Set the input directory path
-     * @param inputDir The directory containing the files to be converted.
-     */
-    void setInputDir(const QString& inputDir)
-    {
-        m_inputDir = inputDir;
-    }
-
     QString outputDir() const
     {
         return m_outputDir;
-    }
-
-    void setOutputDir(const QString& outputDir)
-    {
-        m_outputDir = outputDir;
     }
 
     QString outputPath() const
@@ -98,19 +79,9 @@ public:
         return m_outputPath;
     }
 
-    void setOutputPath(const QString& outputPath)
-    {
-        m_outputPath = outputPath;
-    }
-
     int numberOfImages() const
     {
         return m_numberOfImages;
-    }
-
-    void setNumberOfImages(int numberOfImages)
-    {
-        m_numberOfImages = numberOfImages;
     }
 
     int slicesPerImage() const
@@ -118,29 +89,14 @@ public:
         return m_slicesPerImage;
     }
 
-    void setSlicesPerImage(int slicesPerImage)
-    {
-        m_slicesPerImage = slicesPerImage;
-    }
-
     int numberOfSlices() const
     {
         return m_numberOfSlices;
     }
 
-    void setNumberOfSlices(int numberOfSlices)
-    {
-        m_numberOfSlices = numberOfSlices;
-    }
-
     float timeIncrement() const
     {
         return m_timeIncrement;
-    }
-
-    void setTimeIncrement(float timeIncrement)
-    {
-        m_timeIncrement = timeIncrement;
     }
 
     QVector<float>& acqTimes()
@@ -153,19 +109,9 @@ public:
         return m_patientsName;
     }
 
-    void setPatientsName(const QString& patientsName)
-    {
-        m_patientsName = patientsName;
-    }
-
     QString patientsID() const
     {
         return m_patientsID;
-    }
-
-    void setPatientsID(const QString& patientsID)
-    {
-        m_patientsID = patientsID;
     }
 
     QString patientsDOB() const
@@ -173,19 +119,9 @@ public:
         return m_patientsDOB;
     }
 
-    void setPatientsDOB(const QString& patientsDOB)
-    {
-        m_patientsDOB = patientsDOB;
-    }
-
     QString patientsSex() const
     {
         return m_patientsSex;
-    }
-
-    void setPatientsSex(const QString& patientsSex)
-    {
-        m_patientsSex = patientsSex;
     }
 
     QString studyDescription() const
@@ -193,19 +129,9 @@ public:
         return m_studyDescription;
     }
 
-    void setStudyDescription(const QString& studyDescription)
-    {
-        m_studyDescription = studyDescription;
-    }
-
     QString studyID() const
     {
         return m_studyID;
-    }
-
-    void setStudyID(const QString& studyID)
-    {
-        m_studyID = studyID;
     }
 
     QString studyModality() const
@@ -213,19 +139,9 @@ public:
         return m_studyModality;
     }
 
-    void setStudyModality(const QString& studyModality)
-    {
-        m_studyModality = studyModality;
-    }
-
     QDateTime studyDateTime() const
     {
         return m_studyDateTime;
-    }
-
-    void setStudyDateTime(const QString& studyDateTime)
-    {
-        m_studyDateTime = QDateTime::fromString(studyDateTime);
     }
 
     QString studyStudyUID() const
@@ -233,19 +149,9 @@ public:
         return m_StudyUID;
     }
 
-    void setStudyStudyUID(const QString& studyStudyUID)
-    {
-        m_StudyUID = studyStudyUID;
-    }
-
     QString seriesNumber() const
     {
         return m_seriesNumber;
-    }
-
-    void setSeriesNumber(const QString& seriesNumber)
-    {
-        m_seriesNumber = seriesNumber;
     }
 
     QString seriesDescription() const
@@ -253,19 +159,9 @@ public:
         return m_seriesDescription;
     }
 
-    void setSeriesDescription(const QString& seriesDescription)
-    {
-        m_seriesDescription = seriesDescription;
-    }
-
     QString seriesPositionPatient() const
     {
         return m_seriesPositionPatient;
-    }
-
-    void setSeriesPositionPatient(const QString& seriesPositionPatient)
-    {
-        m_seriesPositionPatient = seriesPositionPatient;
     }
 
     float imageSliceSpacing() const
@@ -273,29 +169,14 @@ public:
         return m_imageSliceSpacing;
     }
 
-    void setImageSliceSpacing(float imageSliceSpacing)
-    {
-        m_imageSliceSpacing = imageSliceSpacing;
-    }
-
     float imagePositionPatientX() const
     {
         return m_imagePositionPatient[0];
     }
 
-    void setImagePositionPatientX(float imagePositionPatientX)
-    {
-        m_imagePositionPatient[0] = imagePositionPatientX;
-    }
-
-    float imagePositionPatientY() const
+   float imagePositionPatientY() const
     {
         return m_imagePositionPatient[1];
-    }
-
-    void setImagePositionPatientY(float imagePositionPatientY)
-    {
-        m_imagePositionPatient[1] = imagePositionPatientY;
     }
 
     float imagePositionPatientZ() const
@@ -303,19 +184,9 @@ public:
         return m_imagePositionPatient[2];
     }
 
-    void setImagePositionPatientZ(float imagePositionPatientZ)
-    {
-        m_imagePositionPatient[2] = imagePositionPatientZ;
-    }
-
     QString imagePatientOrientation() const
     {
         return m_imageOrientationPatient;
-    }
-
-    void setImagePatientOrientation(const QString& imageOrientationPatient)
-    {
-        m_imageOrientationPatient = imageOrientationPatient;
     }
 
 public slots:
@@ -333,8 +204,134 @@ public slots:
         }
     }
 
-signals:
-    void overwriteFilesValueChanged(bool overwriteFiles);
+    /**
+     * @brief setInputDir
+     * Set the input directory path
+     * @param inputDir The directory containing the files to be converted.
+     */
+    void setInputDir(const QString& inputDir)
+    {
+        m_inputDir = inputDir;
+    }
+
+    void setOutputDir(const QString& outputDir)
+    {
+        m_outputDir = outputDir;
+    }
+
+    void setOutputPath(const QString& outputPath)
+    {
+        m_outputPath = outputPath;
+    }
+
+    void setNumberOfImages(int numberOfImages)
+    {
+        m_numberOfImages = numberOfImages;
+    }
+
+    void setSlicesPerImage(int slicesPerImage)
+    {
+        m_slicesPerImage = slicesPerImage;
+    }
+
+    void setNumberOfSlices(int numberOfSlices)
+    {
+        m_numberOfSlices = numberOfSlices;
+    }
+
+    void setTimeIncrement(float timeIncrement)
+    {
+        m_timeIncrement = timeIncrement;
+    }
+
+    void setPatientsName(const QString& patientsName)
+    {
+        m_patientsName = patientsName;
+    }
+
+    void setPatientsID(const QString& patientsID)
+    {
+        m_patientsID = patientsID;
+    }
+
+    void setPatientsDOB(const QString& patientsDOB)
+    {
+        m_patientsDOB = patientsDOB;
+    }
+
+    void setPatientsSex(const QString& patientsSex)
+    {
+        m_patientsSex = patientsSex;
+    }
+
+    void setStudyDescription(const QString& studyDescription)
+    {
+        m_studyDescription = studyDescription;
+    }
+
+    void setStudyID(const QString& studyID)
+    {
+        m_studyID = studyID;
+    }
+
+    void setStudyModality(const QString& studyModality)
+    {
+        m_studyModality = studyModality;
+    }
+
+    void setStudyDateTime(const QString& studyDateTime)
+    {
+        m_studyDateTime = QDateTime::fromString(studyDateTime);
+    }
+
+    void setStudyStudyUID(const QString& studyStudyUID)
+    {
+        m_StudyUID = studyStudyUID;
+    }
+
+    void setSeriesNumber(const QString& seriesNumber)
+    {
+        m_seriesNumber = seriesNumber;
+    }
+
+    void setSeriesDescription(const QString& seriesDescription)
+    {
+        m_seriesDescription = seriesDescription;
+    }
+
+    void setSeriesPositionPatient(const QString& seriesPositionPatient)
+    {
+        m_seriesPositionPatient = seriesPositionPatient;
+    }
+
+    void setImageSliceSpacing(float imageSliceSpacing)
+    {
+        m_imageSliceSpacing = imageSliceSpacing;
+    }
+
+    void setImagePositionPatientX(float imagePositionPatientX)
+    {
+        m_imagePositionPatient[0] = imagePositionPatientX;
+    }
+
+    void setImagePositionPatientY(float imagePositionPatientY)
+    {
+        m_imagePositionPatient[1] = imagePositionPatientY;
+    }
+
+    void setImagePositionPatientZ(float imagePositionPatientZ)
+    {
+        m_imagePositionPatient[2] = imagePositionPatientZ;
+    }
+
+    void setImagePatientOrientation(const QString& imageOrientationPatient)
+    {
+        m_imageOrientationPatient = imageOrientationPatient;
+    }
+
+    void loadSettings();
+
+    void saveSettings();
 
 private:
     bool m_overwriteFiles;
@@ -370,10 +367,11 @@ private:
     mutable itk::MetaDataDictionary dict;
 
 public:
-    /**
-     * Default constructor. Sets initial values of members.
-     */
-    explicit SeriesInfo();
+    static SeriesInfo& getInstance()
+    {
+        static SeriesInfo instance;
+        return instance;
+    }
 
     /**
      * Check for internal completeness and conistency.
@@ -389,6 +387,23 @@ public:
     itk::MetaDataDictionary dictionary() const;
 
 private:
+    /**
+     * Default constructor. Sets initial values of members.
+     */
+    SeriesInfo();
+
+    /**
+     * @brief SeriesInfo
+     * Copy constructor private and unimplemented.
+     */
+    SeriesInfo(const SeriesInfo&);
+
+    /**
+     * @brief SeriesInfo
+     * Assignment operator private and unimplemented.
+     */
+    SeriesInfo& operator=(const SeriesInfo&);
+
     itk::MetaDataDictionary makeDictionary() const;
     QString imagePositionPatientString() const;
 

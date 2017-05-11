@@ -185,30 +185,8 @@
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <resources/>
- <connections>
-  <connection>
-   <sender>overWriteCheckBox</sender>
-   <signal>clicked()</signal>
-   <receiver>editDicomAttributesPushButton</receiver>
-   <slot>animateClick()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>55</x>
-     <y>217</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>173</x>
-     <y>286</y>
-    </hint>
-   </hints>
-  </connection>
- </connections>
+ <connections/>
  <slots>
-  <slot>sourceDirEdited()</slot>
-  <slot>sourceDirChooseButtonClicked()</slot>
-  <slot>destDirEdited()</slot>
-  <slot>destDirChooseButtonClicked()</slot>
-  <slot>overwriteCheckBoxChanged(int)</slot>
-  <slot>dicomAttributesEditButtonClicked()</slot>
+  <signal>signal1()</signal>
  </slots>
 </ui>
