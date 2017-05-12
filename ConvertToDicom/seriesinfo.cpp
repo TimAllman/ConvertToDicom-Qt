@@ -53,6 +53,8 @@ SeriesInfo::SeriesInfo()
 
 void SeriesInfo::loadSettings()
 {
+    LOG4CPLUS_TRACE(logger, "Enter");
+
     // Fill up with the saved settings
     // The defaults are set here as well.
     Settings settings; // uses preset program information
@@ -73,6 +75,45 @@ void SeriesInfo::loadSettings()
     setStudyModality(settings.value(Settings::StudyModalityKey, "Unknown").toString());
     setStudyDateTime(settings.value(Settings::StudyDateTimeKey, QDateTime::currentDateTime()).toString());
     setStudyStudyUID(settings.value(Settings::StudyStudyUIDKey, "").toString());
+
+
+    ******************************************
+    check types in settings get and set.
+
+    setImageSliceSpacing(settings.value(Settings::ImageSliceSpacingKey, ))
+
+    LOG4CPLUS_DEBUG(logger, "Loaded current settings and set default settings.");
+}
+
+void SeriesInfo::saveSettings()
+{
+    LOG4CPLUS_TRACE(logger, "Enter");
+
+    Settings settings; // uses preset program information
+
+    settings.setValue(Settings::OverwriteFilesKey, overwriteFiles());
+    settings.setValue(Settings::InputDirKey, inputDir());
+    settings.setValue(Settings::OutputDirKey, outputDir());
+    settings.setValue(Settings::TimeIncrementKey, timeIncrement());
+    settings.setValue(Settings::PatientsNameKey, patientsName());
+    settings.setValue(Settings::PatientsIDKey, patientsID());
+    settings.setValue(Settings::PatientsDOBKey, patientsDOB());
+    settings.setValue(Settings::PatientsSexKey, patientsSex());
+    settings.setValue(Settings::SeriesDescriptionKey, seriesDescription());
+    settings.setValue(Settings::SeriesNumberKey, seriesNumber());
+    settings.setValue(Settings::SeriesPatientPositionKey, seriesPositionPatient());
+    settings.setValue(Settings::StudyDescriptionKey, studyDescription());
+    settings.setValue(Settings::StudyIDKey, studyID());
+    settings.setValue(Settings::StudyModalityKey, studyModality());
+    settings.setValue(Settings::StudyDateTimeKey, studyDateTime());
+    settings.setValue(Settings::StudyStudyUIDKey, studyStudyUID());
+    settings.setValue(Settings::ImageSliceSpacingKey, imageSliceSpacing());
+    settings.setValue(Settings::ImagePatientPositionXKey, imagePositionPatientX());
+    settings.setValue(Settings::ImagePatientPositionYKey, imagePositionPatientY());
+    settings.setValue(Settings::ImagePatientPositionZKey, imagePositionPatientZ());
+    settings.setValue(Settings::ImagePatientOrientationKey, imagePatientOrientation());
+
+    LOG4CPLUS_DEBUG(logger, "Saved settings.");
 }
 
 itk::MetaDataDictionary SeriesInfo::makeDictionary() const

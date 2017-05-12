@@ -56,25 +56,17 @@ public:
     static QString SeriesNumberKey;
     static QString SeriesPatientPositionKey;
 
+    static QString ImageSliceSpacingKey;
+    static QString ImagePatientPositionXKey;
+    static QString ImagePatientPositionYKey;
+    static QString ImagePatientPositionZKey;
+    static QString ImagePatientOrientationKey;
+
     /**
      * @brief Settings
      * Default constructor to create and initialise application settings.
      */
     explicit Settings();
-
-    /**
-     * @brief loadSettings
-     * @param info The data structure to fill.
-     * Fills a data structure using the saved settings.
-     */
-    void loadSettings(SeriesInfo& info);
-
-    /**
-     * @brief saveSettings
-     * @param info The data structure to save.
-     * Saves the contents of info to persistent storage.
-     */
-    void saveSettings(SeriesInfo& info);
 
 private:
     QMap<QString, QVariant> defaults; // this contains the default settings.

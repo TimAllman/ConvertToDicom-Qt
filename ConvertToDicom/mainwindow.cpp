@@ -3,6 +3,10 @@
 #include "seriesinfo.h"
 #include "dicomattributesdialog.h"
 
+#include "settings.h"
+
+#include <QObject>
+
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow),
@@ -14,18 +18,8 @@ MainWindow::MainWindow(QWidget *parent) :
     QCoreApplication::setOrganizationDomain("brasscats.ca");
     QCoreApplication::setApplicationName("ConvertToDicom");
 
-    // Here we connect the SeriesInfo instance to the appropriate widgets.
-    SeriesInfo* seriesInfo = &SeriesInfo::getInstance();
-
-    connect(ui->overWriteCheckBox, SIGNAL(toggled(bool)), seriesInfo, SLOT(setOverwrite(bool)));
-    connect(ui->sourceDirLineEdit, SIGNAL(editingFinished()), seriesInfo, SLOT(setInputDir(const QString&)));
-    connect(ui->destDirLineEdit, SIGNAL(editingFinished()), seriesInfo, SLOT(setOutputDir(const QString&)));
+    // Do this to show the DICOM dialog
     connect(ui->editDicomAttributesPushButton, SIGNAL(clicked()), this, SLOT(execDicomAttributesDialog()));
-
-    connect(seriesInfo, SIGNAL(setOverwriteFiles(bool)), ui->overWriteCheckBox, SLOT(setChecked(bool)));
-    connect(seriesInfo, SIGNAL(setInputDir(const QString&)), ui->sourceDirLineEdit, SLOT(setText(const QString&)));
-    connect(seriesInfo, SIGNAL(setOutputDir(const QString&)), ui->destDirLineEdit, SLOT(setText(const QString&)));
-
 }
 
 MainWindow::~MainWindow()
@@ -49,3 +43,18 @@ void MainWindow::execDicomAttributesDialog()
         // Save all of the data into our SeriesInfo object
     }
 }
+
+void MainWindow::loadSettings()
+{
+
+}
+
+void MainWindow::saveSettings()
+{
+    // save the current settings
+    Settings settings;
+
+    settings.setValue(Settings::LoggingLevelKey, logger.getLogLevel());
+
+}
+

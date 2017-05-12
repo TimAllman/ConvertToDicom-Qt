@@ -27,7 +27,7 @@
 #include <itkMetaDataDictionary.h>
 #include <vnl/vnl_vector_fixed.h>
 
-#include <QObject>
+//#include <QObject>
 #include <QString>
 #include <QVector>
 #include <QDateTime>
@@ -38,9 +38,9 @@
  * It is set up as a singleton class because only one should ever be created and it allows
  * the instance to be accessed globally.
  */
-class SeriesInfo : public QObject
+class SeriesInfo// : public QObject
 {
-    Q_OBJECT
+    //Q_OBJECT
 
     /**
      * @brief logger
@@ -189,7 +189,6 @@ public:
         return m_imageOrientationPatient;
     }
 
-public slots:
     /**
      * @brief setOverwriteFiles
      * Set flag which indicates whether generated files will overwrite existing files.
@@ -200,7 +199,6 @@ public slots:
         if (m_overwriteFiles != overwriteFiles)
         {
             m_overwriteFiles = overwriteFiles;
-            emit overwriteFilesValueChanged(overwriteFiles);
         }
     }
 
@@ -329,8 +327,16 @@ public slots:
         m_imageOrientationPatient = imageOrientationPatient;
     }
 
+    /**
+     * @brief loadSettings
+     * Fills a data structure using the saved settings.
+     */
     void loadSettings();
 
+    /**
+     * @brief saveSettings
+     * Saves the contents of info to persistent storage.
+     */
     void saveSettings();
 
 private:
