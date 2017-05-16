@@ -8,4 +8,5 @@ build*
 moc_*
 ui_*
 Makefile
+#*
 
