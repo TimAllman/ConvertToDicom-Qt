@@ -5,5 +5,7 @@ build*
 *.app
 *.o
 *.pro.user
+moc_*
+ui_*
 Makefile
 

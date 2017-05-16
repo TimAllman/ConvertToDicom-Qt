@@ -24,9 +24,23 @@
 
 #include <itkImage.h>
 
+/**
+ * @brief InternalPixelType
+ * When this program reads in image files they are stored with this canonical pixel type.
+ * TODO change this to float.
+ */
 typedef unsigned short InternalPixelType;
 
+/**
+ * @brief Image2DType
+ * Canonical type of a 2D image.
+ */
 typedef itk::Image<InternalPixelType, 2u> Image2DType;
+
+/**
+ * @brief Image3DType
+ * Canonical type of a 3D image.
+ */
 typedef itk::Image<InternalPixelType, 3u> Image3DType;
 
 #endif // TYPEDEFS_H

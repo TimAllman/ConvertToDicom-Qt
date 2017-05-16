@@ -1,5 +1,5 @@
 //
-//  dicomattributesdialog.h
+//  errorcodes
 //  ConvertToDicom
 //
 
@@ -19,45 +19,24 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-#ifndef DICOMATTRIBUTESDIALOG_H
-#define DICOMATTRIBUTESDIALOG_H
+#ifndef ERRORCODES_H
+#define ERRORCODES_H
 
-#include "logger.h"
-#include "seriesinfo.h"
-
-#include <QDialog>
-
-class SeriesInfo;
-
-namespace Ui {
-class DicomAttributesDialog;
-}
-
-class DicomAttributesDialog : public QDialog
+/**
+ * Collection of error codes
+ */
+enum struct ErrorCode
 {
-    Q_OBJECT
-
-public:
-    explicit DicomAttributesDialog(QWidget *parent = 0);
-    ~DicomAttributesDialog();
-
-    void loadData(const SeriesInfo&);
-
-    void storeData(SeriesInfo&);
-
-private slots:
-    void handleImageAxialPushButtonClicked();
-    void handleImageSaggitalPushButtonClicked();
-    void handleImageCoronalPushButtonClicked();
-    void handleStudyDateNowButtonClicked();
-    void handleStudyUIDGenerateButtonClicked();
-
-private:
-    Ui::DicomAttributesDialog *ui;
-
-    SeriesInfo& seriesInfo;
-    Logger logger;
-
+    SUCCESS,                  ///< All is well.
+    ERROR,                    ///< General error.
+    ERROR_FILE_NOT_FOUND,     ///< File(s) not found.
+    ERROR_READING_FILE,       ///< Problem reading existing file(s).
+    ERROR_WRITING_FILE,       ///< Problem creating or writing file(s).
+    ERROR_CREATING_DIRECTORY, ///< Problem creating a directory.
+    ERROR_DIRECTORY_NOT_EMPTY,///< Directory contains files when it shouldn't.
+    ERROR_IMAGE_INCONSISTENT  ///< Problem with input images.
 };
 
-#endif // DICOMATTRIBUTESDIALOG_H
+const char* ErrorCodeAsString(ErrorCode code);
+
+#endif // ERRORCODES_H

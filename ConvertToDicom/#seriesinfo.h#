@@ -22,14 +22,14 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-#include "logger.h"
+#include <log4cplus/loggingmacros.h>
 
 #include <itkMetaDataDictionary.h>
 #include <vnl/vnl_vector_fixed.h>
 
-#include <QDir>
+//#include <QObject>
 #include <QString>
-#include <QList>
+#include <QVector>
 #include <QDateTime>
 
 /**
@@ -42,12 +42,11 @@ class SeriesInfo// : public QObject
 {
     //Q_OBJECT
 
-    const Qt::DateFormat TimeFormat = Qt::ISODateWithMs;      //< Format used in program for times
-    const Qt::DateFormat DateFormat = Qt::ISODate;            //< Format used in program for dates
-    const Qt::DateFormat DateTimeFormat = Qt::ISODateWithMs;  //< Format used in program for datetimes
-
-    const char* DicomTimeFormat = "HHmmss.zzz";               //< Format used to format DICOM times
-    const char* DicomDateFormat = "YYYYMMdd";                 //< Format used to format DICOM dates
+    /**
+     * @brief logger
+     * log4cplus logger for this class.
+     */
+    log4cplus::Logger logger;
 
 public:
     /**
@@ -65,29 +64,44 @@ public:
      * Get the directory containing the files to be converted.
      * @return The current input directory.
      */
-    QDir inputDir() const
+    QString inputDir() const
     {
         return m_inputDir;
     }
 
-    QString inputDirStr() const
-    {
-        return m_inputDir.absolutePath();
-    }
-
-    QDir outputDir() const
+    QString outputDir() const
     {
         return m_outputDir;
-    }
-
-    QString outputDirStr() const
-    {
-        return m_outputDir.absolutePath();
     }
 
     QString outputPath() const
     {
         return m_outputPath;
+    }
+
+    int numberOfImages() const
+    {
+        return m_numberOfImages;
+    }
+
+    int slicesPerImage() const
+    {
+        return m_slicesPerImage;
+    }
+
+    int numberOfSlices() const
+    {
+        return m_numberOfSlices;
+    }
+
+    float timeIncrement() const
+    {
+        return m_timeIncrement;
+    }
+
+    QVector<float>& acqTimes()
+    {
+        return m_acqTimes;
     }
 
     QString patientsName() const
@@ -130,11 +144,6 @@ public:
         return m_studyDateTime;
     }
 
-    QString studyDateTimeStr() const
-    {
-        return m_studyDateTime.toString(DateTimeFormat);
-    }
-
     QString studyStudyUID() const
     {
         return m_StudyUID;
@@ -155,51 +164,22 @@ public:
         return m_seriesPositionPatient;
     }
 
-    /**
-     * @brief seriesTimeIncrement
-     * @return The time increment in ms.
-     */
-    int seriesTimeIncrement() const
-    {
-        return m_seriesTimeIncrement;
-    }
-
-    QList<QTime>& acqTimes()
-    {
-        return m_acqTimes;
-    }
-
-    int imageNumberOfImages() const
-    {
-        return m_imageNumberOfImages;
-    }
-
-    int imageSlicesPerImage() const
-    {
-        return m_imageSlicesPerImage;
-    }
-
-    int imageNumberOfSlices() const
-    {
-        return m_imageNumberOfSlices;
-    }
-
-    double imageSliceSpacing() const
+    float imageSliceSpacing() const
     {
         return m_imageSliceSpacing;
     }
 
-    double imagePositionPatientX() const
+    float imagePositionPatientX() const
     {
         return m_imagePositionPatient[0];
     }
 
-    double imagePositionPatientY() const
+   float imagePositionPatientY() const
     {
         return m_imagePositionPatient[1];
     }
 
-    double imagePositionPatientZ() const
+    float imagePositionPatientZ() const
     {
         return m_imagePositionPatient[2];
     }
@@ -227,12 +207,12 @@ public:
      * Set the input directory path
      * @param inputDir The directory containing the files to be converted.
      */
-    void setInputDir(const QDir& inputDir)
+    void setInputDir(const QString& inputDir)
     {
         m_inputDir = inputDir;
     }
 
-    void setOutputDir(const QDir& outputDir)
+    void setOutputDir(const QString& outputDir)
     {
         m_outputDir = outputDir;
     }
@@ -244,26 +224,22 @@ public:
 
     void setNumberOfImages(int numberOfImages)
     {
-        m_imageNumberOfImages = numberOfImages;
+        m_numberOfImages = numberOfImages;
     }
 
-    void setSeriesSlicesPerImage(int slicesPerImage)
+    void setSlicesPerImage(int slicesPerImage)
     {
-        m_imageSlicesPerImage = slicesPerImage;
+        m_slicesPerImage = slicesPerImage;
     }
 
-    void setSeriesNumberOfSlices(int numberOfSlices)
+    void setNumberOfSlices(int numberOfSlices)
     {
-        m_imageNumberOfSlices = numberOfSlices;
+        m_numberOfSlices = numberOfSlices;
     }
 
-    /**
-     * @brief setSeriesTimeIncrement
-     * @param timeIncrement The time increment in milliseconds.
-     */
-    void setSeriesTimeIncrement(int timeIncrement)
+    void setTimeIncrement(float timeIncrement)
     {
-        m_seriesTimeIncrement = timeIncrement;
+        m_timeIncrement = timeIncrement;
     }
 
     void setPatientsName(const QString& patientsName)
@@ -301,9 +277,9 @@ public:
         m_studyModality = studyModality;
     }
 
-    void setStudyDateTime(const QDateTime& studyDateTime)
+    void setStudyDateTime(const QString& studyDateTime)
     {
-        m_studyDateTime = studyDateTime;
+        m_studyDateTime = QDateTime::fromString(studyDateTime);
     }
 
     void setStudyStudyUID(const QString& studyStudyUID)
@@ -326,22 +302,22 @@ public:
         m_seriesPositionPatient = seriesPositionPatient;
     }
 
-    void setImageSliceSpacing(double imageSliceSpacing)
+    void setImageSliceSpacing(float imageSliceSpacing)
     {
         m_imageSliceSpacing = imageSliceSpacing;
     }
 
-    void setImagePositionPatientX(double imagePositionPatientX)
+    void setImagePositionPatientX(float imagePositionPatientX)
     {
         m_imagePositionPatient[0] = imagePositionPatientX;
     }
 
-    void setImagePositionPatientY(double imagePositionPatientY)
+    void setImagePositionPatientY(float imagePositionPatientY)
     {
         m_imagePositionPatient[1] = imagePositionPatientY;
     }
 
-    void setImagePositionPatientZ(double imagePositionPatientZ)
+    void setImagePositionPatientZ(float imagePositionPatientZ)
     {
         m_imagePositionPatient[2] = imagePositionPatientZ;
     }
@@ -364,19 +340,16 @@ public:
     void saveSettings();
 
 private:
-    /**
-     * @brief logger
-     * log4cplus logger for this class.
-     */
-    Logger logger;
-
     bool m_overwriteFiles;
-    QDir m_inputDir;
-    QDir m_outputDir;
+    QString m_inputDir;
+    QString m_outputDir;
     QString m_outputPath;
 
-    int m_seriesTimeIncrement;
-    QList<QTime> m_acqTimes;
+    int m_numberOfImages;
+    int m_slicesPerImage;
+    int m_numberOfSlices;
+    float m_timeIncrement;
+    QVector<float> m_acqTimes;
 
     QString m_patientsName;
     QString m_patientsID;
@@ -393,11 +366,8 @@ private:
     QString m_seriesDescription;
     QString m_seriesPositionPatient;
 
-    int m_imageSlicesPerImage;
-    int m_imageNumberOfImages;
-    double m_imageSliceSpacing;
-    int m_imageNumberOfSlices;
-    vnl_vector_fixed<double, 3> m_imagePositionPatient;
+    float m_imageSliceSpacing;
+    vnl_vector_fixed<float, 3> m_imagePositionPatient;
     QString m_imageOrientationPatient;
 
     mutable itk::MetaDataDictionary dict;
@@ -420,20 +390,7 @@ public:
      * Get the parameters as a DICOM dictionary.
      * @return The dictionary.
      */
-    itk::MetaDataDictionary metaDataDictionary() const;
-
-    /**
-     * @brief imagePositionPatientString
-     * @return The ImagePositionPatient as a DICOM compatible string.
-     */
-    QString imagePositionPatientString() const;
-
-    /**
-     * @brief imagePositionPatientString
-     * @param sliceIdx The slice whose position we want.
-     * @return The ImagePositionPatient for this slice as a DICOM compatible string.
-     */
-    QString imagePositionPatientString(int sliceIdx) const;
+    itk::MetaDataDictionary dictionary() const;
 
 private:
     /**
@@ -448,17 +405,16 @@ private:
     SeriesInfo(const SeriesInfo&);
 
     /**
-     * Destructor
-     */
-    ~SeriesInfo();
-
-    /**
      * @brief SeriesInfo
      * Assignment operator private and unimplemented.
      */
     SeriesInfo& operator=(const SeriesInfo&);
 
-    itk::MetaDataDictionary makeMetaDataDictionary() const;
+    itk::MetaDataDictionary makeDictionary() const;
+    QString imagePositionPatientString() const;
+
+    QString imagePositionPatientString(unsigned int sliceIdx) const;
+
 };
 
 #endif // SERIESINFO_H

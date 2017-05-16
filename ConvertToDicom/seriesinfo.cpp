@@ -37,19 +37,25 @@
 #include <log4cplus/logger.h>
 #include <log4cplus/loggingmacros.h>
 
-
 SeriesInfo::SeriesInfo()
     : logger(log4cplus::Logger::getInstance(std::string(LOGGER_NAME) + ".SeriesInfo")),
-      m_overwriteFiles(false), m_numberOfImages(0), m_slicesPerImage(0), m_numberOfSlices(0),
-      m_timeIncrement(0.0f), m_imageSliceSpacing(0.0),
+      m_imageSlicesPerImage(0),
+      m_imageNumberOfImages(0),
+      m_imageSliceSpacing(0.0),
+      m_imageNumberOfSlices(0),
       m_imageOrientationPatient("1\\0\\0\\0\\1\\0")
 {
      m_imagePositionPatient[0] = 0.0;
      m_imagePositionPatient[1] = 0.0;
      m_imagePositionPatient[2] = 0.0;
 
-
+     loadSettings();
 };
+
+SeriesInfo::~SeriesInfo()
+{
+    saveSettings();
+}
 
 void SeriesInfo::loadSettings()
 {
@@ -59,13 +65,19 @@ void SeriesInfo::loadSettings()
     // The defaults are set here as well.
     Settings settings; // uses preset program information
 
+    // The image parameters are calculated based upon the image that is loaded
+    // and so are neither saved nor read.
     setOverwriteFiles(settings.value(Settings::OverwriteFilesKey, false).toBool());
     setInputDir(settings.value(Settings::InputDirKey, QDir::homePath()).toString());
     setOutputDir(settings.value(Settings::OutputDirKey, QDir::homePath()).toString());
-    setTimeIncrement(settings.value(Settings::TimeIncrementKey, 1.0).toFloat());
+    setSeriesTimeIncrement(settings.value(Settings::TimeIncrementKey, 1.0).toInt());
     setPatientsName(settings.value(Settings::PatientsNameKey, "").toString());
     setPatientsID(settings.value(Settings::PatientsIDKey, 0).toString());
-    setPatientsDOB(settings.value(Settings::PatientsDOBKey, QDateTime::currentDateTime()).toString());
+
+    QString todayDateStr(QDate::currentDate().toString(DateFormat));
+    QString dobStr = settings.value(Settings::PatientsDOBKey, todayDateStr).toString();
+    setPatientsDOB(QDate::fromString(dobStr, DateFormat));
+
     setPatientsSex(settings.value(Settings::PatientsSexKey, "Unspecified").toString());
     setSeriesDescription(settings.value(Settings::SeriesDescriptionKey, "").toString());
     setSeriesNumber(settings.value(Settings::SeriesNumberKey, "0").toString());
@@ -73,14 +85,12 @@ void SeriesInfo::loadSettings()
     setStudyDescription(settings.value(Settings::StudyDescriptionKey, "").toString());
     setStudyID(settings.value(Settings::StudyIDKey, "0").toString());
     setStudyModality(settings.value(Settings::StudyModalityKey, "Unknown").toString());
-    setStudyDateTime(settings.value(Settings::StudyDateTimeKey, QDateTime::currentDateTime()).toString());
+
+    QString todayDateTimeStr(QDate::currentDate().toString(DateTimeFormat));
+    QString studyDateTimeStr = settings.value(Settings::StudyDateTimeKey, todayDateTimeStr).toString();
+    setStudyDateTime(QDateTime::fromString(studyDateTimeStr, DateTimeFormat));
+
     setStudyStudyUID(settings.value(Settings::StudyStudyUIDKey, "").toString());
-
-
-    ******************************************
-    check types in settings get and set.
-
-    setImageSliceSpacing(settings.value(Settings::ImageSliceSpacingKey, ))
 
     LOG4CPLUS_DEBUG(logger, "Loaded current settings and set default settings.");
 }
@@ -91,13 +101,15 @@ void SeriesInfo::saveSettings()
 
     Settings settings; // uses preset program information
 
+    // The image parameters are calculated based upon the image that is loaded
+    // and so are neither saved nor read.
     settings.setValue(Settings::OverwriteFilesKey, overwriteFiles());
-    settings.setValue(Settings::InputDirKey, inputDir());
-    settings.setValue(Settings::OutputDirKey, outputDir());
-    settings.setValue(Settings::TimeIncrementKey, timeIncrement());
+    settings.setValue(Settings::InputDirKey, inputDir().path());
+    settings.setValue(Settings::OutputDirKey, outputDir().path());
+    settings.setValue(Settings::TimeIncrementKey, seriesTimeIncrement());
     settings.setValue(Settings::PatientsNameKey, patientsName());
     settings.setValue(Settings::PatientsIDKey, patientsID());
-    settings.setValue(Settings::PatientsDOBKey, patientsDOB());
+    settings.setValue(Settings::PatientsDOBKey, patientsDOB().toString(DateFormat));
     settings.setValue(Settings::PatientsSexKey, patientsSex());
     settings.setValue(Settings::SeriesDescriptionKey, seriesDescription());
     settings.setValue(Settings::SeriesNumberKey, seriesNumber());
@@ -107,36 +119,37 @@ void SeriesInfo::saveSettings()
     settings.setValue(Settings::StudyModalityKey, studyModality());
     settings.setValue(Settings::StudyDateTimeKey, studyDateTime());
     settings.setValue(Settings::StudyStudyUIDKey, studyStudyUID());
-    settings.setValue(Settings::ImageSliceSpacingKey, imageSliceSpacing());
-    settings.setValue(Settings::ImagePatientPositionXKey, imagePositionPatientX());
-    settings.setValue(Settings::ImagePatientPositionYKey, imagePositionPatientY());
-    settings.setValue(Settings::ImagePatientPositionZKey, imagePositionPatientZ());
-    settings.setValue(Settings::ImagePatientOrientationKey, imagePatientOrientation());
+    //    settings.setValue(Settings::ImageSliceSpacingKey, imageSliceSpacing());
+    //    settings.setValue(Settings::ImagePatientPositionXKey, imagePositionPatientX());
+    //    settings.setValue(Settings::ImagePatientPositionYKey, imagePositionPatientY());
+    //    settings.setValue(Settings::ImagePatientPositionZKey, imagePositionPatientZ());
+    //    settings.setValue(Settings::ImagePatientOrientationKey, imagePatientOrientation());
 
     LOG4CPLUS_DEBUG(logger, "Saved settings.");
 }
 
-itk::MetaDataDictionary SeriesInfo::makeDictionary() const
+itk::MetaDataDictionary SeriesInfo::makeMetaDataDictionary() const
 {
     LOG4CPLUS_TRACE(logger, "Enter");
 
     // fill the dictionary from our Dicom
     if (dict.GetKeys().size() == 0)
     {
-        std::string date = m_studyDateTime.toString().toStdString();
-        std::string time = m_studyDateTime.toString("HHmmss").toStdString();
+        std::string studyDate = m_studyDateTime.toString(DicomDateFormat).toStdString();
+        std::string studyTime = m_studyDateTime.toString(DicomTimeFormat).toStdString();
+        std::string dobDate = m_patientsDOB.toString(DicomDateFormat).toStdString();
 
         itk::EncapsulateMetaData<std::string>(dict, "0010|0010", m_patientsName.toStdString());
         itk::EncapsulateMetaData<std::string>(dict, "0010|0020", m_patientsID.toStdString());
-        itk::EncapsulateMetaData<std::string>(dict, "0010|0030", m_patientsDOB.toStdString());
+        itk::EncapsulateMetaData<std::string>(dict, "0010|0030", dobDate);
         itk::EncapsulateMetaData<std::string>(dict, "0010|0040", m_patientsSex.toStdString());
 
         itk::EncapsulateMetaData<std::string>(dict, "0008|1030", m_studyDescription.toStdString());
         itk::EncapsulateMetaData<std::string>(dict, "0020|0010", m_studyID.toStdString());
         itk::EncapsulateMetaData<std::string>(dict, "0008|0060", m_studyModality.toStdString());
 
-        itk::EncapsulateMetaData<std::string>(dict, "0008|0020", date);
-        itk::EncapsulateMetaData<std::string>(dict, "0008|0031", time);
+        itk::EncapsulateMetaData<std::string>(dict, "0008|0020", studyDate);
+        itk::EncapsulateMetaData<std::string>(dict, "0008|0031", studyTime);
         itk::EncapsulateMetaData<std::string>(dict, "0020|000d", m_StudyUID.toStdString());
 
         gdcm::UIDGenerator suidGen;
@@ -148,8 +161,8 @@ itk::MetaDataDictionary SeriesInfo::makeDictionary() const
         itk::EncapsulateMetaData<std::string>(dict, "0020|0011", m_seriesNumber.toStdString());
         itk::EncapsulateMetaData<std::string>(dict, "0008|103e", m_seriesDescription.toStdString());
         itk::EncapsulateMetaData<std::string>(dict, "0018|5100", m_seriesPositionPatient.toStdString());
-        itk::EncapsulateMetaData<std::string>(dict, "0008|0021", date); // just use study date
-        itk::EncapsulateMetaData<std::string>(dict, "0008|0030", time); // just use study time
+        itk::EncapsulateMetaData<std::string>(dict, "0008|0021", studyDate); // just use study date
+        itk::EncapsulateMetaData<std::string>(dict, "0008|0030", studyTime); // just use study time
 
         QString spacing;
         spacing.setNum(m_imageSliceSpacing, 'f', 2);
@@ -163,7 +176,7 @@ itk::MetaDataDictionary SeriesInfo::makeDictionary() const
     return dict;
 }
 
-itk::MetaDataDictionary SeriesInfo::dictionary() const
+itk::MetaDataDictionary SeriesInfo::metaDataDictionary() const
 {
     return dict;
 }
@@ -176,15 +189,15 @@ QString SeriesInfo::imagePositionPatientString() const
     return QString::fromStdString(sstr.str());
 }
 
-QString SeriesInfo::imagePositionPatientString(unsigned int sliceIdx) const
+QString SeriesInfo::imagePositionPatientString(int sliceIdx) const
 {
     //LOG4CPLUS_TRACE(logger_, "Enter");
 
-    vnl_matrix_fixed<float, 3, 3> rot;   // the rotation matrix
-    vnl_vector_fixed<float, 3> ipp;      // the IPP (column) vector
+    vnl_matrix_fixed<double, 3, 3> rot;   // the rotation matrix
+    vnl_vector_fixed<double, 3> ipp;      // the IPP (column) vector
 
     // Create the rotation matrix from IOP
-    sscanf(m_imageOrientationPatient.toStdString().c_str(), "%f\\%f\\%f\\%f\\%f\\%f",
+    sscanf(m_imageOrientationPatient.toStdString().c_str(), "%lf\\%lf\\%lf\\%lf\\%lf\\%lf",
            &rot(0, 0), &rot(0, 1), &rot(0, 2), &rot(1, 0), &rot(1, 1), &rot(1, 2));
 
     // Compute the remaining orthogonal vector to complete the matrix
@@ -193,16 +206,18 @@ QString SeriesInfo::imagePositionPatientString(unsigned int sliceIdx) const
     rot(2,2) = rot(0, 0) * rot(1, 1) - rot(0, 1) * rot(1, 0);
 
     // IPP as a vector
-    ipp = m_imagePositionPatient;
+    ipp[0] =  imagePositionPatientX();
+    ipp[1] =  imagePositionPatientY();
+    ipp[2] =  imagePositionPatientZ();
 
-    //LOG4CPLUS_DEBUG(logger_, "Initial IPP = " << imagePositionPatientString());
+    LOG4CPLUS_DEBUG(logger, "Initial IPP = " << imagePositionPatientString().toStdString());
 
     ipp = rot * ipp;                            // rotate ipp into image coordinates
     ipp[2] += m_imageSliceSpacing * sliceIdx;    // increment Z component
     ipp = rot.inplace_transpose() * ipp;        // rotate back into patient coordinates
 
-    char  ippStr[30];
-    sprintf(ippStr, "%.2f\\%.2f\\%.2f", double(ipp(0)), double(ipp(1)), double(ipp(2)));
+    char ippStr[30];
+    sprintf(ippStr, "%.2f\\%.2f\\%.2f", ipp(0), ipp(1), ipp(2));
     LOG4CPLUS_DEBUG(logger, "Incremented IPP = " << ippStr);
 
     return ippStr;

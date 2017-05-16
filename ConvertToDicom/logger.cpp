@@ -20,19 +20,17 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "loggerutils.h"
+#include "logger.h"
 
-#include <QSettings>
+#include "settings.h"
 
-#include <log4cplus/loglevel.h>
-#include <log4cplus/logger.h>
 #include <log4cplus/consoleappender.h>
 #include <log4cplus/fileappender.h>
 #include <log4cplus/loggingmacros.h>
 
-std::string LogLevelToString(int level);
+std::string LogLevelToString(LogLevel level);
 
-void SetupLogger(const std::string& loggerName, int level, const std::string& filePath)
+void SetupLogger(const std::string& loggerName, LogLevel fileLogLevel, const std::string& filePath)
 {
     static bool setup = false;
     if (setup)
@@ -40,14 +38,14 @@ void SetupLogger(const std::string& loggerName, int level, const std::string& fi
     setup = true;
 
     // The logger is set to log all messages. We use the appenders to restrict the output(s).
-    log4cplus::Logger logger = log4cplus::Logger::getInstance(loggerName);
-    logger.setLogLevel(level);
+    Logger logger = Logger::getInstance(loggerName);
+    logger.setLogLevel(int(LogLevel::LOG_LEVEL_ALL));
 
     // The console appender.
     log4cplus::SharedAppenderPtr consoleAppender(new log4cplus::ConsoleAppender);
     std::string consoleAppName = loggerName + ".console";
     consoleAppender->setName(consoleAppName);
-    consoleAppender->setThreshold(log4cplus::INFO_LOG_LEVEL);
+    consoleAppender->setThreshold(int(LogLevel::LOG_LEVEL_INFO));
     std::string consolePattern = "%-5p (%d{%q}) [%b:%L] %m%n";
     std::auto_ptr<log4cplus::Layout> layout(new log4cplus::PatternLayout(consolePattern));
     consoleAppender->setLayout(layout);
@@ -59,12 +57,19 @@ void SetupLogger(const std::string& loggerName, int level, const std::string& fi
     std::string logFileName = loggerName + ".log";
     if (filePath.size() == 0)
     {
-        logFilePath = std::string(getenv("HOME")) + "/Library/Logs/";
+        #if defined(Q_OS_MACOS) || defined(Q_OS_IOS)
+            logFilePath = std::string(getenv("HOME")) + "/Library/Logs/";
+        #elif defined(Q_OS_WIN)
+            logFilePath = std::string(getenv("HOMEDRIVE")) + std::string(getenv("HOMEPATH")) + "\\Logs\\";
+        #elif defined(Q_OS_UNIX)
+            logFilePath = std::string("/var/log");
+        #endif
     }
     else
     {
         logFilePath = filePath + "/";
     }
+
     logFilePath += logFileName;
 
     // Set up the Rolling File Appender format
@@ -77,28 +82,27 @@ void SetupLogger(const std::string& loggerName, int level, const std::string& fi
     logFileApp->setLayout(fileLayout);
 
     // Set up the log file level
-    int logLevel = level;
-    if (logLevel == log4cplus::NOT_SET_LOG_LEVEL)
+    int intFileLogLevel = int(fileLogLevel);
+    if (fileLogLevel == LogLevel::LOG_LEVEL_NOT_SET)
     {
-        // Load logging level. If LoggingLevelKey is not found in the defaults, integerForKey returns
-        // 0 which is log4cplus::TRACE_LOG_LEVEL
-        QSettings settings;
-
-        //        NSUserDefaults* defs = [NSUserDefaults standardUserDefaults];
-        //        logLevel = (int)[defs integerForKey:LoggingLevelKey];
+        // Load logging level. If LoggingLevelKey is not found in the settings, the default
+        // value LogLevel::LOG_LEVEL_INFO is used.
+        Settings settings;
+        intFileLogLevel = settings.value(Settings::LoggingLevelKey, int(LogLevel::LOG_LEVEL_INFO)).toInt();
     }
 
-    logFileApp->setThreshold(logLevel);
+    logFileApp->setThreshold(intFileLogLevel);
     logger.addAppender(logFileApp);
 
     // Force this to the console.
-    LOG4CPLUS_INFO(logger, "Logging to file: " << logFilePath << ", Level: " << LogLevelToString(logLevel));
+    LOG4CPLUS_INFO(logger, "Logging to file: " << logFilePath << ", Level: "
+                   << LogLevelToString(LogLevel(intFileLogLevel)));
 }
 
-void ResetLoggerLevel(const char* name, int level)
+void ResetLoggerLevel(const char* name, LogLevel level)
 {
     log4cplus::Logger logger = log4cplus::Logger::getInstance(name);
-    logger.setLogLevel(level);
+    logger.setLogLevel(int(level));
 }
 
 /**
@@ -106,38 +110,35 @@ void ResetLoggerLevel(const char* name, int level)
  * @param level The log4m and log4cplus logging level.
  * @return The level as a string or "Unknown" if level is invalid
  */
-std::string LogLevelToString(int level)
+std::string LogLevelToString(LogLevel level)
 {
     std::string retVal;
 
     switch (level)
     {
-        case log4cplus::OFF_LOG_LEVEL:
+        case LogLevel::LOG_LEVEL_OFF:
             retVal = "OFF";
             break;
-        case log4cplus::FATAL_LOG_LEVEL:
+        case LogLevel::LOG_LEVEL_FATAL:
             retVal = "FATAL";
             break;
-        case log4cplus::ERROR_LOG_LEVEL:
+        case LogLevel::LOG_LEVEL_ERROR:
             retVal = "ERROR";
             break;
-        case log4cplus::WARN_LOG_LEVEL:
+        case LogLevel::LOG_LEVEL_WARN:
             retVal = "WARN";
             break;
-        case log4cplus::INFO_LOG_LEVEL:
+        case LogLevel::LOG_LEVEL_INFO:
             retVal = "INFO";
             break;
-        case log4cplus::DEBUG_LOG_LEVEL:
+        case LogLevel::LOG_LEVEL_DEBUG:
             retVal = "DEBUG";
             break;
-        case log4cplus::TRACE_LOG_LEVEL:
+        case LogLevel::LOG_LEVEL_TRACE:
             retVal = "TRACE";
             break;
-        case log4cplus::NOT_SET_LOG_LEVEL:
+        case LogLevel::LOG_LEVEL_NOT_SET:
             retVal = "NOT SET";
-            break;
-        default:
-            retVal = "Unknown";
             break;
     }
 

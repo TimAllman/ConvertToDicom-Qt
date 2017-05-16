@@ -26,19 +26,26 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += main.cpp\
         mainwindow.cpp \
         seriesinfo.cpp \
-    loggerutils.cpp \
     settings.cpp \
     dumpmetadatadictionary.cpp \
-    dicomattributesdialog.cpp
+    dicomattributesdialog.cpp \
+    seriesconverter.cpp \
+    errorcodes.cpp \
+    imagereader.cpp \
+    dicomserieswriter.cpp \
+    logger.cpp
 
 HEADERS  += mainwindow.h \
         seriesinfo.h \
-    loggername.h \
-    loggerutils.h \
     settings.h \
     dumpmetadatadictionary.h \
     typedefs.h \
-    dicomattributesdialog.h
+    dicomattributesdialog.h \
+    seriesconverter.h \
+    errorcodes.h \
+    logger.h \
+    imagereader.h \
+    dicomserieswriter.h
 
 FORMS    += mainwindow.ui \
     dicomattributesdialog.ui
@@ -151,7 +158,8 @@ INCLUDEPATH += $$PWD/../../../usr/local/ITK-4.11/x86_64/Release/include/ITK-4.11
 DEPENDPATH += $$PWD/../../../usr/local/ITK-4.11/x86_64/Release/include/ITK-4.11
 
 DISTFILES += \
-    licence.txt
+    licence.txt \
+    doxyfile
 
 win32:CONFIG(release, debug|release): LIBS += -L$$PWD/../../../usr/local/lib/release/ -llog4cplusS
 else:win32:CONFIG(debug, debug|release): LIBS += -L$$PWD/../../../usr/local/lib/debug/ -llog4cplusS

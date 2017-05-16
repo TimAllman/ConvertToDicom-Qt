@@ -46,11 +46,11 @@ QString Settings::StudyStudyUIDKey = "StudyStudyUID";
 QString Settings::SeriesDescriptionKey = "SeriesDescription";
 QString Settings::SeriesNumberKey = "SeriesNumber";
 QString Settings::SeriesPatientPositionKey = "SeriesPatientPosition";
-QString Settings::ImageSliceSpacingKey = "ImageSliceSpacing";
-QString Settings::ImagePatientPositionXKey = "ImagePatientPositionX";
-QString Settings::ImagePatientPositionYKey = "ImagePatientPositionY";
-QString Settings::ImagePatientPositionZKey = "ImagePatientPositionZ";
-QString Settings::ImagePatientOrientationKey = "ImagePatientOrientation";
+//QString Settings::ImageSliceSpacingKey = "ImageSliceSpacing";
+//QString Settings::ImagePatientPositionXKey = "ImagePatientPositionX";
+//QString Settings::ImagePatientPositionYKey = "ImagePatientPositionY";
+//QString Settings::ImagePatientPositionZKey = "ImagePatientPositionZ";
+//QString Settings::ImagePatientOrientationKey = "ImagePatientOrientation";
 
 Settings::Settings()
     : logger(log4cplus::Logger::getInstance(std::string(LOGGER_NAME) + ".Settings"))

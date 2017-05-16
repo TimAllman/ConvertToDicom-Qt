@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>Convert To DICOM</string>
   </property>
   <widget class="QWidget" name="centralWidget">
    <layout class="QVBoxLayout" name="verticalLayout_4">
@@ -41,7 +41,7 @@
               </widget>
              </item>
              <item>
-              <widget class="QPushButton" name="sourceDirChooseushButton">
+              <widget class="QPushButton" name="sourceDirChoosePushButton">
                <property name="text">
                 <string>Choose</string>
                </property>

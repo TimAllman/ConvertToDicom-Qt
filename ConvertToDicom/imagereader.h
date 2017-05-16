@@ -1,5 +1,5 @@
 //
-//  loggername
+//  imagereader.h
 //  ConvertToDicom
 //
 
@@ -19,9 +19,37 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-#ifndef LOGGERNAME_H
-#define LOGGERNAME_H
+#ifndef IMAGEREADER_H
+#define IMAGEREADER_H
 
-#define LOGGER_NAME "ca.brasscats.ConvertToDicom" ///< The base name of the logger used throughout.
+#include "typedefs.h"
+#include "logger.h"
 
-#endif // LOGGERNAME_H
+#include <vector>
+
+/**
+ * Reads an image on disk, creating a std::vector of slices.
+ */
+class ImageReader
+{
+public:
+    /** Used as a return type for ReadImage */
+    typedef std::vector<Image2DType::Pointer> ImageVector;
+
+    /**
+     * Default constructor.
+     */
+    explicit ImageReader();
+
+    /**
+     * Read an image (2D or 3D) on disk.
+     * @param name The name of the file. May be relative or absolute path name.
+     * @return An ImageReader::ImageVector of the image slices.
+     */
+    ImageVector ReadImage(const std::string& name);
+
+private:
+    Logger logger;
+};
+
+#endif // IMAGEREADER_H

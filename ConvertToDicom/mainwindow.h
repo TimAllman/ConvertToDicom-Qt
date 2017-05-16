@@ -3,9 +3,11 @@
 
 #include <QMainWindow>
 
-#include <log4cplus/logger.h>
+#include "logger.h"
+#include "seriesinfo.h"
 
 class DicomAttributesDialog;
+class SeriesConverter;
 
 namespace Ui {
 class MainWindow;
@@ -19,17 +21,43 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
 
-    void loadSettings();
-    void saveSettings();
-public slots:
+    /**
+     * @brief loadSettings
+     * Load application wide settings.
+     */
+    void loadWidgetInfo();
 
+    /**
+     * @brief saveSettings
+     * Save application wide settings.
+     */
+    void getWidgetInfo();
+
+public slots:
+    /**
+     * @brief execDicomAttributesDialog
+     * Show the DICOM attributes dialog
+     */
     void execDicomAttributesDialog();
+
+    void handleSourceDirPushButtonClicked();
+
+    void handleDestDirPushButtonClicked();
+
+    void handleOverwriteFilesCheckBoxClicked(bool checked);
+
+    void handleConvertButtonClicked();
 
 private:
     Ui::MainWindow *ui;
 
+    SeriesInfo& seriesInfo;
+
     DicomAttributesDialog* dicomAttributesDialog;
-    log4cplus::Logger logger;
+
+    SeriesConverter* seriesConverter;
+
+    Logger logger;
 
 };
 

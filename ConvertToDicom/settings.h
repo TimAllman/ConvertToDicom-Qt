@@ -24,15 +24,18 @@
 
 class SeriesInfo;
 
-#include <log4cplus/logger.h>
+#include "logger.h"
 
 #include <QString>
 #include <QSettings>
 
+/**
+ * @brief The Settings class
+ * Class which saves and restores settings between executions. The static xxxKey members
+ * are keys used to look up the appropriate values.
+ */
 class Settings : public QSettings
 {
-    log4cplus::Logger logger;
-
 public:
     // Keys for preferences.
     static QString LoggingLevelKey;
@@ -56,11 +59,11 @@ public:
     static QString SeriesNumberKey;
     static QString SeriesPatientPositionKey;
 
-    static QString ImageSliceSpacingKey;
-    static QString ImagePatientPositionXKey;
-    static QString ImagePatientPositionYKey;
-    static QString ImagePatientPositionZKey;
-    static QString ImagePatientOrientationKey;
+    //    static QString ImageSliceSpacingKey;
+    //    static QString ImagePatientPositionXKey;
+    //    static QString ImagePatientPositionYKey;
+    //    static QString ImagePatientPositionZKey;
+    //    static QString ImagePatientOrientationKey;
 
     /**
      * @brief Settings
@@ -69,15 +72,7 @@ public:
     explicit Settings();
 
 private:
-    QMap<QString, QVariant> defaults; // this contains the default settings.
-
-    /**
-     * @brief registerDefaults
-     * Set up the default settings.
-     */
-    void registerDefaults();
-
-
+    Logger logger;
 };
 
 #endif // SETTINGS_H
