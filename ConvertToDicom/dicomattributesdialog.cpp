@@ -44,11 +44,11 @@ DicomAttributesDialog::DicomAttributesDialog(QWidget *parent) :
     ui->setupUi(this);
 
     ui->patientsSexComboBox->addItems(sexes);
-    //ui->patientsSexComboBox->setCurrentIndex(2);             // Unspecified
     ui->studyModalityComboBox->addItems(modalities);
-    //ui->seriesPatientPositionComboBox->addItems(positions);  // HFP
-    ui->seriesPatientPositionComboBox->setCurrentIndex(1);
+    ui->seriesPatientPositionComboBox->addItems(positions);  // HFP
 
+    connect(ui->studyDateTimeNowPushButton, SIGNAL(clicked()), this, SLOT(handleStudyDateNowButtonClicked()));
+    connect(ui->studyInstanceUIDGeneratePushButton, SIGNAL(clicked()), this, SLOT(handleStudyUIDGenerateButtonClicked()));
 }
 
 DicomAttributesDialog::~DicomAttributesDialog()
@@ -58,126 +58,182 @@ DicomAttributesDialog::~DicomAttributesDialog()
 
 //////////////////////////////////////////////////////////////////////
 
-void DicomAttributesDialog::loadData(const SeriesInfo& info)
+void DicomAttributesDialog::loadData()
 {
     // Patient tab
-    ui->patientsNameLineEdit->setText(info.patientsName());
-    ui->patientsIDLineEdit->setText(info.patientsID());
-    ui->patientsDOBDateEdit->setDate(info.patientsDOB());
+    ui->patientsNameLineEdit->setText(seriesInfo->patientsName());
+    ui->patientsIDLineEdit->setText(seriesInfo->patientsID());
+    ui->patientsDOBDateEdit->setDate(seriesInfo->patientsDOB());
 
-    int idx = sexes.indexOf(info.patientsSex());
+    int idx = sexes.indexOf(seriesInfo->patientsSex());
     ui->patientsSexComboBox->setCurrentIndex(idx);
     LOG4CPLUS_DEBUG(logger, "Patient's sex set to " << ui->patientsSexComboBox->currentText().toStdString());
 
     //Study tab
-    idx = modalities.indexOf(info.studyModality());
+    idx = modalities.indexOf(seriesInfo->studyModality());
     ui->studyModalityComboBox->setCurrentIndex(idx);
     LOG4CPLUS_DEBUG(logger, "Modality set to " << ui->studyModalityComboBox->currentText().toStdString());
 
-    ui->studyDescriptionTextEdit->setPlainText(info.studyDescription());
-    ui->studyIDLineEdit->setText(info.studyID());
-    ui->studyDateTimeDDateTimeEdit->setDateTime(info.studyDateTime());
-    ui->studyInstanceUIDLineEdit->setText(info.studyStudyUID());
+    ui->studyDescriptionLineEdit->setText(seriesInfo->studyDescription());
+    ui->studyIDLineEdit->setText(seriesInfo->studyID());
+    ui->studyDateTimeDateTimeEdit->setDateTime(seriesInfo->studyDateTime());
+    ui->studyInstanceUIDLineEdit->setText(seriesInfo->studyStudyUID());
 
     // Series tab
-    idx = positions.indexOf(info.seriesPositionPatient());
+    idx = positions.indexOf(seriesInfo->seriesPositionPatient());
     ui->seriesPatientPositionComboBox->setCurrentIndex(idx);
     LOG4CPLUS_DEBUG(logger, "Position set to " << ui->seriesPatientPositionComboBox->currentText().toStdString());
 
-    ui->seriesDescriptionTextEdit->setPlainText(info.seriesDescription());
-    ui->seriesNumberLineEdit->setText(info.seriesNumber());
-    ui->seriesTimeIncrementLineEdit->setText(QString::number(info.seriesTimeIncrement()));
+    ui->seriesDescriptionLineEdit->setText(seriesInfo->seriesDescription());
+    ui->seriesNumberLineEdit->setText(seriesInfo->seriesNumber());
+    ui->seriesTimeIncrementLineEdit->setText(QString::number(seriesInfo->seriesTimeIncrement()));
 
     // Image tab
-    ui->numberOfImagesLineEdit->setText(QString::number(info.imageNumberOfImages()));
+    ui->numberOfImagesLineEdit->setText(QString::number(seriesInfo->imageNumberOfImages()));
 
-    int sliceCount = info.imageNumberOfSlices();
+    /* We need to set up the slices per image combobox.
+     * It is possible that a series of slices may be either single 2D images
+     * or slices of fewer 3D images. This code finds the list of exact divisors
+     * for the number of slices so that the DICOM images cam be written
+     * out properly.
+     */
+    int sliceCount = seriesInfo->imageNumberOfSlices();
     QStringList countList;
     for (int idx = 1; idx <= sliceCount; ++idx)
-        countList.append(QString::number(idx));
+        if ((sliceCount % idx) == 0)
+            countList.append(QString::number(idx));
+    int index = countList.indexOf(QString::number(seriesInfo->imageSlicesPerImage()));
+    if (index == -1)
+        index = 0;
+    ui->imageSlicesPerImageComboBox->clear();
     ui->imageSlicesPerImageComboBox->addItems(countList);
+    ui->imageSlicesPerImageComboBox->setCurrentIndex(index);
 
-    ui->imageSliceSpacingLineEdit->setText(QString::number(info.imageSliceSpacing()));
-    ui->imagePatientsPositionXLineEdit->setText(QString::number(info.imagePositionPatientX()));
-    ui->imagePatientsPositionYLineEdit->setText(QString::number(info.imagePositionPatientY()));
-    ui->imagePatientsPositionZLineEdit->setText(QString::number(info.imagePositionPatientZ()));
-    ui->imagePatientOrientationLineEdit->setText(info.imagePatientOrientation());
+    ui->imageSliceSpacingLineEdit->setText(QString::number(seriesInfo->imageSliceSpacing()));
+    ui->imagePatientsPositionXLineEdit->setText(QString::number(seriesInfo->imagePositionPatientX()));
+    ui->imagePatientsPositionYLineEdit->setText(QString::number(seriesInfo->imagePositionPatientY()));
+    ui->imagePatientsPositionZLineEdit->setText(QString::number(seriesInfo->imagePositionPatientZ()));
+    ui->imagePatientOrientationLineEdit->setText(seriesInfo->imagePatientOrientation());
 
 }
 
-void DicomAttributesDialog::storeData(SeriesInfo& info)
+void DicomAttributesDialog::storeData()
 {
     // Patient tab
-    info.setPatientsName(ui->patientsNameLineEdit->text());
-    info.setPatientsID(ui->patientsIDLineEdit->text());
-    info.setPatientsDOB(ui->patientsDOBDateEdit->date());
-    info.setPatientsSex(ui->patientsSexComboBox->currentText());
+    seriesInfo->setPatientsName(ui->patientsNameLineEdit->text());
+    seriesInfo->setPatientsID(ui->patientsIDLineEdit->text());
+    seriesInfo->setPatientsDOB(ui->patientsDOBDateEdit->date());
+    seriesInfo->setPatientsSex(ui->patientsSexComboBox->currentText());
 
     //Study tab
-    info.setStudyModality(ui->studyModalityComboBox->currentText());
-
-    info.setSeriesTimeIncrement(ui->studyDescriptionTextEdit->toPlainText().toInt());
-    info.setStudyID(ui->studyIDLineEdit->text());
-    info.setStudyDateTime(ui->studyDateTimeDDateTimeEdit->dateTime());
-    info.setStudyStudyUID(ui->studyInstanceUIDLineEdit->text());
+    seriesInfo->setStudyDescription(ui->studyDescriptionLineEdit->text());
+    seriesInfo->setStudyModality(ui->studyModalityComboBox->currentText());
+    seriesInfo->setStudyID(ui->studyIDLineEdit->text());
+    seriesInfo->setStudyDateTime(ui->studyDateTimeDateTimeEdit->dateTime());
+    seriesInfo->setStudyStudyUID(ui->studyInstanceUIDLineEdit->text());
 
     // Series tab
-    info.setSeriesPositionPatient(ui->seriesPatientPositionComboBox->currentText());
-    info.setSeriesDescription(ui->seriesDescriptionTextEdit->toPlainText());
-    info.setSeriesNumber(ui->seriesNumberLineEdit->text());
-    info.setSeriesTimeIncrement(ui->seriesTimeIncrementLineEdit->text().toInt());
+    seriesInfo->setSeriesDescription(ui->seriesDescriptionLineEdit->text());
+    seriesInfo->setSeriesPositionPatient(ui->seriesPatientPositionComboBox->currentText());
+    seriesInfo->setSeriesNumber(ui->seriesNumberLineEdit->text());
+    seriesInfo->setSeriesTimeIncrement(ui->seriesTimeIncrementLineEdit->text().toInt());
 
     // Image tab
-    info.setNumberOfImages(ui->numberOfImagesLineEdit->text().toInt());
-    info.setSeriesSlicesPerImage(ui->imageSlicesPerImageComboBox->currentText().toInt());
-    info.setImageSliceSpacing(ui->imageSliceSpacingLineEdit->text().toInt());
-    info.setImagePositionPatientX(ui->imagePatientsPositionXLineEdit->text().toDouble());
-    info.setImagePositionPatientY(ui->imagePatientsPositionYLineEdit->text().toDouble());
-    info.setImagePositionPatientZ(ui->imagePatientsPositionZLineEdit->text().toDouble());
-    info.setImagePatientOrientation(ui->imagePatientOrientationLineEdit->text());
+    seriesInfo->setNumberOfImages(ui->numberOfImagesLineEdit->text().toInt());
+    seriesInfo->setSeriesSlicesPerImage(ui->imageSlicesPerImageComboBox->currentText().toInt());
+    seriesInfo->setImageSliceSpacing(ui->imageSliceSpacingLineEdit->text().toInt());
+    seriesInfo->setImagePositionPatientX(ui->imagePatientsPositionXLineEdit->text().toDouble());
+    seriesInfo->setImagePositionPatientY(ui->imagePatientsPositionYLineEdit->text().toDouble());
+    seriesInfo->setImagePositionPatientZ(ui->imagePatientsPositionZLineEdit->text().toDouble());
+    seriesInfo->setImagePatientOrientation(ui->imagePatientOrientationLineEdit->text());
 }
 
 void DicomAttributesDialog::handleImageAxialPushButtonClicked()
 {
-    seriesInfo.setImagePatientOrientation("1\\0\\0\\0\\1\\0");
+    seriesInfo->setImagePatientOrientation("1\\0\\0\\0\\1\\0");
     ui->imagePatientOrientationLineEdit->setText("1\\0\\0\\0\\1\\0");
 }
 
 void DicomAttributesDialog::handleImageSaggitalPushButtonClicked()
 {
-    seriesInfo.setImagePatientOrientation("0\\1\\0\\0\\0\\1");
+    seriesInfo->setImagePatientOrientation("0\\1\\0\\0\\0\\1");
     ui->imagePatientOrientationLineEdit->setText("0\\1\\0\\0\\0\\1");
 }
 
 void DicomAttributesDialog::handleImageCoronalPushButtonClicked()
 {
-    seriesInfo.setImagePatientOrientation("1\\0\\0\\0\\0\\1");
+    seriesInfo->setImagePatientOrientation("1\\0\\0\\0\\0\\1");
     ui->imagePatientOrientationLineEdit->setText("1\\0\\0\\0\\0\\1");
 }
 
 void DicomAttributesDialog::handleStudyDateNowButtonClicked()
 {
-    seriesInfo.setStudyDateTime(QDateTime::currentDateTime());
-    ui->studyDateTimeDDateTimeEdit->setDateTime(seriesInfo.studyDateTime());
+    seriesInfo->setStudyDateTime(QDateTime::currentDateTime());
+    ui->studyDateTimeDateTimeEdit->setDateTime(seriesInfo->studyDateTime());
 
     LOG4CPLUS_DEBUG(logger, "handleStudyDateNowButtonClicked: "
-                    << seriesInfo.studyDateTimeStr().toStdString());
+                    << seriesInfo->studyDateTimeStr().toStdString());
 }
 
 void DicomAttributesDialog::handleStudyUIDGenerateButtonClicked()
 {
     gdcm::UIDGenerator suid;
     QString studyUID = suid.Generate();
-    seriesInfo.setStudyStudyUID(studyUID);
+    seriesInfo->setStudyStudyUID(studyUID);
     ui->studyInstanceUIDLineEdit->setText(studyUID);
 
     LOG4CPLUS_DEBUG(logger, "handleStudyUIDGenerateButtonClicked: "
-                    << seriesInfo.studyStudyUID().toStdString());
+                    << seriesInfo->studyStudyUID().toStdString());
 }
 
+void DicomAttributesDialog::handlePatientsDOBDateEditChanged(const QDate &datetime)
+{
+    seriesInfo->setPatientsDOB(datetime);
 
+    LOG4CPLUS_DEBUG(logger, "handlePatientsDOBDateEditChanged: "
+                    << seriesInfo->patientsDOBStr().toStdString());
+}
 
+void DicomAttributesDialog::handleStudyDateTimeDateTimeEditChanged(const QDateTime& dateTime)
+{
+    seriesInfo->setStudyDateTime(dateTime);
 
+    LOG4CPLUS_DEBUG(logger, "handlestudyDateTimeDateTimeEditChanged: "
+                    << seriesInfo->studyDateTimeStr().toStdString());
+}
+
+void DicomAttributesDialog::handlePatientsSexComboBoxIndexChanged(int idx)
+{
+    seriesInfo->setPatientsSex(sexes[idx]);
+
+    LOG4CPLUS_DEBUG(logger, "handlePatientsSexComboBoxIndexChanged: "
+                    << seriesInfo->patientsSex().toStdString());
+}
+
+void DicomAttributesDialog::handleStudyModalityComboBoxIndexChanged(int idx)
+{
+    seriesInfo->setStudyModality(modalities[idx]);
+
+    LOG4CPLUS_DEBUG(logger, "handleStudyModalityComboBoxIndexChanged: "
+                    << seriesInfo->studyModality().toStdString());
+}
+
+void DicomAttributesDialog::handleSeriesPatientPositionComboBoxActivated(int idx)
+{
+    seriesInfo->setSeriesPositionPatient(positions[idx]);
+
+    LOG4CPLUS_DEBUG(logger, "handleStudyModalityComboBoxIndexChanged: "
+                    << seriesInfo->seriesPositionPatient().toStdString());
+}
+
+void DicomAttributesDialog::handleImageSlicesPerImageComboBoxActivated(int idx)
+{
+    bool ok;
+    seriesInfo->setSeriesSlicesPerImage(ui->imageSlicesPerImageComboBox->itemText(idx).toInt(&ok));
+
+    LOG4CPLUS_DEBUG(logger, "handleStudyModalityComboBoxIndexChanged: "
+                    << seriesInfo->seriesPositionPatient().toStdString());
+}
 
 
 

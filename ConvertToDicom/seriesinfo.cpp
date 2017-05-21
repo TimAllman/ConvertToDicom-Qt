@@ -20,7 +20,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "loggername.h"
+#include "logger.h"
 #include "seriesinfo.h"
 #include "settings.h"
 #include "dumpmetadatadictionary.h"
@@ -67,7 +67,7 @@ void SeriesInfo::loadSettings()
 
     // The image parameters are calculated based upon the image that is loaded
     // and so are neither saved nor read.
-    setOverwriteFiles(settings.value(Settings::OverwriteFilesKey, false).toBool());
+    setOverwriteFiles(settings.value(Settings::OverwriteFilesKey, 0).toBool());
     setInputDir(settings.value(Settings::InputDirKey, QDir::homePath()).toString());
     setOutputDir(settings.value(Settings::OutputDirKey, QDir::homePath()).toString());
     setSeriesTimeIncrement(settings.value(Settings::TimeIncrementKey, 1.0).toInt());
@@ -124,6 +124,8 @@ void SeriesInfo::saveSettings()
     //    settings.setValue(Settings::ImagePatientPositionYKey, imagePositionPatientY());
     //    settings.setValue(Settings::ImagePatientPositionZKey, imagePositionPatientZ());
     //    settings.setValue(Settings::ImagePatientOrientationKey, imagePatientOrientation());
+
+    settings.sync();
 
     LOG4CPLUS_DEBUG(logger, "Saved settings.");
 }

@@ -66,7 +66,16 @@ public:
      * @param dir The directory containing the files to be read.
      * Tells us where the files are.
      */
-    void setInputDir(const QDir& dir);
+    void setInputDir(const QDir& dir)
+    {
+        inputDir = dir;
+    }
+
+    /**
+     * Tries to get as much metadata from the input image files as possible.
+     * @return Suitable code in ErrorCode enum.
+     */
+    ErrorCode extractSeriesAttributes();
 
 //    /**
 //     * @brief setOutputDir
@@ -93,13 +102,6 @@ private:
      */
     ErrorCode inputImagesConsistent();
 
-
-    /**
-     * Tries to get as much metadata from the input image files as possible.
-     * @return Suitable code in ErrorCode enum.
-     */
-    ErrorCode extractSeriesAttributes();
-
     /**
      * Make the full path directory name.
      * The files exist at the bottom of a tree that looks like this:
@@ -108,7 +110,10 @@ private:
      */
     QString makeOutputPathName(const QString& dirName);
 
-
+    /**
+     * Read in all of the image files in the input directory. Must be called after loadFileNames().
+     * @return Suitable code in ErrorCode enum.
+     */
     ErrorCode readFiles();
 
     /**
@@ -118,11 +123,11 @@ private:
      */
     ErrorCode writeFiles();
 
-    QList<QString> fileNames;            ///< The list of input file names.
+    QStringList fileNames;            ///< The list of input file names.
 
     QDir inputDir;         ///< Where the input files are found.
     QDir outputDir;        ///< Where to put the output file tree.
-    SeriesInfo& seriesInfo;  ///< Information about the series.
+    SeriesInfo* seriesInfo;  ///< Information about the series.
 
     QVector<Image2DType::Pointer> imageStack;
 

@@ -6,101 +6,156 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>421</width>
-    <height>461</height>
+    <width>513</width>
+    <height>463</height>
    </rect>
+  </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
   </property>
   <property name="windowTitle">
    <string>DICOM Attributes</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
+   <property name="sizeConstraint">
+    <enum>QLayout::SetDefaultConstraint</enum>
+   </property>
    <item>
     <widget class="QTabWidget" name="tabWidget">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
      <property name="currentIndex">
-      <number>0</number>
+      <number>3</number>
      </property>
      <widget class="QWidget" name="patientTab">
       <attribute name="title">
        <string>Patient</string>
       </attribute>
-      <layout class="QVBoxLayout" name="verticalLayout_2">
+      <layout class="QVBoxLayout" name="verticalLayout_9">
        <item>
         <widget class="QGroupBox" name="groupBox_2">
          <property name="title">
           <string/>
          </property>
-         <layout class="QFormLayout" name="formLayout">
-          <property name="fieldGrowthPolicy">
-           <enum>QFormLayout::ExpandingFieldsGrow</enum>
-          </property>
-          <item row="0" column="0">
-           <widget class="QLabel" name="label">
-            <property name="text">
-             <string>Name</string>
+         <layout class="QVBoxLayout" name="verticalLayout_2">
+          <item>
+           <layout class="QFormLayout" name="formLayout">
+            <property name="fieldGrowthPolicy">
+             <enum>QFormLayout::ExpandingFieldsGrow</enum>
             </property>
-            <property name="buddy">
-             <cstring>patientsNameLineEdit</cstring>
-            </property>
-           </widget>
-          </item>
-          <item row="0" column="1">
-           <widget class="QLineEdit" name="patientsNameLineEdit">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-           </widget>
-          </item>
-          <item row="1" column="0">
-           <widget class="QLabel" name="label_2">
-            <property name="text">
-             <string>ID</string>
-            </property>
-            <property name="buddy">
-             <cstring>patientsNameLineEdit</cstring>
-            </property>
-           </widget>
-          </item>
-          <item row="1" column="1">
-           <widget class="QLineEdit" name="patientsIDLineEdit"/>
-          </item>
-          <item row="2" column="0">
-           <widget class="QLabel" name="label_3">
-            <property name="text">
-             <string>DOB</string>
-            </property>
-            <property name="buddy">
-             <cstring>patientsNameLineEdit</cstring>
-            </property>
-           </widget>
-          </item>
-          <item row="2" column="1">
-           <widget class="QDateEdit" name="patientsDOBDateEdit"/>
-          </item>
-          <item row="3" column="0">
-           <widget class="QLabel" name="label_4">
-            <property name="text">
-             <string>Sex</string>
-            </property>
-            <property name="buddy">
-             <cstring>patientsNameLineEdit</cstring>
-            </property>
-           </widget>
-          </item>
-          <item row="3" column="1">
-           <widget class="QComboBox" name="patientsSexComboBox">
-            <property name="maxVisibleItems">
-             <number>3</number>
-            </property>
-            <property name="maxCount">
-             <number>3</number>
-            </property>
-           </widget>
+            <item row="0" column="0">
+             <widget class="QLabel" name="label">
+              <property name="statusTip">
+               <string/>
+              </property>
+              <property name="text">
+               <string>&amp;Name</string>
+              </property>
+              <property name="buddy">
+               <cstring>patientsNameLineEdit</cstring>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="1">
+             <widget class="QLineEdit" name="patientsNameLineEdit">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="toolTip">
+               <string>PatientsName (0010,0010)</string>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="0">
+             <widget class="QLabel" name="label_2">
+              <property name="text">
+               <string>&amp;ID</string>
+              </property>
+              <property name="buddy">
+               <cstring>patientsIDLineEdit</cstring>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="1">
+             <widget class="QLineEdit" name="patientsIDLineEdit">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="toolTip">
+               <string>PatientID (0010,0020)</string>
+              </property>
+             </widget>
+            </item>
+            <item row="2" column="0">
+             <widget class="QLabel" name="label_3">
+              <property name="text">
+               <string>&amp;DOB</string>
+              </property>
+              <property name="buddy">
+               <cstring>patientsDOBDateEdit</cstring>
+              </property>
+             </widget>
+            </item>
+            <item row="2" column="1">
+             <widget class="QDateEdit" name="patientsDOBDateEdit">
+              <property name="toolTip">
+               <string>PatientsBirthDate (0010,0030)</string>
+              </property>
+             </widget>
+            </item>
+            <item row="3" column="0">
+             <widget class="QLabel" name="label_4">
+              <property name="text">
+               <string>&amp;Sex</string>
+              </property>
+              <property name="buddy">
+               <cstring>patientsSexComboBox</cstring>
+              </property>
+             </widget>
+            </item>
+            <item row="3" column="1">
+             <widget class="QComboBox" name="patientsSexComboBox">
+              <property name="toolTip">
+               <string>PatientsSex (0010,0040)</string>
+              </property>
+              <property name="maxVisibleItems">
+               <number>3</number>
+              </property>
+              <property name="maxCount">
+               <number>3</number>
+              </property>
+             </widget>
+            </item>
+           </layout>
           </item>
          </layout>
         </widget>
+       </item>
+       <item>
+        <spacer name="verticalSpacer_4">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>151</height>
+          </size>
+         </property>
+        </spacer>
        </item>
       </layout>
      </widget>
@@ -108,9 +163,15 @@
       <attribute name="title">
        <string>Study</string>
       </attribute>
-      <layout class="QVBoxLayout" name="verticalLayout_3">
+      <layout class="QVBoxLayout" name="verticalLayout_8">
        <item>
         <widget class="QGroupBox" name="groupBox_3">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
          <property name="title">
           <string/>
          </property>
@@ -120,7 +181,10 @@
          <property name="checkable">
           <bool>false</bool>
          </property>
-         <layout class="QVBoxLayout" name="verticalLayout_8">
+         <layout class="QVBoxLayout" name="verticalLayout_3">
+          <property name="sizeConstraint">
+           <enum>QLayout::SetDefaultConstraint</enum>
+          </property>
           <item>
            <layout class="QFormLayout" name="formLayout_2">
             <property name="fieldGrowthPolicy">
@@ -131,32 +195,28 @@
               <property name="text">
                <string>Description</string>
               </property>
+              <property name="buddy">
+               <cstring>studyDescriptionLineEdit</cstring>
+              </property>
              </widget>
             </item>
             <item row="0" column="1">
-             <widget class="QTextEdit" name="studyDescriptionTextEdit">
-              <property name="sizePolicy">
-               <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
-                <horstretch>0</horstretch>
-                <verstretch>0</verstretch>
-               </sizepolicy>
-              </property>
-              <property name="acceptRichText">
-               <bool>false</bool>
-              </property>
-             </widget>
+             <widget class="QLineEdit" name="studyDescriptionLineEdit"/>
             </item>
             <item row="1" column="0">
              <widget class="QLabel" name="label_6">
               <property name="text">
                <string>ID</string>
               </property>
+              <property name="buddy">
+               <cstring>studyIDLineEdit</cstring>
+              </property>
              </widget>
             </item>
             <item row="1" column="1">
              <widget class="QLineEdit" name="studyIDLineEdit">
               <property name="sizePolicy">
-               <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+               <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
                 <horstretch>0</horstretch>
                 <verstretch>0</verstretch>
                </sizepolicy>
@@ -168,22 +228,35 @@
               <property name="text">
                <string>Modality</string>
               </property>
+              <property name="buddy">
+               <cstring>studyModalityComboBox</cstring>
+              </property>
              </widget>
             </item>
             <item row="2" column="1">
-             <widget class="QComboBox" name="studyModalityComboBox"/>
+             <widget class="QComboBox" name="studyModalityComboBox">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+             </widget>
             </item>
             <item row="3" column="0">
              <widget class="QLabel" name="label_8">
               <property name="text">
                <string>DateTime</string>
               </property>
+              <property name="buddy">
+               <cstring>studyDateTimeDateTimeEdit</cstring>
+              </property>
              </widget>
             </item>
             <item row="3" column="1">
              <layout class="QHBoxLayout" name="horizontalLayout_2">
               <item>
-               <widget class="QDateTimeEdit" name="studyDateTimeDDateTimeEdit">
+               <widget class="QDateTimeEdit" name="studyDateTimeDateTimeEdit">
                 <property name="sizePolicy">
                  <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
                   <horstretch>0</horstretch>
@@ -212,6 +285,9 @@
               <property name="text">
                <string>Instance UID</string>
               </property>
+              <property name="buddy">
+               <cstring>studyInstanceUIDLineEdit</cstring>
+              </property>
              </widget>
             </item>
             <item row="4" column="1">
@@ -230,21 +306,21 @@
             </item>
            </layout>
           </item>
-          <item>
-           <spacer name="verticalSpacer_3">
-            <property name="orientation">
-             <enum>Qt::Vertical</enum>
-            </property>
-            <property name="sizeHint" stdset="0">
-             <size>
-              <width>20</width>
-              <height>40</height>
-             </size>
-            </property>
-           </spacer>
-          </item>
          </layout>
         </widget>
+       </item>
+       <item>
+        <spacer name="verticalSpacer_3">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>40</height>
+          </size>
+         </property>
+        </spacer>
        </item>
       </layout>
      </widget>
@@ -275,22 +351,21 @@
               <property name="text">
                <string>Description</string>
               </property>
+              <property name="buddy">
+               <cstring>seriesDescriptionLineEdit</cstring>
+              </property>
              </widget>
             </item>
             <item row="0" column="1">
-             <widget class="QTextEdit" name="seriesDescriptionTextEdit">
-              <property name="sizePolicy">
-               <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
-                <horstretch>0</horstretch>
-                <verstretch>0</verstretch>
-               </sizepolicy>
-              </property>
-             </widget>
+             <widget class="QLineEdit" name="seriesDescriptionLineEdit"/>
             </item>
             <item row="1" column="0">
              <widget class="QLabel" name="label_12">
               <property name="text">
                <string>Patient Position</string>
+              </property>
+              <property name="buddy">
+               <cstring>seriesPatientPositionComboBox</cstring>
               </property>
              </widget>
             </item>
@@ -301,6 +376,9 @@
              <widget class="QLabel" name="label_13">
               <property name="text">
                <string>Series Number</string>
+              </property>
+              <property name="buddy">
+               <cstring>seriesNumberLineEdit</cstring>
               </property>
              </widget>
             </item>
@@ -319,6 +397,9 @@
               <property name="text">
                <string>Time Increment</string>
               </property>
+              <property name="buddy">
+               <cstring>seriesTimeIncrementLineEdit</cstring>
+              </property>
              </widget>
             </item>
             <item row="3" column="1">
@@ -333,24 +414,24 @@
             </item>
            </layout>
           </item>
-          <item>
-           <spacer name="verticalSpacer_2">
-            <property name="orientation">
-             <enum>Qt::Vertical</enum>
-            </property>
-            <property name="sizeType">
-             <enum>QSizePolicy::MinimumExpanding</enum>
-            </property>
-            <property name="sizeHint" stdset="0">
-             <size>
-              <width>215</width>
-              <height>40</height>
-             </size>
-            </property>
-           </spacer>
-          </item>
          </layout>
         </widget>
+       </item>
+       <item>
+        <spacer name="verticalSpacer_2">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeType">
+          <enum>QSizePolicy::MinimumExpanding</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>215</width>
+           <height>40</height>
+          </size>
+         </property>
+        </spacer>
        </item>
       </layout>
      </widget>
@@ -376,15 +457,25 @@
             <property name="text">
              <string>Slices Per Image</string>
             </property>
+            <property name="buddy">
+             <cstring>imageSlicesPerImageComboBox</cstring>
+            </property>
            </widget>
           </item>
           <item row="0" column="1">
-           <widget class="QComboBox" name="imageSlicesPerImageComboBox"/>
+           <widget class="QComboBox" name="imageSlicesPerImageComboBox">
+            <property name="editable">
+             <bool>true</bool>
+            </property>
+           </widget>
           </item>
           <item row="1" column="0">
            <widget class="QLabel" name="label_15">
             <property name="text">
              <string>Number Of Images</string>
+            </property>
+            <property name="buddy">
+             <cstring>numberOfImagesLineEdit</cstring>
             </property>
            </widget>
           </item>
@@ -402,6 +493,9 @@
            <widget class="QLabel" name="label_16">
             <property name="text">
              <string>Slice Spacing (mm)</string>
+            </property>
+            <property name="buddy">
+             <cstring>imageSliceSpacingLineEdit</cstring>
             </property>
            </widget>
           </item>
@@ -442,6 +536,9 @@
                 <property name="text">
                  <string>X</string>
                 </property>
+                <property name="buddy">
+                 <cstring>imagePatientsPositionXLineEdit</cstring>
+                </property>
                </widget>
               </item>
               <item row="0" column="1">
@@ -472,6 +569,9 @@
                 <property name="text">
                  <string>Y</string>
                 </property>
+                <property name="buddy">
+                 <cstring>imagePatientsPositionYLineEdit</cstring>
+                </property>
                </widget>
               </item>
               <item row="0" column="1">
@@ -501,6 +601,9 @@
                 </property>
                 <property name="text">
                  <string>Z</string>
+                </property>
+                <property name="buddy">
+                 <cstring>imagePatientsPositionZLineEdit</cstring>
                 </property>
                </widget>
               </item>
@@ -595,6 +698,12 @@
    </item>
    <item>
     <widget class="QGroupBox" name="groupBox">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
      <property name="title">
       <string/>
      </property>
@@ -614,6 +723,34 @@
    </item>
   </layout>
  </widget>
+ <tabstops>
+  <tabstop>tabWidget</tabstop>
+  <tabstop>patientsNameLineEdit</tabstop>
+  <tabstop>patientsIDLineEdit</tabstop>
+  <tabstop>patientsDOBDateEdit</tabstop>
+  <tabstop>patientsSexComboBox</tabstop>
+  <tabstop>studyDescriptionLineEdit</tabstop>
+  <tabstop>studyIDLineEdit</tabstop>
+  <tabstop>studyModalityComboBox</tabstop>
+  <tabstop>studyDateTimeDateTimeEdit</tabstop>
+  <tabstop>studyDateTimeNowPushButton</tabstop>
+  <tabstop>studyInstanceUIDLineEdit</tabstop>
+  <tabstop>studyInstanceUIDGeneratePushButton</tabstop>
+  <tabstop>seriesDescriptionLineEdit</tabstop>
+  <tabstop>seriesPatientPositionComboBox</tabstop>
+  <tabstop>seriesNumberLineEdit</tabstop>
+  <tabstop>seriesTimeIncrementLineEdit</tabstop>
+  <tabstop>imageSlicesPerImageComboBox</tabstop>
+  <tabstop>numberOfImagesLineEdit</tabstop>
+  <tabstop>imageSliceSpacingLineEdit</tabstop>
+  <tabstop>imagePatientsPositionXLineEdit</tabstop>
+  <tabstop>imagePatientsPositionYLineEdit</tabstop>
+  <tabstop>imagePatientsPositionZLineEdit</tabstop>
+  <tabstop>imagePatientOrientationLineEdit</tabstop>
+  <tabstop>imageAxialPushButton</tabstop>
+  <tabstop>imageSaggitalPushButton</tabstop>
+  <tabstop>imageCoronalPushButton</tabstop>
+ </tabstops>
  <resources/>
  <connections>
   <connection>
@@ -676,7 +813,7 @@
     </hint>
     <hint type="destinationlabel">
      <x>183</x>
-     <y>467</y>
+     <y>462</y>
     </hint>
    </hints>
   </connection>
@@ -687,8 +824,8 @@
    <slot>handleImageCoronalPushButtonClicked()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>323</x>
-     <y>310</y>
+     <x>421</x>
+     <y>328</y>
     </hint>
     <hint type="destinationlabel">
      <x>339</x>

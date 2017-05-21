@@ -31,14 +31,14 @@ public:
      * @brief saveSettings
      * Save application wide settings.
      */
-    void getWidgetInfo();
+    void saveWidgetInfo();
 
 public slots:
     /**
      * @brief execDicomAttributesDialog
      * Show the DICOM attributes dialog
      */
-    void execDicomAttributesDialog();
+    void handleEditDicomAttributesButtonClicked();
 
     void handleSourceDirPushButtonClicked();
 
@@ -48,10 +48,12 @@ public slots:
 
     void handleConvertButtonClicked();
 
+    void handleCloseButtonClicked();
+
 private:
     Ui::MainWindow *ui;
 
-    SeriesInfo& seriesInfo;
+    SeriesInfo* seriesInfo;
 
     DicomAttributesDialog* dicomAttributesDialog;
 

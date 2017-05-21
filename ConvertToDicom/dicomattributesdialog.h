@@ -41,9 +41,9 @@ public:
     explicit DicomAttributesDialog(QWidget *parent = 0);
     ~DicomAttributesDialog();
 
-    void loadData(const SeriesInfo&);
+    void loadData();
 
-    void storeData(SeriesInfo&);
+    void storeData();
 
 private slots:
     void handleImageAxialPushButtonClicked();
@@ -51,11 +51,17 @@ private slots:
     void handleImageCoronalPushButtonClicked();
     void handleStudyDateNowButtonClicked();
     void handleStudyUIDGenerateButtonClicked();
+    void handlePatientsDOBDateEditChanged(const QDate &date);
+    void handleStudyDateTimeDateTimeEditChanged(const QDateTime &datetime);
+    void handlePatientsSexComboBoxIndexChanged(int idx);
+    void handleStudyModalityComboBoxIndexChanged(int idx);
+    void handleSeriesPatientPositionComboBoxActivated(int idx);
+    void handleImageSlicesPerImageComboBoxActivated(int idx);
 
 private:
     Ui::DicomAttributesDialog *ui;
 
-    SeriesInfo& seriesInfo;
+    SeriesInfo* seriesInfo;
     Logger logger;
 
 };

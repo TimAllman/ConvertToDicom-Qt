@@ -30,7 +30,6 @@
 #include <itkImageSeriesWriter.h>
 #include <itkVersion.h>
 #include <itkTileImageFilter.h>
-
 #include <gdcmUIDGenerator.h>
 
 #include <QTime>
@@ -39,10 +38,8 @@
 #include <sstream>
 #include <iomanip>
 
-DicomSeriesWriter::DicomSeriesWriter(SeriesInfo& dicomParams,
-                                     QVector<Image2DType::Pointer>& images,
-                                     const QString& outputDirectoryName)
-: seriesInfo(dicomParams), images(images), outputDirectory(outputDirectoryName),
+DicomSeriesWriter::DicomSeriesWriter(QVector<Image2DType::Pointer>& images, const QString& outputDirectoryName)
+    : seriesInfo(SeriesInfo::getInstance()), images(images), outputDirectory(outputDirectoryName),
   logger(Logger::getInstance(std::string(LOGGER_NAME) + ".DicomSeriesWriter"))
 {
     std::string name = std::string(LOGGER_NAME) + ".DicomSeriesWriter";
@@ -69,7 +66,7 @@ ErrorCode DicomSeriesWriter::WriteFileSeries()
     typedef itk::NumericSeriesFileNames NameGeneratorType;
     NameGeneratorType::Pointer nameGenerator = NameGeneratorType::New();
 
-    QString value = outputDirectory + "/IM-" + seriesInfo.seriesNumber() + "-%04d.dcm";
+    QString value = outputDirectory + "/IM-" + seriesInfo->seriesNumber() + "-%04d.dcm";
     nameGenerator->SetSeriesFormat(value.toStdString());
     nameGenerator->SetStartIndex(1);
     nameGenerator->SetEndIndex(itk::SizeValueType(images.size()));
@@ -133,15 +130,15 @@ void DicomSeriesWriter::PrepareMetaDataDictionaryArray()
     // It may have been used in a previous run.
     dictArray.clear();
 
-    itk::MetaDataDictionary seriesDict = seriesInfo.metaDataDictionary();
+    itk::MetaDataDictionary seriesDict = seriesInfo->metaDataDictionary();
     LOG4CPLUS_TRACE(logger, "********** seriesDict - 1 ************");
     LOG4CPLUS_TRACE(logger, DumpDicomMetaDataDictionary(seriesDict));
 
-    bool isTimeSeries = (seriesInfo.seriesTimeIncrement() > 0.0);
+    bool isTimeSeries = (seriesInfo->seriesTimeIncrement() > 0.0);
     if (isTimeSeries)
     {
         std::stringstream sstr;
-        int numTimes = seriesInfo.imageNumberOfImages();
+        int numTimes = seriesInfo->imageNumberOfImages();
         if (numTimes > 1)
         {
             sstr.str("");
@@ -169,7 +166,7 @@ void DicomSeriesWriter::PrepareMetaDataDictionaryArray()
 
     // loop through the images, and the slices in each image
     int instanceNumber = 1;
-    for (int imageIdx = 0; imageIdx < seriesInfo.imageNumberOfImages(); ++imageIdx)
+    for (int imageIdx = 0; imageIdx < seriesInfo->imageNumberOfImages(); ++imageIdx)
     {
         itk::MetaDataDictionary imageDict;
         CopyDictionary(seriesDict, imageDict);
@@ -184,12 +181,12 @@ void DicomSeriesWriter::PrepareMetaDataDictionaryArray()
             itk::EncapsulateMetaData<std::string>(imageDict, "0020|0100", temporalPosition);
         }
 
-        QTime time = seriesInfo.acqTimes()[imageIdx];
+        QTime time = seriesInfo->acqTimes()[imageIdx];
         std::string acqTime = time.toString("HHmmss.zzz").toStdString();
         itk::EncapsulateMetaData<std::string>(imageDict, "0008|0032", acqTime);
 
         float sliceLocation = 0.0;
-        for (int sliceIdx = 0; sliceIdx < seriesInfo.imageSlicesPerImage(); ++sliceIdx)
+        for (int sliceIdx = 0; sliceIdx < seriesInfo->imageSlicesPerImage(); ++sliceIdx)
         {
             // Make a new dictionary for the slice and copy over the information already set
             // We need a pointer because the dictionary array is an array of pointers.
@@ -203,17 +200,17 @@ void DicomSeriesWriter::PrepareMetaDataDictionaryArray()
 
             // Set the IPP for this slice
             std::stringstream sstr;
-            sstr << std::fixed << std::setprecision(2) << seriesInfo.imagePositionPatientX() << "\\"
-            << seriesInfo.imagePositionPatientY() << "\\" << seriesInfo.imagePositionPatientZ() << "\\";
+            sstr << std::fixed << std::setprecision(2) << seriesInfo->imagePositionPatientX() << "\\"
+            << seriesInfo->imagePositionPatientY() << "\\" << seriesInfo->imagePositionPatientZ() << "\\";
 
-            std::string imagePositionPatient = seriesInfo.imagePositionPatientString(sliceIdx).toStdString();
+            std::string imagePositionPatient = seriesInfo->imagePositionPatientString(sliceIdx).toStdString();
             itk::EncapsulateMetaData<std::string>(*sliceDict, "0020|0032", imagePositionPatient);
 
             // The relative location of this slice from the first one.
             sstr.str("");
             sstr << std::fixed << std::setprecision(1) << sliceLocation;
             itk::EncapsulateMetaData<std::string>(*sliceDict, "0020|1041",  sstr.str());
-            sliceLocation += seriesInfo.imageSliceSpacing();
+            sliceLocation += seriesInfo->imageSliceSpacing();
 
             sstr.str("");
             sstr << instanceNumber;

@@ -105,6 +105,11 @@ public:
         return m_patientsDOB;
     }
 
+    QString patientsDOBStr() const
+    {
+        return m_patientsDOB.toString(DateFormat);
+    }
+
     QString patientsSex() const
     {
         return m_patientsSex;
@@ -216,10 +221,7 @@ public:
      */
     void setOverwriteFiles(bool overwriteFiles)
     {
-        if (m_overwriteFiles != overwriteFiles)
-        {
-            m_overwriteFiles = overwriteFiles;
-        }
+        m_overwriteFiles = overwriteFiles;
     }
 
     /**
@@ -403,10 +405,10 @@ private:
     mutable itk::MetaDataDictionary dict;
 
 public:
-    static SeriesInfo& getInstance()
+    static SeriesInfo* getInstance()
     {
         static SeriesInfo instance;
-        return instance;
+        return &instance;
     }
 
     /**

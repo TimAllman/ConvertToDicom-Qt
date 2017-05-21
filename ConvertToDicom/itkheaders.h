@@ -1,0 +1,61 @@
+//
+//  itkheaders
+//  ConvertToDicom
+//
+
+/* ConvertToDicom converts a series of images to DICOM format from any format recognized
+ * by ITK (http://www.itk.org).
+ * Copyright (C) 2017 Tim Allman
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+#ifndef ITKHEADERS_H
+#define ITKHEADERS_H
+
+#include <itkImage.h>
+#include <itkImageIOBase.h>
+#include <itkImageIOFactory.h>
+#include <itkBMPImageIOFactory.h>
+#include <itkBYUMeshIOFactory.h>
+#include <itkBioRadImageIOFactory.h>
+#include <itkFileListVideoIOFactory.h>
+#include <itkFreeSurferAsciiMeshIOFactory.h>
+#include <itkFreeSurferBinaryMeshIOFactory.h>
+#include <itkGDCMImageIOFactory.h>
+#include <itkGE4ImageIOFactory.h>
+#include <itkGE5ImageIOFactory.h>
+#include <itkGEAdwImageIOFactory.h>
+#include <itkGiftiMeshIOFactory.h>
+#include <itkGiplImageIOFactory.h>
+#include <itkHDF5ImageIOFactory.h>
+#include <itkHDF5TransformIOFactory.h>
+#include <itkJPEGImageIOFactory.h>
+#include <itkLSMImageIOFactory.h>
+#include <itkMRCImageIOFactory.h>
+#include <itkMatlabTransformIOFactory.h>
+#include <itkMetaImageIOFactory.h>
+#include <itkNiftiImageIOFactory.h>
+#include <itkNrrdImageIOFactory.h>
+#include <itkOBJMeshIOFactory.h>
+#include <itkOFFMeshIOFactory.h>
+#include <itkPNGImageIOFactory.h>
+#include <itkSiemensVisionImageIOFactory.h>
+#include <itkStimulateImageIOFactory.h>
+#include <itkTIFFImageIOFactory.h>
+#include <itkTransformIOFactory.h>
+#include <itkTransformIOFactory.h>
+#include <itkTxtTransformIOFactory.h>
+#include <itkVTKImageIOFactory.h>
+#include <itkVTKPolyDataMeshIOFactory.h>
+
+#endif // ITKHEADERS_H

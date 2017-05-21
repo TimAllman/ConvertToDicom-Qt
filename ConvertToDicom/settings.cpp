@@ -21,7 +21,7 @@
  */
 
 #include "settings.h"
-#include "loggername.h"
+#include "logger.h"
 #include "seriesinfo.h"
 
 #include <log4cplus/loggingmacros.h>
@@ -30,7 +30,7 @@
 #include <QDateTime>
 
 QString Settings::LoggingLevelKey = "LoggingLevel";
-QString Settings::OverwriteFilesKey = "OverwriteFiles";
+QString Settings::OverwriteFilesKey = "OverwriteFilesYYY";
 QString Settings::InputDirKey = "InputDir";
 QString Settings::OutputDirKey = "OutputDir";
 QString Settings::TimeIncrementKey = "TimeIncrement";

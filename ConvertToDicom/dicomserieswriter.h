@@ -42,13 +42,11 @@ public:
 
 /**
  * Class constructor.
- * @param seriesInfo Instance of SeriesInfo containing all of the information needed.
  * @param images The DICOM images to write.
  * @param outputDirectoryName The output directory. This the deepest directory
  * in the tree and is the place into which the files will be written.
  */
-    explicit DicomSeriesWriter(SeriesInfo& seriesInfo, QVector<Image2DType::Pointer>& images,
-                      const QString& outputDirectoryName);
+    explicit DicomSeriesWriter(QVector<Image2DType::Pointer>& images, const QString& outputDirectoryName);
 
     /**
      * Do the file writing.
@@ -79,7 +77,7 @@ private:
      */
     Image3DType::Pointer MergeSlices();
 
-    SeriesInfo& seriesInfo;           ///< The SeriesInfoITK passed in the constructor.
+    SeriesInfo* seriesInfo;           ///< The SeriesInfoITK passed in the constructor.
     QVector<Image2DType::Pointer>& images; ///< The array of slices.
     QString outputDirectory;               ///< The output directory passed in the constructor.
 
