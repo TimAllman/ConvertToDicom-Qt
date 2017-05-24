@@ -59,12 +59,12 @@
                <string>&amp;Name</string>
               </property>
               <property name="buddy">
-               <cstring>patientsNameLineEdit</cstring>
+               <cstring>patientNameLineEdit</cstring>
               </property>
              </widget>
             </item>
             <item row="0" column="1">
-             <widget class="QLineEdit" name="patientsNameLineEdit">
+             <widget class="QLineEdit" name="patientNameLineEdit">
               <property name="sizePolicy">
                <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
                 <horstretch>0</horstretch>
@@ -82,12 +82,12 @@
                <string>&amp;ID</string>
               </property>
               <property name="buddy">
-               <cstring>patientsIDLineEdit</cstring>
+               <cstring>patientIDLineEdit</cstring>
               </property>
              </widget>
             </item>
             <item row="1" column="1">
-             <widget class="QLineEdit" name="patientsIDLineEdit">
+             <widget class="QLineEdit" name="patientIDLineEdit">
               <property name="sizePolicy">
                <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
                 <horstretch>0</horstretch>
@@ -105,12 +105,12 @@
                <string>&amp;DOB</string>
               </property>
               <property name="buddy">
-               <cstring>patientsDOBDateEdit</cstring>
+               <cstring>patientDOBDateEdit</cstring>
               </property>
              </widget>
             </item>
             <item row="2" column="1">
-             <widget class="QDateEdit" name="patientsDOBDateEdit">
+             <widget class="QDateEdit" name="patientDOBDateEdit">
               <property name="toolTip">
                <string>PatientsBirthDate (0010,0030)</string>
               </property>
@@ -122,12 +122,12 @@
                <string>&amp;Sex</string>
               </property>
               <property name="buddy">
-               <cstring>patientsSexComboBox</cstring>
+               <cstring>patientSexComboBox</cstring>
               </property>
              </widget>
             </item>
             <item row="3" column="1">
-             <widget class="QComboBox" name="patientsSexComboBox">
+             <widget class="QComboBox" name="patientSexComboBox">
               <property name="toolTip">
                <string>PatientsSex (0010,0040)</string>
               </property>
@@ -439,75 +439,129 @@
       <attribute name="title">
        <string>Image</string>
       </attribute>
-      <layout class="QVBoxLayout" name="verticalLayout_6">
+      <layout class="QVBoxLayout" name="verticalLayout_10">
        <item>
         <widget class="QGroupBox" name="groupBox_5">
          <property name="title">
           <string/>
          </property>
-         <layout class="QFormLayout" name="formLayout_4">
-          <property name="fieldGrowthPolicy">
-           <enum>QFormLayout::ExpandingFieldsGrow</enum>
-          </property>
-          <property name="formAlignment">
-           <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
-          </property>
-          <item row="0" column="0">
-           <widget class="QLabel" name="label_11">
-            <property name="text">
-             <string>Slices Per Image</string>
-            </property>
-            <property name="buddy">
-             <cstring>imageSlicesPerImageComboBox</cstring>
-            </property>
-           </widget>
+         <layout class="QVBoxLayout" name="verticalLayout_6">
+          <item>
+           <layout class="QHBoxLayout" name="horizontalLayout_10">
+            <item>
+             <layout class="QHBoxLayout" name="horizontalLayout_7">
+              <item>
+               <widget class="QLabel" name="label_11">
+                <property name="text">
+                 <string>Slices Per Image</string>
+                </property>
+                <property name="buddy">
+                 <cstring>imageSlicesPerImageComboBox</cstring>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QComboBox" name="imageSlicesPerImageComboBox">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>80</width>
+                  <height>16777215</height>
+                 </size>
+                </property>
+                <property name="editable">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+            <item>
+             <layout class="QHBoxLayout" name="horizontalLayout_9">
+              <item>
+               <widget class="QLabel" name="label_15">
+                <property name="text">
+                 <string>Number Of Images</string>
+                </property>
+                <property name="buddy">
+                 <cstring>numberOfImagesLineEdit</cstring>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLineEdit" name="numberOfImagesLineEdit">
+                <property name="enabled">
+                 <bool>false</bool>
+                </property>
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>80</width>
+                  <height>16777215</height>
+                 </size>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+           </layout>
           </item>
-          <item row="0" column="1">
-           <widget class="QComboBox" name="imageSlicesPerImageComboBox">
-            <property name="editable">
-             <bool>true</bool>
-            </property>
-           </widget>
-          </item>
-          <item row="1" column="0">
-           <widget class="QLabel" name="label_15">
-            <property name="text">
-             <string>Number Of Images</string>
-            </property>
-            <property name="buddy">
-             <cstring>numberOfImagesLineEdit</cstring>
-            </property>
-           </widget>
-          </item>
-          <item row="1" column="1">
-           <widget class="QLineEdit" name="numberOfImagesLineEdit">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-           </widget>
-          </item>
-          <item row="2" column="0">
-           <widget class="QLabel" name="label_16">
-            <property name="text">
-             <string>Slice Spacing (mm)</string>
-            </property>
-            <property name="buddy">
-             <cstring>imageSliceSpacingLineEdit</cstring>
-            </property>
-           </widget>
-          </item>
-          <item row="2" column="1">
-           <widget class="QLineEdit" name="imageSliceSpacingLineEdit">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-           </widget>
+          <item>
+           <layout class="QHBoxLayout" name="horizontalLayout_11">
+            <item>
+             <layout class="QHBoxLayout" name="horizontalLayout_8">
+              <item>
+               <widget class="QLabel" name="label_16">
+                <property name="text">
+                 <string>Slice Spacing (mm)</string>
+                </property>
+                <property name="buddy">
+                 <cstring>imageSliceSpacingLineEdit</cstring>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLineEdit" name="imageSliceSpacingLineEdit">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>80</width>
+                  <height>16777215</height>
+                 </size>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+            <item>
+             <spacer name="horizontalSpacer">
+              <property name="orientation">
+               <enum>Qt::Horizontal</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>40</width>
+                <height>20</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+           </layout>
           </item>
          </layout>
         </widget>
@@ -537,12 +591,12 @@
                  <string>X</string>
                 </property>
                 <property name="buddy">
-                 <cstring>imagePatientsPositionXLineEdit</cstring>
+                 <cstring>imagePatientPositionXLineEdit</cstring>
                 </property>
                </widget>
               </item>
               <item row="0" column="1">
-               <widget class="QLineEdit" name="imagePatientsPositionXLineEdit">
+               <widget class="QLineEdit" name="imagePatientPositionXLineEdit">
                 <property name="sizePolicy">
                  <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
                   <horstretch>0</horstretch>
@@ -570,12 +624,12 @@
                  <string>Y</string>
                 </property>
                 <property name="buddy">
-                 <cstring>imagePatientsPositionYLineEdit</cstring>
+                 <cstring>imagePatientPositionYLineEdit</cstring>
                 </property>
                </widget>
               </item>
               <item row="0" column="1">
-               <widget class="QLineEdit" name="imagePatientsPositionYLineEdit">
+               <widget class="QLineEdit" name="imagePatientPositionYLineEdit">
                 <property name="sizePolicy">
                  <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
                   <horstretch>0</horstretch>
@@ -603,12 +657,12 @@
                  <string>Z</string>
                 </property>
                 <property name="buddy">
-                 <cstring>imagePatientsPositionZLineEdit</cstring>
+                 <cstring>imagePatientPositionZLineEdit</cstring>
                 </property>
                </widget>
               </item>
               <item row="0" column="1">
-               <widget class="QLineEdit" name="imagePatientsPositionZLineEdit">
+               <widget class="QLineEdit" name="imagePatientPositionZLineEdit">
                 <property name="sizePolicy">
                  <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
                   <horstretch>0</horstretch>
@@ -725,10 +779,10 @@
  </widget>
  <tabstops>
   <tabstop>tabWidget</tabstop>
-  <tabstop>patientsNameLineEdit</tabstop>
-  <tabstop>patientsIDLineEdit</tabstop>
-  <tabstop>patientsDOBDateEdit</tabstop>
-  <tabstop>patientsSexComboBox</tabstop>
+  <tabstop>patientNameLineEdit</tabstop>
+  <tabstop>patientIDLineEdit</tabstop>
+  <tabstop>patientDOBDateEdit</tabstop>
+  <tabstop>patientSexComboBox</tabstop>
   <tabstop>studyDescriptionLineEdit</tabstop>
   <tabstop>studyIDLineEdit</tabstop>
   <tabstop>studyModalityComboBox</tabstop>
@@ -743,9 +797,9 @@
   <tabstop>imageSlicesPerImageComboBox</tabstop>
   <tabstop>numberOfImagesLineEdit</tabstop>
   <tabstop>imageSliceSpacingLineEdit</tabstop>
-  <tabstop>imagePatientsPositionXLineEdit</tabstop>
-  <tabstop>imagePatientsPositionYLineEdit</tabstop>
-  <tabstop>imagePatientsPositionZLineEdit</tabstop>
+  <tabstop>imagePatientPositionXLineEdit</tabstop>
+  <tabstop>imagePatientPositionYLineEdit</tabstop>
+  <tabstop>imagePatientPositionZLineEdit</tabstop>
   <tabstop>imagePatientOrientationLineEdit</tabstop>
   <tabstop>imageAxialPushButton</tabstop>
   <tabstop>imageSaggitalPushButton</tabstop>
@@ -792,8 +846,8 @@
    <slot>handleImageAxialPushButtonClicked()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>103</x>
-     <y>310</y>
+     <x>157</x>
+     <y>309</y>
     </hint>
     <hint type="destinationlabel">
      <x>99</x>
@@ -808,8 +862,8 @@
    <slot>handleImageSaggitalPushButtonClicked()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>207</x>
-     <y>311</y>
+     <x>292</x>
+     <y>309</y>
     </hint>
     <hint type="destinationlabel">
      <x>183</x>
@@ -824,8 +878,8 @@
    <slot>handleImageCoronalPushButtonClicked()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>421</x>
-     <y>328</y>
+     <x>425</x>
+     <y>309</y>
     </hint>
     <hint type="destinationlabel">
      <x>339</x>

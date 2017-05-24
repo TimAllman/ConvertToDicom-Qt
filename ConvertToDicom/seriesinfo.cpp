@@ -39,6 +39,7 @@
 
 SeriesInfo::SeriesInfo()
     : logger(log4cplus::Logger::getInstance(std::string(LOGGER_NAME) + ".SeriesInfo")),
+      locale(),
       m_imageSlicesPerImage(0),
       m_imageNumberOfImages(0),
       m_imageSliceSpacing(0.0),
@@ -70,27 +71,27 @@ void SeriesInfo::loadSettings()
     setOverwriteFiles(settings.value(Settings::OverwriteFilesKey, 0).toBool());
     setInputDir(settings.value(Settings::InputDirKey, QDir::homePath()).toString());
     setOutputDir(settings.value(Settings::OutputDirKey, QDir::homePath()).toString());
-    setSeriesTimeIncrement(settings.value(Settings::TimeIncrementKey, 1.0).toInt());
-    setPatientsName(settings.value(Settings::PatientsNameKey, "").toString());
-    setPatientsID(settings.value(Settings::PatientsIDKey, 0).toString());
 
+    setPatientName(settings.value(Settings::PatientNameKey, "").toString());
     QString todayDateStr(QDate::currentDate().toString(DateFormat));
-    QString dobStr = settings.value(Settings::PatientsDOBKey, todayDateStr).toString();
-    setPatientsDOB(QDate::fromString(dobStr, DateFormat));
-
-    setPatientsSex(settings.value(Settings::PatientsSexKey, "Unspecified").toString());
-    setSeriesDescription(settings.value(Settings::SeriesDescriptionKey, "").toString());
-    setSeriesNumber(settings.value(Settings::SeriesNumberKey, "0").toString());
-    setSeriesPositionPatient(settings.value(Settings::SeriesPatientPositionKey, "FFS").toString());
-    setStudyDescription(settings.value(Settings::StudyDescriptionKey, "").toString());
-    setStudyID(settings.value(Settings::StudyIDKey, "0").toString());
-    setStudyModality(settings.value(Settings::StudyModalityKey, "Unknown").toString());
+    QString dobStr = settings.value(Settings::PatientDOBKey, todayDateStr).toString();
+    setPatientDOB(QDate::fromString(dobStr, DateFormat));
+    setPatientID(settings.value(Settings::PatientIDKey, 0).toString());
+    setPatientSex(settings.value(Settings::PatientSexKey, "Unspecified").toString());
 
     QString todayDateTimeStr(QDate::currentDate().toString(DateTimeFormat));
     QString studyDateTimeStr = settings.value(Settings::StudyDateTimeKey, todayDateTimeStr).toString();
     setStudyDateTime(QDateTime::fromString(studyDateTimeStr, DateTimeFormat));
+    setStudyDescription(settings.value(Settings::StudyDescriptionKey, "").toString());
+    setStudyID(settings.value(Settings::StudyIDKey, "0").toString());
+    setStudyModality(settings.value(Settings::StudyModalityKey, "Unknown").toString());
+    setStudyInstanceUID(settings.value(Settings::StudyInstanceUIDKey, "").toString());
 
-    setStudyStudyUID(settings.value(Settings::StudyStudyUIDKey, "").toString());
+    setSeriesTimeIncrement(settings.value(Settings::SeriesTimeIncrementKey, 1.0).toDouble());
+    setSeriesDescription(settings.value(Settings::SeriesDescriptionKey, "").toString());
+    setSeriesNumber(settings.value(Settings::SeriesNumberKey, 0).toInt());
+    setSeriesPositionPatient(settings.value(Settings::SeriesPatientPositionKey, "FFS").toString());
+
 
     LOG4CPLUS_DEBUG(logger, "Loaded current settings and set default settings.");
 }
@@ -106,19 +107,19 @@ void SeriesInfo::saveSettings()
     settings.setValue(Settings::OverwriteFilesKey, overwriteFiles());
     settings.setValue(Settings::InputDirKey, inputDir().path());
     settings.setValue(Settings::OutputDirKey, outputDir().path());
-    settings.setValue(Settings::TimeIncrementKey, seriesTimeIncrement());
-    settings.setValue(Settings::PatientsNameKey, patientsName());
-    settings.setValue(Settings::PatientsIDKey, patientsID());
-    settings.setValue(Settings::PatientsDOBKey, patientsDOB().toString(DateFormat));
-    settings.setValue(Settings::PatientsSexKey, patientsSex());
+    settings.setValue(Settings::PatientNameKey, patientName());
+    settings.setValue(Settings::PatientIDKey, patientID());
+    settings.setValue(Settings::PatientDOBKey, patientDOB().toString(DateFormat));
+    settings.setValue(Settings::PatientSexKey, patientSex());
     settings.setValue(Settings::SeriesDescriptionKey, seriesDescription());
     settings.setValue(Settings::SeriesNumberKey, seriesNumber());
     settings.setValue(Settings::SeriesPatientPositionKey, seriesPositionPatient());
+    settings.setValue(Settings::SeriesTimeIncrementKey, seriesTimeIncrement());
     settings.setValue(Settings::StudyDescriptionKey, studyDescription());
     settings.setValue(Settings::StudyIDKey, studyID());
     settings.setValue(Settings::StudyModalityKey, studyModality());
     settings.setValue(Settings::StudyDateTimeKey, studyDateTime());
-    settings.setValue(Settings::StudyStudyUIDKey, studyStudyUID());
+    settings.setValue(Settings::StudyInstanceUIDKey, studyInstanceUID());
     //    settings.setValue(Settings::ImageSliceSpacingKey, imageSliceSpacing());
     //    settings.setValue(Settings::ImagePatientPositionXKey, imagePositionPatientX());
     //    settings.setValue(Settings::ImagePatientPositionYKey, imagePositionPatientY());
@@ -139,12 +140,12 @@ itk::MetaDataDictionary SeriesInfo::makeMetaDataDictionary() const
     {
         std::string studyDate = m_studyDateTime.toString(DicomDateFormat).toStdString();
         std::string studyTime = m_studyDateTime.toString(DicomTimeFormat).toStdString();
-        std::string dobDate = m_patientsDOB.toString(DicomDateFormat).toStdString();
+        std::string dobDate = m_patientDOB.toString(DicomDateFormat).toStdString();
 
-        itk::EncapsulateMetaData<std::string>(dict, "0010|0010", m_patientsName.toStdString());
-        itk::EncapsulateMetaData<std::string>(dict, "0010|0020", m_patientsID.toStdString());
+        itk::EncapsulateMetaData<std::string>(dict, "0010|0010", m_patientName.toStdString());
+        itk::EncapsulateMetaData<std::string>(dict, "0010|0020", m_patientID.toStdString());
         itk::EncapsulateMetaData<std::string>(dict, "0010|0030", dobDate);
-        itk::EncapsulateMetaData<std::string>(dict, "0010|0040", m_patientsSex.toStdString());
+        itk::EncapsulateMetaData<std::string>(dict, "0010|0040", m_patientSex.toStdString());
 
         itk::EncapsulateMetaData<std::string>(dict, "0008|1030", m_studyDescription.toStdString());
         itk::EncapsulateMetaData<std::string>(dict, "0020|0010", m_studyID.toStdString());
@@ -152,7 +153,7 @@ itk::MetaDataDictionary SeriesInfo::makeMetaDataDictionary() const
 
         itk::EncapsulateMetaData<std::string>(dict, "0008|0020", studyDate);
         itk::EncapsulateMetaData<std::string>(dict, "0008|0031", studyTime);
-        itk::EncapsulateMetaData<std::string>(dict, "0020|000d", m_StudyUID.toStdString());
+        itk::EncapsulateMetaData<std::string>(dict, "0020|000d", m_StudyInstanceUID.toStdString());
 
         gdcm::UIDGenerator suidGen;
         std::string seriesUID = suidGen.Generate();
@@ -160,7 +161,7 @@ itk::MetaDataDictionary SeriesInfo::makeMetaDataDictionary() const
         std::string frameOfReferenceUID = fuidGen.Generate();
         itk::EncapsulateMetaData<std::string>(dict, "0020|000e", seriesUID);
         itk::EncapsulateMetaData<std::string>(dict, "0020|0052", frameOfReferenceUID);
-        itk::EncapsulateMetaData<std::string>(dict, "0020|0011", m_seriesNumber.toStdString());
+        itk::EncapsulateMetaData<std::string>(dict, "0020|0011", seriesNumberStr().toStdString());
         itk::EncapsulateMetaData<std::string>(dict, "0008|103e", m_seriesDescription.toStdString());
         itk::EncapsulateMetaData<std::string>(dict, "0018|5100", m_seriesPositionPatient.toStdString());
         itk::EncapsulateMetaData<std::string>(dict, "0008|0021", studyDate); // just use study date

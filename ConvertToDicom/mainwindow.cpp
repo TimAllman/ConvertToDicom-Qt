@@ -91,6 +91,11 @@ void MainWindow::handleSourceDirPushButtonClicked()
     }
 }
 
+void MainWindow::handleSourceDirLineEditEditingFinished()
+{
+    seriesInfo->setInputDir(ui->sourceDirLineEdit->text());
+}
+
 void MainWindow::handleDestDirPushButtonClicked()
 {
     QFileDialog dlg(this, "Destination Directory", seriesInfo->outputDirStr());
@@ -105,6 +110,11 @@ void MainWindow::handleDestDirPushButtonClicked()
         seriesInfo->setOutputDir(dlg.directory());
         ui->destDirLineEdit->setText(seriesInfo->outputDirStr());
     }
+}
+
+void MainWindow::handleDestDirLineEditEditingFinished()
+{
+    seriesInfo->setOutputDir(ui->destDirLineEdit->text());
 }
 
 void MainWindow::handleOverwriteFilesCheckBoxClicked(bool checked)

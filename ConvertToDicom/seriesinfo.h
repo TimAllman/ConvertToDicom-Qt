@@ -31,6 +31,7 @@
 #include <QString>
 #include <QList>
 #include <QDateTime>
+#include <QLocale>
 
 /**
  * @brief The SeriesInfo class
@@ -90,29 +91,29 @@ public:
         return m_outputPath;
     }
 
-    QString patientsName() const
+    QString patientName() const
     {
-        return m_patientsName;
+        return m_patientName;
     }
 
-    QString patientsID() const
+    QString patientID() const
     {
-        return m_patientsID;
+        return m_patientID;
     }
 
-    QDate patientsDOB() const
+    QDate patientDOB() const
     {
-        return m_patientsDOB;
+        return m_patientDOB;
     }
 
-    QString patientsDOBStr() const
+    QString patientDOBStr() const
     {
-        return m_patientsDOB.toString(DateFormat);
+        return m_patientDOB.toString(DateFormat);
     }
 
-    QString patientsSex() const
+    QString patientSex() const
     {
-        return m_patientsSex;
+        return m_patientSex;
     }
 
     QString studyDescription() const
@@ -140,14 +141,19 @@ public:
         return m_studyDateTime.toString(DateTimeFormat);
     }
 
-    QString studyStudyUID() const
+    QString studyInstanceUID() const
     {
-        return m_StudyUID;
+        return m_StudyInstanceUID;
     }
 
-    QString seriesNumber() const
+    int seriesNumber() const
     {
         return m_seriesNumber;
+    }
+
+    QString seriesNumberStr() const
+    {
+        return locale.toString(m_seriesNumber);
     }
 
     QString seriesDescription() const
@@ -164,9 +170,14 @@ public:
      * @brief seriesTimeIncrement
      * @return The time increment in ms.
      */
-    int seriesTimeIncrement() const
+    double seriesTimeIncrement() const
     {
         return m_seriesTimeIncrement;
+    }
+
+    QString seriesTimeIncrementStr() const
+    {
+        return locale.toString(m_seriesTimeIncrement, 'f', 3);
     }
 
     QList<QTime>& acqTimes()
@@ -244,7 +255,7 @@ public:
         m_outputPath = outputPath;
     }
 
-    void setNumberOfImages(int numberOfImages)
+    void setImageNumberOfImages(int numberOfImages)
     {
         m_imageNumberOfImages = numberOfImages;
     }
@@ -259,33 +270,24 @@ public:
         m_imageNumberOfSlices = numberOfSlices;
     }
 
-    /**
-     * @brief setSeriesTimeIncrement
-     * @param timeIncrement The time increment in milliseconds.
-     */
-    void setSeriesTimeIncrement(int timeIncrement)
+    void setPatientName(const QString& patientName)
     {
-        m_seriesTimeIncrement = timeIncrement;
+        m_patientName = patientName;
     }
 
-    void setPatientsName(const QString& patientsName)
+    void setPatientID(const QString& patientID)
     {
-        m_patientsName = patientsName;
+        m_patientID = patientID;
     }
 
-    void setPatientsID(const QString& patientsID)
+    void setPatientDOB(const QDate& patientDOB)
     {
-        m_patientsID = patientsID;
+        m_patientDOB = patientDOB;
     }
 
-    void setPatientsDOB(const QDate& patientsDOB)
+    void setPatientSex(const QString& patientSex)
     {
-        m_patientsDOB = patientsDOB;
-    }
-
-    void setPatientsSex(const QString& patientsSex)
-    {
-        m_patientsSex = patientsSex;
+        m_patientSex = patientSex;
     }
 
     void setStudyDescription(const QString& studyDescription)
@@ -308,12 +310,17 @@ public:
         m_studyDateTime = studyDateTime;
     }
 
-    void setStudyStudyUID(const QString& studyStudyUID)
+    void setStudyInstanceUID(const QString& studyInstanceUID)
     {
-        m_StudyUID = studyStudyUID;
+        m_StudyInstanceUID = studyInstanceUID;
     }
 
     void setSeriesNumber(const QString& seriesNumber)
+    {
+        m_seriesNumber = locale.toInt(seriesNumber);
+    }
+
+    void setSeriesNumber(int seriesNumber)
     {
         m_seriesNumber = seriesNumber;
     }
@@ -326,6 +333,15 @@ public:
     void setSeriesPositionPatient(const QString& seriesPositionPatient)
     {
         m_seriesPositionPatient = seriesPositionPatient;
+    }
+
+    /**
+     * @brief setSeriesTimeIncrement
+     * @param timeIncrement The time increment in seconds.
+     */
+    void setSeriesTimeIncrement(double timeIncrement)
+    {
+        m_seriesTimeIncrement = timeIncrement;
     }
 
     void setImageSliceSpacing(double imageSliceSpacing)
@@ -372,28 +388,30 @@ private:
      */
     Logger logger;
 
+    QLocale locale;
+
     bool m_overwriteFiles;
     QDir m_inputDir;
     QDir m_outputDir;
     QString m_outputPath;
 
-    int m_seriesTimeIncrement;
     QList<QTime> m_acqTimes;
 
-    QString m_patientsName;
-    QString m_patientsID;
-    QDate m_patientsDOB;
-    QString m_patientsSex;
+    QString m_patientName;
+    QString m_patientID;
+    QDate m_patientDOB;
+    QString m_patientSex;
 
     QString m_studyDescription;
     QString m_studyID;
     QString m_studyModality;
     QDateTime m_studyDateTime;
-    QString m_StudyUID;
+    QString m_StudyInstanceUID;
 
-    QString m_seriesNumber;
+    int m_seriesNumber;
     QString m_seriesDescription;
     QString m_seriesPositionPatient;
+    double m_seriesTimeIncrement;
 
     int m_imageSlicesPerImage;
     int m_imageNumberOfImages;

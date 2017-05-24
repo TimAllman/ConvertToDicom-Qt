@@ -50,6 +50,10 @@ public slots:
 
     void handleCloseButtonClicked();
 
+    void handleSourceDirLineEditEditingFinished();
+    void handleDestDirLineEditEditingFinished();
+
+
 private:
     Ui::MainWindow *ui;
 

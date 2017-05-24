@@ -46,17 +46,33 @@ public:
     void storeData();
 
 private slots:
+    void handlePatientNameLineEditEditingFinished();
+    void handlePatientIDLineEditEditingFinished();
+    void handlePatientDOBDateEditChanged(const QDate &date);
+    void handlePatientSexComboBoxIndexChanged(int idx);
+
+    void handleStudyDescriptionLineEditEditingFinished();
+    void handleStudyIDLineEditEditingFinished();
+    void handleStudyInstanceUIDLineEditEditingFinished();
+    void handleStudyDateNowButtonClicked();
+    void handleStudyUIDGenerateButtonClicked();
+    void handleStudyDateTimeDateTimeEditChanged(const QDateTime &datetime);
+    void handleStudyModalityComboBoxIndexChanged(int idx);
+
+    void handleSeriesDescriptionLineEditEditingFinished();
+    void handleSeriesPatientPositionComboBoxActivated(int idx);
+    void handleSeriesNumberLineEditEditingFinished();
+    void handleSeriesTimeIncrementLineEditEditingFinished();
+
+    void handleImageSlicesPerImageComboBoxIndexChanged(int idx);
+    void handleImageSliceSpacingLineEditEditingFinished();
+    void handleImagePatientPositionXLineEditEditingFinished();
+    void handleImagePatientPositionYLineEditEditingFinished();
+    void handleImagePatientPositionZLineEditEditingFinished();
+    void handleImagePatientOrientationLineEditEditingFinished();
     void handleImageAxialPushButtonClicked();
     void handleImageSaggitalPushButtonClicked();
     void handleImageCoronalPushButtonClicked();
-    void handleStudyDateNowButtonClicked();
-    void handleStudyUIDGenerateButtonClicked();
-    void handlePatientsDOBDateEditChanged(const QDate &date);
-    void handleStudyDateTimeDateTimeEditChanged(const QDateTime &datetime);
-    void handlePatientsSexComboBoxIndexChanged(int idx);
-    void handleStudyModalityComboBoxIndexChanged(int idx);
-    void handleSeriesPatientPositionComboBoxActivated(int idx);
-    void handleImageSlicesPerImageComboBoxActivated(int idx);
 
 private:
     Ui::DicomAttributesDialog *ui;

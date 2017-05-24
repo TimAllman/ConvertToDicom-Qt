@@ -57,12 +57,12 @@ void SeriesConverter::createTimesArray()
     // times but we will never need more. This saves modifying the list if we change the number
     // of slices per image later.
     QTime acqTime = seriesInfo->studyDateTime().time();
-    int timeIncr = seriesInfo->seriesTimeIncrement();
+    double timeIncr = seriesInfo->seriesTimeIncrement();
     int numSlices = seriesInfo->imageNumberOfSlices();
     for (int sliceIdx = 0; sliceIdx < numSlices; ++sliceIdx)
     {
         seriesInfo->acqTimes().append(acqTime);
-        acqTime = acqTime.addMSecs(timeIncr * 1000);
+        acqTime = acqTime.addMSecs(int(std::round(timeIncr * 1000.0)));
     }
 
     std::stringstream stream;
@@ -217,7 +217,7 @@ ErrorCode SeriesConverter::extractSeriesAttributes()
     }
     else
     {
-        seriesInfo->setNumberOfImages(1);
+        seriesInfo->setImageNumberOfImages(1);
         // If we have a value use it, otherwise set to 1.0 mm
         if (seriesInfo->imageSliceSpacing() == 0.0)
             seriesInfo->setImageSliceSpacing(1.0);
@@ -226,7 +226,8 @@ ErrorCode SeriesConverter::extractSeriesAttributes()
 
     LOG4CPLUS_DEBUG(logger, "slicesPerImage = " << seriesInfo->imageSlicesPerImage());
     LOG4CPLUS_DEBUG(logger, "imageSliceSpacing = " << seriesInfo->imageSliceSpacing());
-    seriesInfo->setSeriesNumberOfSlices(numFiles / seriesInfo->imageSlicesPerImage());
+    seriesInfo->setImageNumberOfImages(numFiles / seriesInfo->imageSlicesPerImage());
+    LOG4CPLUS_DEBUG(logger, "numberOfImages = " << seriesInfo->imageNumberOfImages());
 
     // use for creating strings below.
     std::ostringstream value;
@@ -309,7 +310,7 @@ ErrorCode SeriesConverter::readFiles()
     // Fix up some series information that may not be set yet. If it hasn't been we use some defaults.
     if (seriesInfo->imageNumberOfImages() == 0)
     {
-        seriesInfo->setNumberOfImages(numberOfImages);
+        seriesInfo->setImageNumberOfImages(numberOfImages);
         seriesInfo->setSeriesSlicesPerImage(slicesPerImage);
         seriesInfo->setSeriesNumberOfSlices(numberOfSlices);
     }
@@ -362,7 +363,7 @@ QString SeriesConverter::makeOutputPathName(const QString& dirName)
 
     QString path = QString("%1/%2/%3 - %4/%5 - %6/")
                    .arg(dirName)
-                   .arg(seriesInfo->patientsName())
+                   .arg(seriesInfo->patientName())
                    .arg(seriesInfo->studyDescription())
                    .arg(seriesInfo->studyID())
                    .arg(seriesInfo->seriesDescription())

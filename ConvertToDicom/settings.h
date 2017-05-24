@@ -42,22 +42,22 @@ public:
     static QString OverwriteFilesKey;
     static QString InputDirKey;
     static QString OutputDirKey;
-    static QString TimeIncrementKey;
 
-    static QString PatientsNameKey;
-    static QString PatientsIDKey;
-    static QString PatientsDOBKey;
-    static QString PatientsSexKey;
+    static QString PatientNameKey;
+    static QString PatientIDKey;
+    static QString PatientDOBKey;
+    static QString PatientSexKey;
 
     static QString StudyDescriptionKey;
     static QString StudyIDKey;
     static QString StudyModalityKey;
     static QString StudyDateTimeKey;
-    static QString StudyStudyUIDKey;
+    static QString StudyInstanceUIDKey;
 
     static QString SeriesDescriptionKey;
     static QString SeriesNumberKey;
     static QString SeriesPatientPositionKey;
+    static QString SeriesTimeIncrementKey;
 
     //    static QString ImageSliceSpacingKey;
     //    static QString ImagePatientPositionXKey;
