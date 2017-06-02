@@ -22,6 +22,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 # You can also select to disable deprecated APIs only up to a certain version of Qt.
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
+TRANSLATIONS = francais.ts
 
 SOURCES += main.cpp\
         mainwindow.cpp \
@@ -33,7 +34,8 @@ SOURCES += main.cpp\
     errorcodes.cpp \
     imagereader.cpp \
     dicomserieswriter.cpp \
-    logger.cpp
+    logger.cpp \
+    dicomdictionaryinterface.cpp
 
 HEADERS  += mainwindow.h \
         seriesinfo.h \
@@ -45,12 +47,11 @@ HEADERS  += mainwindow.h \
     errorcodes.h \
     logger.h \
     imagereader.h \
-    dicomserieswriter.h
+    dicomserieswriter.h \
+    dicomdictionaryinterface.h
 
 FORMS    += mainwindow.ui \
     dicomattributesdialog.ui
-
-##QMAKE_LFLAGS += -F/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks/
 
 ITKLIBDIR = -L/Users/tim/usr/local/ITK-4.11/x86_64/Release/lib
 
@@ -159,7 +160,8 @@ DEPENDPATH += $$PWD/../../../usr/local/ITK-4.11/x86_64/Release/include/ITK-4.11
 
 DISTFILES += \
     licence.txt \
-    doxyfile
+    doxyfile \
+    ../README.md
 
 win32:CONFIG(release, debug|release): LIBS += -L$$PWD/../../../usr/local/lib/release/ -llog4cplusS
 else:win32:CONFIG(debug, debug|release): LIBS += -L$$PWD/../../../usr/local/lib/debug/ -llog4cplusS

@@ -55,9 +55,9 @@ void MainWindow::handleEditDicomAttributesButtonClicked()
 
     seriesConverter->setInputDir(seriesInfo->inputDir());
 
-    if (seriesConverter->extractSeriesAttributes() != ErrorCode::SUCCESS)
+    if (seriesConverter->extractImageAttributes() != ErrorCode::SUCCESS)
     {
-        QString msg = "Could not read image file(s) in input directory.";
+        QString msg = tr("Could not read image file(s) in input directory.");
         QMessageBox::critical(this, seriesInfo->inputDirStr() + " does not contain readable image files.", msg);
 
         LOG4CPLUS_INFO(logger, (msg + seriesInfo->inputDirStr()).toStdString());
@@ -126,7 +126,7 @@ void MainWindow::handleConvertButtonClicked()
 {
     //[self.convertButton setEnabled:NO];
 
-    ErrorCode errCode = seriesConverter->makeOutputPathDir(seriesInfo->outputDirStr());
+    ErrorCode errCode = seriesConverter->makeFullOutputPathDir(seriesInfo->outputDirStr());
 
     // Cannot create the directory. Use the returned error to fill the alert.
     if (errCode == ErrorCode::ERROR_CREATING_DIRECTORY)

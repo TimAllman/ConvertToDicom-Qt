@@ -66,7 +66,7 @@ ErrorCode DicomSeriesWriter::WriteFileSeries()
     typedef itk::NumericSeriesFileNames NameGeneratorType;
     NameGeneratorType::Pointer nameGenerator = NameGeneratorType::New();
 
-    QString value = outputDirectory + "/IM-" + seriesInfo->seriesNumber() + "-%04d.dcm";
+    QString value = outputDirectory + "/IM-" + QString::number(seriesInfo->seriesNumber()) + "-%04d.dcm";
     nameGenerator->SetSeriesFormat(value.toStdString());
     nameGenerator->SetStartIndex(1);
     nameGenerator->SetEndIndex(itk::SizeValueType(images.size()));

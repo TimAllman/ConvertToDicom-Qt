@@ -26,6 +26,8 @@
 #include "dicomserieswriter.h"
 #include "itkheaders.h"
 
+#include <itkGDCMImageIO.h>
+
 #include <vector>
 #include <sstream>
 
@@ -178,7 +180,7 @@ ErrorCode SeriesConverter::inputImagesConsistent()
     return ErrorCode::SUCCESS;
 }
 
-ErrorCode SeriesConverter::extractSeriesAttributes()
+ErrorCode SeriesConverter::extractImageAttributes()
 {
     LOG4CPLUS_TRACE(logger, "Enter");
 
@@ -200,8 +202,19 @@ ErrorCode SeriesConverter::extractSeriesAttributes()
         return ErrorCode::ERROR_READING_FILE;
     };
 
+
     imageIO->SetFileName(firstFileName);
     imageIO->ReadImageInformation();
+
+    LOG4CPLUS_DEBUG(logger, "ImageIO class name = " << imageIO->GetNameOfClass());
+
+    //    if (std::string(imageIO->GetNameOfClass()) == std::string("GDCMImageIO"))
+    //    {
+
+    //        itk::GDCMImageIO::Pointer& p = reinterpret_cast<itk::GDCMImageIO::Pointer&>(imageIO);
+    //        itk::MetaDataDictionary seriesDict = p->GetMetaDataDictionary();
+
+    //    }
 
     // Get the number of dimensions.
     unsigned numDims = imageIO->GetNumberOfDimensions();
@@ -224,9 +237,10 @@ ErrorCode SeriesConverter::extractSeriesAttributes()
         seriesInfo->setSeriesNumberOfSlices(numFiles);
     }
 
+    seriesInfo->setImageNumberOfImages(numFiles / seriesInfo->imageSlicesPerImage());
+
     LOG4CPLUS_DEBUG(logger, "slicesPerImage = " << seriesInfo->imageSlicesPerImage());
     LOG4CPLUS_DEBUG(logger, "imageSliceSpacing = " << seriesInfo->imageSliceSpacing());
-    seriesInfo->setImageNumberOfImages(numFiles / seriesInfo->imageSlicesPerImage());
     LOG4CPLUS_DEBUG(logger, "numberOfImages = " << seriesInfo->imageNumberOfImages());
 
     // use for creating strings below.
@@ -343,11 +357,13 @@ ErrorCode SeriesConverter::writeFiles()
     createTimesArray();
 
     // Create the directory
-    bool err = seriesInfo->outputDir().mkpath(seriesInfo->outputDir().path());
+    bool err = seriesInfo->outputDir().mkpath(seriesInfo->outputPath());
     if (err == false)
         return ErrorCode::ERROR_CREATING_DIRECTORY;
 
-    if (seriesInfo->outputDir().entryList(QDir::AllEntries | QDir::NoDotAndDotDot).count() != 0)
+    QDir outputPath = QDir(seriesInfo->outputPath());
+    outputPath.setFilter(QDir::Files);
+    if (outputPath.entryList().count() != 0)
     {
         if (seriesInfo->overwriteFiles() == false)
             return ErrorCode::ERROR_DIRECTORY_NOT_EMPTY;
@@ -372,7 +388,7 @@ QString SeriesConverter::makeOutputPathName(const QString& dirName)
     return path;
 }
 
-ErrorCode SeriesConverter::makeOutputPathDir(const QString& dirName)
+ErrorCode SeriesConverter::makeFullOutputPathDir(const QString& dirName)
 {
     QString pathName = makeOutputPathName(dirName);
     seriesInfo->setOutputPath(pathName);
@@ -386,7 +402,7 @@ ErrorCode SeriesConverter::makeOutputPathDir(const QString& dirName)
         return ErrorCode::ERROR_CREATING_DIRECTORY;
     }
     // See if the directory is empty
-    else if(pathDir.entryList(QDir::NoDotAndDotDot | QDir::Files).length() != 0)
+    else if(pathDir.entryList(QDir::Files).length() != 0)
     {
         return ErrorCode::ERROR_DIRECTORY_NOT_EMPTY;
     }

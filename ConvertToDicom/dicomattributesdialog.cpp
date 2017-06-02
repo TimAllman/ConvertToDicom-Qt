@@ -62,8 +62,8 @@ DicomAttributesDialog::DicomAttributesDialog(QWidget *parent) :
     ui->imagePatientPositionZLineEdit->setValidator(&floatValidator);
 
     // Connections to local handlers.
-    connect(ui->patientNameLineEdit, SIGNAL(clicked()), this, SLOT(handlePatientNameLineEditEditingFinished()));
-    connect(ui->patientIDLineEdit, SIGNAL(clicked()), this, SLOT(handlePatientIDLineEditEditingFinished()));
+    connect(ui->patientNameLineEdit, SIGNAL(EditingFinished()), this, SLOT(handlePatientNameLineEditEditingFinished()));
+    connect(ui->patientIDLineEdit, SIGNAL(EditingFinished()), this, SLOT(handlePatientIDLineEditEditingFinished()));
     connect(ui->patientDOBDateEdit, SIGNAL(dateChanged(const QDate&)), this, SLOT(handlePatientDOBDateEditChanged(const QDate &)));
     connect(ui->patientSexComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(handlePatientSexComboBoxIndexChanged(int)));
 

@@ -41,7 +41,7 @@ ImageReader::ImageVector ImageReader::ReadImage(const std::string& fileName)
     // If there s no suitable ITK IO type then quit
     if (imageIO.IsNull())
     {
-        LOG4CPLUS_ERROR(logger, "Image not created from file: " << fileName);
+        LOG4CPLUS_ERROR(logger, "ImageIO instance not created from file: " << fileName);
         return ImageVector();
     };
 
@@ -54,8 +54,13 @@ ImageReader::ImageVector ImageReader::ReadImage(const std::string& fileName)
     const ScalarPixelType pixelType = imageIO->GetComponentType();
     LOG4CPLUS_DEBUG(logger, "Pixel Type is " << imageIO->GetComponentTypeAsString(pixelType));
 
-    const size_t numDimensions =  imageIO->GetNumberOfDimensions();
+    const unsigned numDimensions =  imageIO->GetNumberOfDimensions();
     LOG4CPLUS_DEBUG(logger, "numDimensions: " << numDimensions);
+    for (unsigned idx = 0; idx < numDimensions; ++idx)
+    {
+        LOG4CPLUS_DEBUG(logger, "    dimension[" << idx << "]: " << imageIO->GetDimensions(idx));
+        LOG4CPLUS_DEBUG(logger, "    spacing[" << idx << "]: " << imageIO->GetSpacing(idx));
+    }
 
     LOG4CPLUS_DEBUG(logger, "component size: " << imageIO->GetComponentSize());
     LOG4CPLUS_DEBUG(logger, "pixel type (string): "

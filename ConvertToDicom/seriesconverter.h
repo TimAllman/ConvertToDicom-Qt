@@ -59,7 +59,7 @@ public:
      * @return ErrorCode SUCCESS if successful,
      * ERROR_CREATING_DIRECTORY or ERROR_DIRECTORY_NOT_EMPTY if not.
      */
-    ErrorCode makeOutputPathDir(const QString& dirName);
+    ErrorCode makeFullOutputPathDir(const QString& dirName);
 
     /**
      * @brief setInputDir
@@ -75,7 +75,7 @@ public:
      * Tries to get as much metadata from the input image files as possible.
      * @return Suitable code in ErrorCode enum.
      */
-    ErrorCode extractSeriesAttributes();
+    ErrorCode extractImageAttributes();
 
 //    /**
 //     * @brief setOutputDir

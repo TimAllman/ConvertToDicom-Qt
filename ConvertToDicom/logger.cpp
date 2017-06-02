@@ -30,7 +30,8 @@
 
 std::string LogLevelToString(LogLevel level);
 
-void SetupLogger(const std::string& loggerName, LogLevel fileLogLevel, const std::string& filePath)
+void SetupLogger(const std::string& loggerName, LogLevel consoleLogLevel, LogLevel fileLogLevel,
+                 const std::string& filePath)
 {
     static bool setup = false;
     if (setup)
@@ -45,7 +46,8 @@ void SetupLogger(const std::string& loggerName, LogLevel fileLogLevel, const std
     log4cplus::SharedAppenderPtr consoleAppender(new log4cplus::ConsoleAppender);
     std::string consoleAppName = loggerName + ".console";
     consoleAppender->setName(consoleAppName);
-    consoleAppender->setThreshold(int(LogLevel::LOG_LEVEL_INFO));
+    consoleAppender->setThreshold(int(consoleLogLevel));
+    //consoleAppender->setThreshold(int(LogLevel::LOG_LEVEL_INFO));
     std::string consolePattern = "%-5p (%d{%q}) [%b:%L] %m%n";
     std::auto_ptr<log4cplus::Layout> layout(new log4cplus::PatternLayout(consolePattern));
     consoleAppender->setLayout(layout);

@@ -14,7 +14,7 @@ int main(int argc, char *argv[])
     QCoreApplication::setOrganizationDomain("brasscats.ca");
     QCoreApplication::setApplicationName("ConvertToDicom-Qt");
 
-    SetupLogger(LOGGER_NAME, LogLevel::LOG_LEVEL_TRACE);
+    SetupLogger(LOGGER_NAME, LogLevel::LOG_LEVEL_ALL, LogLevel::LOG_LEVEL_ALL);
 
     // Possible valuse are "Windows", "Fusion", Macintosh"
     //    a.setStyle(QStyleFactory::create("Windows"));

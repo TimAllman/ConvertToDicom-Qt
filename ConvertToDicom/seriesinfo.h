@@ -71,21 +71,44 @@ public:
         return m_inputDir;
     }
 
+    /**
+     * @brief inputDirStr
+     * @return The input directory as an absolute path string.
+     * @sa inputDir()
+     */
     QString inputDirStr() const
     {
         return m_inputDir.absolutePath();
     }
 
+    /**
+     * @brief outputDir
+     * This is a base subdirectory for the output of this program.
+     * @see outputPath().
+     * @return The current output directory.
+     */
     QDir outputDir() const
     {
         return m_outputDir;
     }
 
+    /**
+     * @brief outputDirStr
+     * @return The output directory as an absolute path string.
+     * @see outputDir()
+     */
     QString outputDirStr() const
     {
         return m_outputDir.absolutePath();
     }
 
+    /**
+     * @brief outputPath
+     * The full output path is a chain of subdirectories of
+     * based upon outputDirStr(), patient's name, study description, study ID,
+     * series description and series number.
+     * @return The full absolute output path directory as a string.
+     */
     QString outputPath() const
     {
         return m_outputPath;

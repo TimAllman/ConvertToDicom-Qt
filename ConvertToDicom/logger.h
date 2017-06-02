@@ -58,20 +58,24 @@ typedef log4cplus::Logger Logger;
 /**
  * Set up the log4cplus logger.
  * @param loggerName The name of the logger.
- * @param fileLogLevel The initial level of the logger. This affects only the rolling
- * file appender. If level is LogLevel::NOT_SET_LOG_LEVEL then the Qt settings will
- * be queried. This can be changed with ResetLoggerLevel(). There is also a console
- * appender which is always set to LogLevel::INFO_LOG_LEVEL.
+ * @param consoleLogLevel The initial level of the console logger.
+ * If level is LogLevel::NOT_SET_LOG_LEVEL then the Qt settings will
+ * be queried. This can be changed with ResetLoggerLevel().
+ * @param fileLogLevel The initial level of the rolling file logger.
+ * If level is LogLevel::NOT_SET_LOG_LEVEL then the Qt settings will
+ * be queried. This can be changed with ResetLoggerLevel().
  * @param logFilePath The complete path of the logger file. Defaults are set in the .cpp file.
  */
-void SetupLogger(const std::string& loggerName, LogLevel fileLogLevel, const std::string& logFilePath = "");
+void SetupLogger(const std::string& loggerName, LogLevel consoleLogLevel, LogLevel fileLogLevel,
+                 const std::string& logFilePath = "");
 
 /**
  * Reset the logger level of the file appender. The console appender is not affected.
  * @param name The name of the logger
- * @param level The new level.
+ * @param consoleLevel The new level for the console (stdout).
+ * @param fileLevel The new level for the file output.
  */
-void ResetLoggerLevel(const char* name, LogLevel level);
+void ResetLoggerLevel(const char* name, LogLevel consoleLevel, LogLevel fileLevel);
 
 
 #endif // LOGGER_H
