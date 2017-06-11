@@ -54,7 +54,7 @@ public:
     ErrorCode convertFiles();
 
     /**
-     * Make the full output directory path.
+     * Make the full output directory path. This is the directory into which the DICOM series will be placed.
      * @param dirName The output directory name that will be expanded by makeOutputPathName().
      * @return ErrorCode SUCCESS if successful,
      * ERROR_CREATING_DIRECTORY or ERROR_DIRECTORY_NOT_EMPTY if not.
@@ -72,17 +72,12 @@ public:
     }
 
     /**
-     * Tries to get as much metadata from the input image files as possible.
+     * Tries to get as many metadata from the input image files as possible. If the image is a DICOM
+     * series the metadata dictionary will be queried. Otherwise the data will likely be limited to
+     * dimensions and slice spacing. This must be called after readFiles().
      * @return Suitable code in ErrorCode enum.
      */
-    ErrorCode extractImageAttributes();
-
-//    /**
-//     * @brief setOutputDir
-//     * @param dir The directory to which the files.
-//     * Tells us where the files are.
-//     */
-//    void setInputDir(const QDir& dir);
+    ErrorCode extractImageParameters();
 
 private:
 

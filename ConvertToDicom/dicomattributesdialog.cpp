@@ -32,10 +32,13 @@
 #include <limits>
 
 static QStringList sexes = {"Male", "Female", "Unspecified"};
+
+// TODO add rest of modalities (http://dicom.nema.org/medical/dicom/current/output/html/part03.html#sect_C.7.3.1.1.1)
 static QStringList modalities = { "CR", "CT", "DX", "ES", "MG", "MR", "NM",
                                   "OT", "PT", "RF", "SC", "US", "XA"};
 static QStringList positions = {"HFP", "HFS", "HFDR", "HFDL", "FFDR",
-                                "FFDL", "FFP", "FFS"};
+                                "FFDL", "FFP", "FFS", "LFP", "LFS", "RFP",
+                                "RFS", "AFDR", "AFDL", "PFDR", "PFDL"};
 
 DicomAttributesDialog::DicomAttributesDialog(QWidget *parent) :
     QDialog(parent),

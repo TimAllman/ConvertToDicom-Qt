@@ -29,7 +29,8 @@
 /**
  * @brief The DicomDictionaryInterface class
  * This class provides a convenient to get and set data in an instance of
- * itk::MetaDataDictionaryArray.
+ * itk::MetaDataDictionaryArray. The method names are taken from the DICOM standard.
+ * http://dicom.nema.org/medical/dicom/current/output/html/part06.html#table_6-1
  */
 class DicomDictionaryInterface
 {
@@ -37,35 +38,17 @@ public:
     typedef std::vector<itk::MetaDataDictionary*> DictionaryArrayType;
 
     /**
+     * This typedef is created merely to prevent compiler warnings.
+     * As of writing it describes an unsigned long int.
+     */
+    typedef DictionaryArrayType::size_type SizeType;
+
+    /**
      * Constructor with dictionary array. Subsequent operations are performed on the
      * dictionaries pointed to by the array of pointers.
      * @param dictionaryArray The array of pointers to the slice dictionaries.
      */
     DicomDictionaryInterface(DictionaryArrayType dictionaryArray);
-
-    /**
-     * @brief setAttribute
-     * Set the value corresponding the tag. Although this method is public, the setters for
-     * specific attribute values should be used.
-     * @param tag A DICOM tag in the format "0010|0010".
-     * @param value The value to be stored. May be string or numeric.
-     * @param sliceIndex The index of the slice within the series to receive the new value. Set to -1 to
-     * set all slices.
-     * @return true if successful, false if not. This fails only if the tag is invalid or
-     * is one (such as image location) that is valid only for one slice.
-     */
-    bool setAttribute(const QString &tag, const QVariant &value, int sliceIndex);
-
-    /**
-     * @brief attribute
-     * Get the value of the attribute corresponding to the tag. Although this method is public,
-     * the getters for specific attribute values should be used.
-     * @param tag The tag of the attribute desired in the format "0010|0010"
-     * @param sliceIndex The index of the slice within the series to query.
-     * @return The value if successful or an invalid QVariant if not.
-     */
-    QVariant attribute(const QString &tag, int sliceIndex);
-
 
     /**
      * Get the value of Patient's Name, "0010|0010".
@@ -76,8 +59,10 @@ public:
     /**
      * Set the value of Patient's Name, "0010|0010".
      * @param patientsName The patient's name. The length limit is 64 characters enforced by truncation.
+     * @return true if successful, false otherwide.
+     * @return true if successful, false otherwide.
      */
-    void setPatientsName(const QString &patientsName);
+    bool setPatientsName(QString patientsName);
 
     /**
      * Get the value of Patient ID, "0010|0020".
@@ -88,8 +73,9 @@ public:
     /**
      * Set the value of Patient ID, "0010|0020".
      * @param patientID The patient's ID. The length limit is 64 characters enforced by truncation.
+     * @return true if successful, false otherwide.
      */
-    void setPatientID(const QString &patientID);
+    bool setPatientID(QString patientID);
 
     /**
      * Get the value of Patient's Birth Date, "0010|0030".
@@ -100,8 +86,9 @@ public:
     /**
      * Set the value of Patient's Birth Date, "0010|0030".
      * @param patientsBirthDate The patient's birth date in the format "YYYYMMDD".
+     * @return true if successful, false otherwide.
      */
-    void setPatientsBirthDate(const QString &patientsBirthDate);
+    bool setPatientsBirthDate(QString patientsBirthDate);
 
     /**
      * Get the value of Patient's Sex, "0010|0040".
@@ -112,8 +99,9 @@ public:
     /**
      * Set the value of Patient's Sex, "0010|0040".
      * @param patientsSex The patient's sex, maximum 16 characters.
+     * @return true if successful, false otherwide.
      */
-    void setPatientsSex(const QString &patientsSex);
+    bool setPatientsSex(QString patientsSex);
 
     /**
      * Get the value of Study Description, "0008|1030".
@@ -124,8 +112,9 @@ public:
     /**
      * Set the value of Study Description, "0008|1030".
      * @param studyDescription The study description, maximum 64 characters enforced by truncation.
+     * @return true if successful, false otherwide.
      */
-    void setStudyDescription(const QString &studyDescription);
+    bool setStudyDescription(QString studyDescription);
 
     /**
      * Get the value of Study ID, "0020|0010".
@@ -136,8 +125,9 @@ public:
     /**
      * Set the value of Study ID, "0020|0010".
      * @param studyID The study ID, maximum 16 characters enforced by truncation.
+     * @return true if successful, false otherwide.
      */
-    void setStudyID(const QString &studyID);
+    bool setStudyID(QString studyID);
 
     /**
      * Get the value of Modality, "0008|0060".
@@ -148,8 +138,9 @@ public:
     /**
      * Set the value of Modality, "0008|0060".
      * @param modality The modality, maximum 16 characters enforced by truncation. Typically "MR", "CT" etc.
+     * @return true if successful, false otherwide.
      */
-    void setModality(const QString &modality);
+    bool setModality(QString modality);
 
     /**
      * Get the value of Study Date, "0008|0020".
@@ -160,8 +151,9 @@ public:
     /**
      * Set the value of Study Date, "0008|0020".
      * @param studyDate The study date in the format "YYYYMMDD".
+     * @return true if successful, false otherwide.
      */
-    void setStudyDate(const QString &studyDate);
+    bool setStudyDate(QString studyDate);
 
     /**
      * Get the value of Study Time, "0008|0030".
@@ -172,8 +164,9 @@ public:
     /**
      * Set the value of Study Time, "0008|0030".
      * @param studyTime The study time in the format "HHMMSS.FFFFFF".
+     * @return true if successful, false otherwide.
      */
-    void setStudyTime(const QString &studyTime);
+    bool setStudyTime(QString studyTime);
 
     /**
      * Get the value of Study Instance UID, "0020|000D".
@@ -185,8 +178,9 @@ public:
      * Set the value of Study Instance UID, "0020|000D".
      * @param studyInstanceUID The study instance UID containing only '0'-'9' and '.'.
      * Maximum 16 characters enforced by truncation.
+     * @return true if successful, false otherwide.
      */
-    void setStudyInstanceUID(const QString &studyInstanceUID);
+    bool setStudyInstanceUID(QString studyInstanceUID);
 
     /**
      * Get the value of SeriesNumber, "0020|0011".
@@ -197,10 +191,10 @@ public:
     /**
      * Set the value of Series Number, "0020|0011".
      * @param seriesNumber The series number - a 32 bit integer expressed as astring containing only '0'-'9',
-     * '+' and '-'.
-     * Maximum 16 characters enforced by truncation.
+     * '+' and '-'. Maximum 16 characters enforced by truncation.
+     * @return true if successful, false otherwide.
      */
-    void setSeriesNumber(const QString &seriesNumber);
+    bool setSeriesNumber(QString seriesNumber);
 
     /**
      * Get the value of Series Description, "0008|103E".
@@ -211,35 +205,117 @@ public:
     /**
      * Set the value of Series Description, "0008|103E".
      * @param seriesDescription The study description, maximum 64 characters enforced by truncation.
+     * @return true if successful, false otherwide.
      */
-    void setSeriesDescription(const QString &seriesDescription);
+    bool setSeriesDescription(QString seriesDescription);
 
+    /**
+     * Get the value of Patient Position, "0018|5100".
+     * @return The patient position as a short string such as "HFS" (head first supine).
+     */
+    QString patientPosition();
 
+    /**
+     * Set the value of Patient Position, "0018|5100".
+     * @param patientPosition The patient position as a short string such as "HFS" (head first supine).
+     * Only 'A'-'Z', '0'-'9', ' ' and '_' allowed. Maximum 16 characters enforced by truncation.
+     * @return true if successful, false otherwide.
+     */
+    bool setPatientPosition(QString patientPosition);
 
+    /**
+     * Get the value of Slice Thickness, "0018|0050".
+     * @return The slice thickness in mm.
+     */
+    QString sliceThickness();
 
+    /**
+     * Set the value of Slice Thickness, "0018|0050".
+     * @param sliceThickness The slice thickness in mm as a string.
+     * Maximum 16 characters enforced by truncation.
+     * @return true if successful, false otherwide.
+     */
+    bool setSliceThickness(QString sliceThickness);
 
+    /**
+     * Get the value of Spacing Between Slices, "0018|0088".
+     * @return The slice spacing in mm.
+     */
+    QString spacingBetweenSlices();
 
-
-
-
-
-
+    /**
+     * Set the value of Spacing Between Slices, "0018|0088".
+     * @param spacingBetweenSlices The slice spacing in mm as a string.
+     * Maximum 16 characters enforced by truncation.
+     * @return true if successful, false otherwide.
+     */
+    bool setSpacingBetweenSlices(QString spacingBetweenSlices);
 
     /**
      * Get the value of Image Position (Patient), "0020|0032".
+     * @param sliceIndex The index of the slice whose position we want.
      * @return The x, y, and z coordinates of the upper left hand corner
      * of the image, in mm, as a string. e.g. "0.0\\0.0\\0.0"
      */
-    QString imagePositionPatient();
+    QString imagePositionPatient(DicomDictionaryInterface::SizeType sliceIndex);
 
     /**
      * Set the value of Image Position (Patient), "0020|0032".
      * @param imagePositionPatient The x, y, and z coordinates of the upper left hand corner
-     * of the image, in mm. e.g. "0.0\\0.0\\0.0"
+     * of the image, in mm. e.g. "0.0\\0.0\\0.0".
+     * Maximum length for 3 numbers and 4 '\' is 16 * 3 + 4 = 23 bytes.
+     * @param sliceIndex The index of the slice whose position we want to set.
+     * @return true if successful, false otherwide.
      */
-    void setImagePositionPatient(const QString &imagePositionPatient);
+    bool setImagePositionPatient(QString imagePositionPatient, DicomDictionaryInterface::SizeType sliceIndex);
+
+    /**
+     * Get the value of Image Orientation (Patient), "0020|0037".
+     * @return The direction cosines of the first row and the first column with respect to the patient.
+     */
+    QString imageOrientationPatient();
+
+    /**
+     * Set the value of Image Orientation (Patient), "0020|0037".
+     * @param imageOrientationPatient The direction cosines of the first row and the first column with
+     * respect to the patient. There are six values separated by back slashes,
+     * e.g. "1.0\\0.0\\0.0\\1.0\\1.0\\0.0". Maximum 106 characters enforced by truncation.
+     * @return true if successful, false otherwide.
+     */
+    bool setImageOrientationPatient(QString imageOrientationPatient);
 
 private:
+    /**
+     * Set the value corresponding the tag in the slice at index sliceIndex.
+     * This method supports the public setters for specific attributes.
+     * @param tag A DICOM tag in the format "0010|0010".
+     * @param value The value to be stored. May be string or numeric.
+     * @param sliceIndex The index of the slice within the series to receive the new value.
+     * @return true if successful, false if not. This fails only if the tag is invalid or
+     * is one (such as image location) that is valid only for one slice.
+     */
+    bool setAttribute(const QString &tag, const QVariant &value, DicomDictionaryInterface::SizeType sliceIndex);
+
+    /**
+     * Set the value corresponding the tag in all of the slices.
+     * This method supports the public setters for specific attributes.
+     * @param tag A DICOM tag in the format "0010|0010".
+     * @param value The value to be stored. May be string or numeric.
+     * @return true if successful, false if not. This fails only if the tag is invalid or
+     * is one (such as image location) that is valid only for one slice.
+     */
+    bool setAttributeAllSlices(const QString &tag, const QVariant &value);
+
+    /**
+     * @brief attribute
+     * Get the value of the attribute corresponding to the tag. Although this method is public,
+     * the getters for specific attribute values should be used.
+     * @param tag The tag of the attribute desired in the format "0010|0010"
+     * @param sliceIndex The index of the slice within the series to query.
+     * @return The value if successful or an invalid QVariant if not.
+     */
+    QVariant attribute(const QString &tag, DicomDictionaryInterface::SizeType sliceIndex);
+
     DictionaryArrayType dictArray;
 };
 

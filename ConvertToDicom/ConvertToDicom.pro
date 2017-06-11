@@ -161,7 +161,8 @@ DEPENDPATH += $$PWD/../../../usr/local/ITK-4.11/x86_64/Release/include/ITK-4.11
 DISTFILES += \
     licence.txt \
     doxyfile \
-    ../README.md
+    ../README.md \
+    ../thoughts.txt
 
 win32:CONFIG(release, debug|release): LIBS += -L$$PWD/../../../usr/local/lib/release/ -llog4cplusS
 else:win32:CONFIG(debug, debug|release): LIBS += -L$$PWD/../../../usr/local/lib/debug/ -llog4cplusS

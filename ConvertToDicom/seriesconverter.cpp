@@ -180,7 +180,7 @@ ErrorCode SeriesConverter::inputImagesConsistent()
     return ErrorCode::SUCCESS;
 }
 
-ErrorCode SeriesConverter::extractImageAttributes()
+ErrorCode SeriesConverter::extractImageParameters()
 {
     LOG4CPLUS_TRACE(logger, "Enter");
 

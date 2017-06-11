@@ -55,7 +55,7 @@ void MainWindow::handleEditDicomAttributesButtonClicked()
 
     seriesConverter->setInputDir(seriesInfo->inputDir());
 
-    if (seriesConverter->extractImageAttributes() != ErrorCode::SUCCESS)
+    if (seriesConverter->extractImageParameters() != ErrorCode::SUCCESS)
     {
         QString msg = tr("Could not read image file(s) in input directory.");
         QMessageBox::critical(this, seriesInfo->inputDirStr() + " does not contain readable image files.", msg);

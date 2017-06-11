@@ -1,0 +1,29 @@
+How to make sure that files are read
+------------------------------------
+
+1) before the DicomAttributes dialog is shown and
+
+2) as soon as possible so that reading errors can be detected.
+
+So, read series
+
+1) When input directory line edit loses focus (except to the Choose button), it must always have the first focus.
+2) When input directory dialog closes.
+3) When the Convert button is clicked.
+
+Ensure that a series is read only once so that its parameters are not reset.
+
+**********************************************************************************************
+
+Process for converting files (assuming one series only is in the directory)
+---------------------------------------------------------------------------
+
+1) Read the series. If successful, flag series (ie directory name) as loaded. Otherwise show error dialog.
+
+2) Extract available parameters. This may be minimal if all we have is what is stored in the ImageIOBase
+descendant instance. If DICOM, get everything we want for the dialog. Otherwise use the saved defaults.
+
+3) If output directory does not exist, make it.
+
+4) If 3) is successful, use DicomSeriesWriter to create the new files.
+
