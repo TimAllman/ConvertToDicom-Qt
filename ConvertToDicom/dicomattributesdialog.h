@@ -61,6 +61,7 @@ private slots:
 
     void handleSeriesDescriptionLineEditEditingFinished();
     void handleSeriesPatientPositionComboBoxActivated(int idx);
+    void handleSeriesPatientPositionComboBoxIndexChanged(int idx);
     void handleSeriesNumberLineEditEditingFinished();
     void handleSeriesTimeIncrementLineEditEditingFinished();
 

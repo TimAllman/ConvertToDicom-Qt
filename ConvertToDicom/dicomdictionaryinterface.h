@@ -24,7 +24,7 @@
 
 #include <QVariant>
 
-#include <itkMetaDataDictionary.h>
+#include "itkheaders.pch.h"
 
 /**
  * @brief The DicomDictionaryInterface class

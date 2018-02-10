@@ -19,13 +19,11 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-#include "dumpmetadatadictionary.h"
-#include "typedefs.h"
+#include "itkheaders.pch.h"
+
+#include "itktypedefs.h"
 
 #include <sstream>
-
-#include <itkGDCMImageIO.h>
-#include <itkMetaDataObject.h>
 
 std::string DumpDicomMetaDataDictionary(const itk::MetaDataDictionary& dict)
 {

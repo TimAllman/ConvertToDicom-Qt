@@ -1,11 +1,11 @@
 //
-//  errorcodes
+//  itk-precompiled.h
 //  ConvertToDicom
 //
 
 /* ConvertToDicom converts a series of images to DICOM format from any format recognized
  * by ITK (http://www.itk.org).
- * Copyright (C) 2017 Tim Allman
+ * Copyright (C) 2018 Tim Allman
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,25 +19,27 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-#ifndef ERRORCODES_H
-#define ERRORCODES_H
+#ifndef ITKPRECOMPILED_H
+#define ITKPRECOMPILED_H
 
-/**
- * Collection of error codes
- */
-enum struct ErrorCode
-{
-    SUCCESS,                  ///< All is well.
-    ERROR,                    ///< General error.
-    ERROR_FILE_NOT_FOUND,     ///< File(s) not found.
-    ERROR_READING_FILE,       ///< Problem reading existing file(s).
-    ERROR_WRITING_FILE,       ///< Problem creating or writing file(s).
-    ERROR_READING_PARAMETERS, ///< Problem reading DICOM dictionary.
-    ERROR_CREATING_DIRECTORY, ///< Problem creating a directory.
-    ERROR_DIRECTORY_NOT_EMPTY,///< Directory contains files when it shouldn't.
-    ERROR_IMAGE_INCONSISTENT  ///< Problem with input images.
-};
+#include <itkGDCMImageIO.h>
+#include <itkMetaDataObject.h>
+#include <itkGDCMImageIO.h>
+#include <itkNumericSeriesFileNames.h>
+#include <itkImage.h>
+#include <itkIntTypes.h>
+#include <itksys/SystemTools.hxx>
+#include <itkImageSeriesWriter.h>
+#include <itkVersion.h>
+#include <itkTileImageFilter.h>
+#include <itkGDCMImageIO.h>
+#include <itkGDCMSeriesFileNames.h>
+#include <itkImage.h>
+#include <itkImageIOBase.h>
+#include <itkImageFileReader.h>
+#include <itkExtractImageFilter.h>
 
-const char* ErrorCodeAsString(ErrorCode code);
 
-#endif // ERRORCODES_H
+#include <gdcmUIDGenerator.h>
+
+#endif // ITKPRECOMPILED_H

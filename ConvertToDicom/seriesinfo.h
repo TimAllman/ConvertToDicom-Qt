@@ -24,8 +24,7 @@
  */
 #include "logger.h"
 
-#include <itkMetaDataDictionary.h>
-#include <vnl/vnl_vector_fixed.h>
+#include "itkheaders.pch.h"
 
 #include <QDir>
 #include <QString>
@@ -39,10 +38,8 @@
  * It is set up as a singleton class because only one should ever be created and it allows
  * the instance to be accessed globally.
  */
-class SeriesInfo// : public QObject
+class SeriesInfo
 {
-    //Q_OBJECT
-
     const Qt::DateFormat TimeFormat = Qt::ISODateWithMs;      //< Format used in program for times
     const Qt::DateFormat DateFormat = Qt::ISODate;            //< Format used in program for dates
     const Qt::DateFormat DateTimeFormat = Qt::ISODateWithMs;  //< Format used in program for datetimes
@@ -213,9 +210,19 @@ public:
         return m_imageNumberOfImages;
     }
 
+    QString imageNumberOfImagesStr() const
+    {
+        return locale.toString(m_imageNumberOfImages);
+    }
+
     int imageSlicesPerImage() const
     {
         return m_imageSlicesPerImage;
+    }
+
+    QString imageSlicesPerImageStr() const
+    {
+        return locale.toString(m_imageSlicesPerImage);
     }
 
     int imageNumberOfSlices() const
@@ -223,9 +230,19 @@ public:
         return m_imageNumberOfSlices;
     }
 
+    QString imageNumberOfSlicesStr() const
+    {
+        return locale.toString(m_imageNumberOfSlices);
+    }
+
     double imageSliceSpacing() const
     {
         return m_imageSliceSpacing;
+    }
+
+    QString imageSliceSpacingStr() const
+    {
+        return locale.toString(m_imageSliceSpacing, 'f', 3);
     }
 
     double imagePositionPatientX() const
@@ -233,14 +250,29 @@ public:
         return m_imagePositionPatient[0];
     }
 
+    QString imagePositionPatientXStr() const
+    {
+        return locale.toString(m_imagePositionPatient[0], 'f', 3);
+    }
+
     double imagePositionPatientY() const
     {
         return m_imagePositionPatient[1];
     }
 
+    QString imagePositionPatientYStr() const
+    {
+        return locale.toString(m_imagePositionPatient[1], 'f', 3);
+    }
+
     double imagePositionPatientZ() const
     {
         return m_imagePositionPatient[2];
+    }
+
+    QString imagePositionPatientZStr() const
+    {
+        return locale.toString(m_imagePositionPatient[2], 'f', 3);
     }
 
     QString imagePatientOrientation() const
@@ -283,7 +315,7 @@ public:
         m_imageNumberOfImages = numberOfImages;
     }
 
-    void setSeriesSlicesPerImage(int slicesPerImage)
+    void setImageSlicesPerImage(int slicesPerImage)
     {
         m_imageSlicesPerImage = slicesPerImage;
     }

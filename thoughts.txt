@@ -15,6 +15,25 @@ Ensure that a series is read only once so that its parameters are not reset.
 
 **********************************************************************************************
 
+Workflow for the program
+
+1) On program start, read in saved parameters and put focus on the input
+   directory QLineEdit instance
+
+2) Validate the input directory.
+    If it is not validand the EditDicomAttributesButton disabled.
+
+2) If user types name
+        Check for existence of files with SeriesConverter::extractImageParameters().
+    If this fails
+        Show error dialog once in MainWindow::handleSourceDirLineEditEditingFinished().
+
+
+
+---------------------------------------------------------------------------
+
+**********************************************************************************************
+
 Process for converting files (assuming one series only is in the directory)
 ---------------------------------------------------------------------------
 
@@ -26,4 +45,12 @@ descendant instance. If DICOM, get everything we want for the dialog. Otherwise 
 3) If output directory does not exist, make it.
 
 4) If 3) is successful, use DicomSeriesWriter to create the new files.
+
+**********************************************************************************************
+
+
+
+
+Converting multiple DICOM series in one directory
+-------------------------------------------------
 

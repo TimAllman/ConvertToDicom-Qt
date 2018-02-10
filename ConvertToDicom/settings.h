@@ -38,7 +38,9 @@ class Settings : public QSettings
 {
 public:
     // Keys for preferences.
+    static QString MainWindowGeometryKey;
     static QString LoggingLevelKey;
+
     static QString OverwriteFilesKey;
     static QString InputDirKey;
     static QString OutputDirKey;

@@ -233,13 +233,11 @@
     <property name="title">
      <string>File</string>
     </property>
-    <addaction name="actionHi"/>
    </widget>
    <widget class="QMenu" name="menuEdit">
     <property name="title">
      <string>Edit</string>
     </property>
-    <addaction name="actionHi_2"/>
    </widget>
    <widget class="QMenu" name="menuHelp">
     <property name="title">
@@ -259,16 +257,6 @@
    </attribute>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
-  <action name="actionHi">
-   <property name="text">
-    <string>Hi</string>
-   </property>
-  </action>
-  <action name="actionHi_2">
-   <property name="text">
-    <string>Hi</string>
-   </property>
-  </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <resources/>

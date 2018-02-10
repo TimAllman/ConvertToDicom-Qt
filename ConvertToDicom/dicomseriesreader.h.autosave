@@ -1,5 +1,5 @@
 //
-//  typedefs
+//  dicomseriesreader.h
 //  ConvertToDicom
 //
 
@@ -19,28 +19,19 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-#ifndef TYPEDEFS_H
-#define TYPEDEFS_H
-
-#include <itkImage.h>
+#ifndef DICOMSERIESREADER_H
+#define DICOMSERIESREADER_H
 
 /**
- * @brief InternalPixelType
- * When this program reads in image files they are stored with this canonical pixel type.
- * TODO change this to float.
+ * Class to read a dicom series and extract parameters from its dictionary, placing them into
+ * the global SeriesInfo instance.
  */
-typedef unsigned short InternalPixelType;
+class DicomSeriesReader
+{
+public:
+    //typedef unsigned short DicomPixelType; ///< Always write with this pixel type.
 
-/**
- * @brief Image2DType
- * Canonical type of a 2D image.
- */
-typedef itk::Image<InternalPixelType, 2u> Image2DType;
+    DicomSeriesReader();
+};
 
-/**
- * @brief Image3DType
- * Canonical type of a 3D image.
- */
-typedef itk::Image<InternalPixelType, 3u> Image3DType;
-
-#endif // TYPEDEFS_H
+#endif // DICOMSERIESREADER_H

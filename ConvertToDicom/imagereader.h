@@ -22,7 +22,7 @@
 #ifndef IMAGEREADER_H
 #define IMAGEREADER_H
 
-#include "typedefs.h"
+#include "itktypedefs.h"
 #include "logger.h"
 
 #include <vector>

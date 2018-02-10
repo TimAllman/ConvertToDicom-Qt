@@ -1,5 +1,5 @@
 //
-//  dumpmetadatadictionary.h
+//  itktypedefs.h
 //  ConvertToDicom
 //
 
@@ -19,27 +19,28 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-#ifndef DUMPMETADATADICTIONARY_H
-#define DUMPMETADATADICTIONARY_H
+#ifndef ITKTYPEDEFS_H
+#define ITKTYPEDEFS_H
 
 #include "itkheaders.pch.h"
 
 /**
- * Generate a std::string representation of a itk::MetaDataDictionary. Useful for debugging.
- * @param dict Reference to the itk::MetaDataDictionary.
- *
- * @return std::string representation of the itk::MetaDataDictionary.
+ * @brief InternalPixelType
+ * When this program reads in image files they are stored with this canonical pixel type.
+ * TODO change this to float.
  */
-std::string DumpMetaDataDictionary(const itk::MetaDataDictionary& dict);
+typedef unsigned short InternalPixelType;
 
 /**
- * Generate a std::string representation of a itk::MetaDataDictionary tailored for DICOM.
- * Useful for debugging.
- * @param dict Reference to the itk::MetaDataDictionary.
- *
- * @return std::string representation of the itk::MetaDataDictionary.
+ * @brief Image2DType
+ * Canonical type of a 2D image.
  */
-std::string DumpDicomMetaDataDictionary(const itk::MetaDataDictionary& dict);
+typedef itk::Image<InternalPixelType, 2u> Image2DType;
 
+/**
+ * @brief Image3DType
+ * Canonical type of a 3D image.
+ */
+typedef itk::Image<InternalPixelType, 3u> Image3DType;
 
-#endif // DUMPMETADATADICTIONARY_H
+#endif // ITKTYPEDEFS_H

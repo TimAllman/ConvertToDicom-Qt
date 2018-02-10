@@ -1,7 +1,7 @@
 #include "mainwindow.h"
 #include "logger.h"
 #include "logger.h"
-#include "itkheaders.h"
+#include "itkheaders.pch.h"
 
 #include <QApplication>
 #include <QStyleFactory>

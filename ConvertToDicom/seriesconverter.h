@@ -24,7 +24,7 @@
 
 #include "errorcodes.h"
 #include "logger.h"
-#include "typedefs.h"
+#include "itktypedefs.h"
 
 #include <QDir>
 #include <QVector>
@@ -34,7 +34,8 @@ class SeriesInfo;
 /**
  * @brief The SeriesConverter class
  *
- * Class to do the conversion work. It reads the image files, converts them to DICOM
+ * Class to do the conversion of one series.
+ * It reads the image files, converts them to DICOM
  * and writes them out as DICOM files.
  */
 class SeriesConverter
@@ -80,7 +81,6 @@ public:
     ErrorCode extractImageParameters();
 
 private:
-
     /**
       * @brief loadFileNames
       * Load all of the names within the input directory. Assumes that these are all suitable
@@ -89,6 +89,9 @@ private:
       */
     ErrorCode loadFileNames();
 
+    /**
+     * Create and store the acquisition times of the output files.
+     */
     void createTimesArray();
 
     /**

@@ -21,11 +21,10 @@
  */
 #include "dicomattributesdialog.h"
 #include "ui_dicomattributesdialog.h"
-
 #include "seriesinfo.h"
 #include "logger.h"
 
-#include <gdcmUIDGenerator.h>
+#include "itkheaders.pch.h"
 
 #include <QStringList>
 
@@ -65,33 +64,57 @@ DicomAttributesDialog::DicomAttributesDialog(QWidget *parent) :
     ui->imagePatientPositionZLineEdit->setValidator(&floatValidator);
 
     // Connections to local handlers.
-    connect(ui->patientNameLineEdit, SIGNAL(EditingFinished()), this, SLOT(handlePatientNameLineEditEditingFinished()));
-    connect(ui->patientIDLineEdit, SIGNAL(EditingFinished()), this, SLOT(handlePatientIDLineEditEditingFinished()));
-    connect(ui->patientDOBDateEdit, SIGNAL(dateChanged(const QDate&)), this, SLOT(handlePatientDOBDateEditChanged(const QDate &)));
-    connect(ui->patientSexComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(handlePatientSexComboBoxIndexChanged(int)));
+    connect(ui->patientNameLineEdit, SIGNAL(editingFinished()), this,
+            SLOT(handlePatientNameLineEditEditingFinished()));
+    connect(ui->patientIDLineEdit, SIGNAL(editingFinished()), this,
+            SLOT(handlePatientIDLineEditEditingFinished()));
+    connect(ui->patientDOBDateEdit, SIGNAL(dateChanged(const QDate &)), this,
+            SLOT(handlePatientDOBDateEditChanged(const QDate &)));
+    connect(ui->patientSexComboBox, SIGNAL(currentIndexChanged(int)), this,
+            SLOT(handlePatientSexComboBoxIndexChanged(int)));
 
-    connect(ui->studyDescriptionLineEdit, SIGNAL(editingFinished()), this, SLOT(handleStudyDescriptionLineEditEditingFinished()));
-    connect(ui->studyIDLineEdit, SIGNAL(editingFinished()), this, SLOT(handleStudyIDLineEditEditingFinished()));
-    connect(ui->studyModalityComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(handleStudyModalityComboBoxIndexChanged(int)));
-    connect(ui->studyDateTimeDateTimeEdit, SIGNAL(dateChanged(const QDate&)), this, SLOT(void handleStudyDateTimeDateTimeEditChanged(const QDateTime &)));
-    connect(ui->studyInstanceUIDLineEdit, SIGNAL(editingFinished()), this, SLOT(handleStudyInstanceUIDLineEditEditingFinished()));
-    connect(ui->studyDateTimeNowPushButton, SIGNAL(clicked()), this, SLOT(handleStudyDateNowButtonClicked()));
-    connect(ui->studyInstanceUIDGeneratePushButton, SIGNAL(clicked()), this, SLOT(handleStudyUIDGenerateButtonClicked()));
+    connect(ui->studyDescriptionLineEdit, SIGNAL(editingFinished()), this,
+            SLOT(handleStudyDescriptionLineEditEditingFinished()));
+    connect(ui->studyIDLineEdit, SIGNAL(editingFinished()), this,
+            SLOT(handleStudyIDLineEditEditingFinished()));
+    connect(ui->studyModalityComboBox, SIGNAL(currentIndexChanged(int)), this,
+            SLOT(handleStudyModalityComboBoxIndexChanged(int)));
+    connect(ui->studyDateTimeDateTimeEdit, SIGNAL(dateTimeChanged(const QDateTime &)), this,
+            SLOT(handleStudyDateTimeDateTimeEditChanged(const QDateTime &)));
+    connect(ui->studyInstanceUIDLineEdit, SIGNAL(editingFinished()), this,
+            SLOT(handleStudyInstanceUIDLineEditEditingFinished()));
+    connect(ui->studyDateTimeNowPushButton, SIGNAL(clicked()), this,
+            SLOT(handleStudyDateNowButtonClicked()));
+    connect(ui->studyInstanceUIDGeneratePushButton, SIGNAL(clicked()), this,
+            SLOT(handleStudyUIDGenerateButtonClicked()));
 
-    connect(ui->seriesDescriptionLineEdit, SIGNAL(editingFinished()), this, SLOT(handleSeriesDescriptionLineEditEditingFinished()));
-    connect(ui->seriesPatientPositionComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(handleStudyPatientPositionComboBoxIndexChanged(int)));
-    connect(ui->seriesNumberLineEdit, SIGNAL(editingFinished()), this, SLOT(handleSeriesNumberLineEditEditingFinished()));
-    connect(ui->seriesTimeIncrementLineEdit, SIGNAL(editingFinished()), this, SLOT(handleSeriesTimeIncrementLineEditEditingFinished()));
+    connect(ui->seriesDescriptionLineEdit, SIGNAL(editingFinished()), this,
+            SLOT(handleSeriesDescriptionLineEditEditingFinished()));
+    connect(ui->seriesPatientPositionComboBox, SIGNAL(currentIndexChanged(int)), this,
+            SLOT(handleSeriesPatientPositionComboBoxIndexChanged(int)));
+    connect(ui->seriesNumberLineEdit, SIGNAL(editingFinished()), this,
+            SLOT(handleSeriesNumberLineEditEditingFinished()));
+    connect(ui->seriesTimeIncrementLineEdit, SIGNAL(editingFinished()), this,
+            SLOT(handleSeriesTimeIncrementLineEditEditingFinished()));
 
-    connect(ui->imageSlicesPerImageComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(handleImageSlicesPerImageComboBoxIndexChanged(int)));
-    connect(ui->imageSliceSpacingLineEdit, SIGNAL(editingFinished()), this, SLOT(handleImageSliceSpacingLineEditEditingFinished()));
-    connect(ui->imagePatientPositionXLineEdit, SIGNAL(editingFinished()), this, SLOT(handleImagePatientPositionXLineEditEditingFinished()));
-    connect(ui->imagePatientPositionYLineEdit, SIGNAL(editingFinished()), this, SLOT(handleImagePatientPositionYLineEditEditingFinished()));
-    connect(ui->imagePatientPositionZLineEdit, SIGNAL(editingFinished()), this, SLOT(handleImagePatientPositionZLineEditEditingFinished()));
-    connect(ui->imagePatientOrientationLineEdit, SIGNAL(editingFinished()), this, SLOT(handleImagePatientOrientationLineEditEditingFinished()));
-    connect(ui->imageAxialPushButton, SIGNAL(clicked()), this, SLOT(handleImageAxialPushButtonClicked()));
-    connect(ui->imageSaggitalPushButton, SIGNAL(clicked()), this, SLOT(handleImageSaggitalPushButtonClicked()));
-    connect(ui->imageCoronalPushButton, SIGNAL(clicked()), this, SLOT(handleImageCoronalPushButtonClicked()));
+    connect(ui->imageSlicesPerImageComboBox, SIGNAL(currentIndexChanged(int)), this,
+            SLOT(handleImageSlicesPerImageComboBoxIndexChanged(int)));
+    connect(ui->imageSliceSpacingLineEdit, SIGNAL(editingFinished()), this,
+            SLOT(handleImageSliceSpacingLineEditEditingFinished()));
+    connect(ui->imagePatientPositionXLineEdit, SIGNAL(editingFinished()), this,
+            SLOT(handleImagePatientPositionXLineEditEditingFinished()));
+    connect(ui->imagePatientPositionYLineEdit, SIGNAL(editingFinished()), this,
+            SLOT(handleImagePatientPositionYLineEditEditingFinished()));
+    connect(ui->imagePatientPositionZLineEdit, SIGNAL(editingFinished()), this,
+            SLOT(handleImagePatientPositionZLineEditEditingFinished()));
+    connect(ui->imagePatientOrientationLineEdit, SIGNAL(editingFinished()), this,
+            SLOT(handleImagePatientOrientationLineEditEditingFinished()));
+    connect(ui->imageAxialPushButton, SIGNAL(clicked()), this,
+            SLOT(handleImageAxialPushButtonClicked()));
+    connect(ui->imageSaggitalPushButton, SIGNAL(clicked()), this,
+            SLOT(handleImageSaggitalPushButtonClicked()));
+    connect(ui->imageCoronalPushButton, SIGNAL(clicked()), this,
+            SLOT(handleImageCoronalPushButtonClicked()));
 }
 
 DicomAttributesDialog::~DicomAttributesDialog()
@@ -125,7 +148,8 @@ void DicomAttributesDialog::loadData()
     // Series tab
     idx = positions.indexOf(seriesInfo->seriesPositionPatient());
     ui->seriesPatientPositionComboBox->setCurrentIndex(idx);
-    LOG4CPLUS_DEBUG(logger, "Position set to " << ui->seriesPatientPositionComboBox->currentText().toStdString());
+    LOG4CPLUS_DEBUG(logger, "Position set to "
+                    << ui->seriesPatientPositionComboBox->currentText().toStdString());
 
     ui->seriesDescriptionLineEdit->setText(seriesInfo->seriesDescription());
     ui->seriesNumberLineEdit->setText(seriesInfo->seriesNumberStr());
@@ -148,8 +172,10 @@ void DicomAttributesDialog::loadData()
     int index = countList.indexOf(QString::number(seriesInfo->imageSlicesPerImage()));
     if (index == -1)
         index = 0;
+    //ui->imageSlicesPerImageComboBox->blockSignals(true);
     ui->imageSlicesPerImageComboBox->clear();
     ui->imageSlicesPerImageComboBox->addItems(countList);
+    //ui->imageSlicesPerImageComboBox->blockSignals(false);
     ui->imageSlicesPerImageComboBox->setCurrentIndex(index);
 
     ui->imageSliceSpacingLineEdit->setText(QString::number(seriesInfo->imageSliceSpacing()));
@@ -183,7 +209,7 @@ void DicomAttributesDialog::storeData()
 
     // Image tab
     seriesInfo->setImageNumberOfImages(ui->numberOfImagesLineEdit->text().toInt());
-    seriesInfo->setSeriesSlicesPerImage(ui->imageSlicesPerImageComboBox->currentText().toInt());
+    seriesInfo->setImageSlicesPerImage(ui->imageSlicesPerImageComboBox->currentText().toInt());
     seriesInfo->setImageSliceSpacing(ui->imageSliceSpacingLineEdit->text().toInt());
     seriesInfo->setImagePositionPatientX(ui->imagePatientPositionXLineEdit->text().toDouble());
     seriesInfo->setImagePositionPatientY(ui->imagePatientPositionYLineEdit->text().toDouble());
@@ -194,11 +220,17 @@ void DicomAttributesDialog::storeData()
 void DicomAttributesDialog::handlePatientNameLineEditEditingFinished()
 {
     seriesInfo->setPatientName(ui->patientNameLineEdit->text());
+
+    LOG4CPLUS_DEBUG(logger, "handlePatientNameLineEditEditingFinished: "
+                    << seriesInfo->patientName().toStdString());
 }
 
 void DicomAttributesDialog::handlePatientIDLineEditEditingFinished()
 {
     seriesInfo->setPatientID(ui->patientIDLineEdit->text());
+
+    LOG4CPLUS_DEBUG(logger, "handlePatientIDLineEditEditingFinished: "
+                    << seriesInfo->patientID().toStdString());
 }
 
 void DicomAttributesDialog::handlePatientDOBDateEditChanged(const QDate &datetime)
@@ -220,11 +252,17 @@ void DicomAttributesDialog::handlePatientSexComboBoxIndexChanged(int idx)
 void DicomAttributesDialog::handleStudyDescriptionLineEditEditingFinished()
 {
     seriesInfo->setStudyDescription(ui->studyDescriptionLineEdit->text());
+
+    LOG4CPLUS_DEBUG(logger, "handleStudyDescriptionLineEditEditingFinished: "
+                    << seriesInfo->studyDescription().toStdString());
 }
 
 void DicomAttributesDialog::handleStudyIDLineEditEditingFinished()
 {
     seriesInfo->setStudyID(ui->studyIDLineEdit->text());
+
+    LOG4CPLUS_DEBUG(logger, "handleStudyIDLineEditEditingFinished: "
+                    << seriesInfo->studyID().toStdString());
 }
 
 void DicomAttributesDialog::handleStudyModalityComboBoxIndexChanged(int idx)
@@ -238,13 +276,16 @@ void DicomAttributesDialog::handleStudyModalityComboBoxIndexChanged(int idx)
 void DicomAttributesDialog::handleStudyInstanceUIDLineEditEditingFinished()
 {
     seriesInfo->setStudyInstanceUID(ui->studyInstanceUIDGeneratePushButton->text());
+
+    LOG4CPLUS_DEBUG(logger, "handleStudyInstanceUIDLineEditEditingFinished: "
+                    << seriesInfo->studyInstanceUID().toStdString());
 }
 
 void DicomAttributesDialog::handleStudyDateTimeDateTimeEditChanged(const QDateTime& dateTime)
 {
     seriesInfo->setStudyDateTime(dateTime);
 
-    LOG4CPLUS_DEBUG(logger, "handlestudyDateTimeDateTimeEditChanged: "
+    LOG4CPLUS_DEBUG(logger, "handleStudyDateTimeDateTimeEditChanged: "
                     << seriesInfo->studyDateTimeStr().toStdString());
 }
 
@@ -277,73 +318,111 @@ void DicomAttributesDialog::handleSeriesPatientPositionComboBoxActivated(int idx
 {
     seriesInfo->setSeriesPositionPatient(positions[idx]);
 
-    LOG4CPLUS_DEBUG(logger, "handleStudyModalityComboBoxIndexChanged: "
+    LOG4CPLUS_DEBUG(logger, "handleSeriesPatientPositionComboBoxActivated: "
+                    << seriesInfo->seriesPositionPatient().toStdString());
+}
+
+void DicomAttributesDialog::handleSeriesPatientPositionComboBoxIndexChanged(int idx)
+{
+    seriesInfo->setSeriesPositionPatient(positions[idx]);
+
+    LOG4CPLUS_DEBUG(logger, "handleSeriesPatientPositionComboBoxIndexChanged: "
                     << seriesInfo->seriesPositionPatient().toStdString());
 }
 
 void DicomAttributesDialog::handleSeriesNumberLineEditEditingFinished()
 {
     seriesInfo->setSeriesNumber(ui->seriesNumberLineEdit->text());
+
+    LOG4CPLUS_DEBUG(logger, "handleSeriesNumberLineEditEditingFinished: "
+                    << seriesInfo->seriesNumberStr().toStdString());
 }
 
 void DicomAttributesDialog::handleSeriesTimeIncrementLineEditEditingFinished()
 {
     seriesInfo->setSeriesTimeIncrement(ui->seriesTimeIncrementLineEdit->text().toDouble());
+
+    LOG4CPLUS_DEBUG(logger, "handleSeriesTimeIncrementLineEditEditingFinished: "
+                    << seriesInfo->seriesTimeIncrementStr().toStdString());
 }
 
 void DicomAttributesDialog::handleImageSlicesPerImageComboBoxIndexChanged(int idx)
 {
     bool ok;
-    seriesInfo->setSeriesSlicesPerImage(ui->imageSlicesPerImageComboBox->itemText(idx).toInt(&ok));
+    seriesInfo->setImageSlicesPerImage(ui->imageSlicesPerImageComboBox->itemText(idx).toInt(&ok));
     seriesInfo->setImageNumberOfImages(seriesInfo->imageNumberOfSlices() / seriesInfo->imageSlicesPerImage());
 
     ui->numberOfImagesLineEdit->setText(QString::number(seriesInfo->imageNumberOfImages()));
 
-    LOG4CPLUS_DEBUG(logger, "handleStudyModalityComboBoxIndexChanged: "
-                    << seriesInfo->seriesPositionPatient().toStdString());
+    LOG4CPLUS_DEBUG(logger, "handleImageSlicesPerImageComboBoxIndexChanged: "
+                    << seriesInfo->imageSlicesPerImageStr().toStdString());
 }
 
 void DicomAttributesDialog::handleImageSliceSpacingLineEditEditingFinished()
 {
     seriesInfo->setImageSliceSpacing(ui->imageSliceSpacingLineEdit->text().toDouble());
+
+    LOG4CPLUS_DEBUG(logger, "handleImageSliceSpacingLineEditEditingFinished: "
+                    << seriesInfo->imageSliceSpacingStr().toStdString());
 }
 
 void DicomAttributesDialog::handleImagePatientPositionXLineEditEditingFinished()
 {
     seriesInfo->setImagePositionPatientX(ui->imagePatientPositionXLineEdit->text().toDouble());
+
+    LOG4CPLUS_DEBUG(logger, "handleImagePatientPositionXLineEditEditingFinished: "
+                    << seriesInfo->imagePositionPatientXStr().toStdString());
 }
 
 void DicomAttributesDialog::handleImagePatientPositionYLineEditEditingFinished()
 {
     seriesInfo->setImagePositionPatientY(ui->imagePatientPositionYLineEdit->text().toDouble());
+
+    LOG4CPLUS_DEBUG(logger, "handleImagePatientPositionYLineEditEditingFinished: "
+                    << seriesInfo->imagePositionPatientYStr().toStdString());
 }
 
 void DicomAttributesDialog::handleImagePatientPositionZLineEditEditingFinished()
 {
     seriesInfo->setImagePositionPatientZ(ui->imagePatientPositionZLineEdit->text().toDouble());
+
+    LOG4CPLUS_DEBUG(logger, "handleImagePatientPositionZLineEditEditingFinished: "
+                    << seriesInfo->imagePositionPatientZStr().toStdString());
 }
 
 void DicomAttributesDialog::handleImagePatientOrientationLineEditEditingFinished()
 {
     seriesInfo->setImagePatientOrientation(ui->imagePatientOrientationLineEdit->text());
+
+    LOG4CPLUS_DEBUG(logger, "handleImagePatientOrientationLineEditEditingFinished: "
+                    << seriesInfo->imagePatientOrientation().toStdString());
 }
 
 void DicomAttributesDialog::handleImageAxialPushButtonClicked()
 {
     seriesInfo->setImagePatientOrientation("1\\0\\0\\0\\1\\0");
     ui->imagePatientOrientationLineEdit->setText("1\\0\\0\\0\\1\\0");
+
+    LOG4CPLUS_DEBUG(logger, "handleImageAxialPushButtonClicked: "
+                    << seriesInfo->imagePatientOrientation().toStdString());
 }
 
 void DicomAttributesDialog::handleImageSaggitalPushButtonClicked()
 {
     seriesInfo->setImagePatientOrientation("0\\1\\0\\0\\0\\1");
     ui->imagePatientOrientationLineEdit->setText("0\\1\\0\\0\\0\\1");
+
+    LOG4CPLUS_DEBUG(logger, "handleImageSaggitalPushButtonClicked: "
+                    << seriesInfo->imagePatientOrientation().toStdString());
 }
 
 void DicomAttributesDialog::handleImageCoronalPushButtonClicked()
 {
     seriesInfo->setImagePatientOrientation("1\\0\\0\\0\\0\\1");
     ui->imagePatientOrientationLineEdit->setText("1\\0\\0\\0\\0\\1");
+
+    LOG4CPLUS_DEBUG(logger, "handleImageCoronalPushButtonClicked: "
+                    << seriesInfo->imagePatientOrientation().toStdString());
 }
 
 

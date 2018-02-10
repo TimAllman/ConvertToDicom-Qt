@@ -22,6 +22,8 @@
 
 #include "errorcodes.h"
 
+#include <QString>
+
 const char* ErrorCodeAsString(ErrorCode code)
 {
     switch (code)
@@ -43,6 +45,6 @@ const char* ErrorCodeAsString(ErrorCode code)
         case ErrorCode::ERROR_IMAGE_INCONSISTENT:
             return "Image inconsistent";
         default:
-            return "Unknown ErrorCode value";
+            return QString("Unknown ErrorCode value: %1").arg(static_cast<int>(code)).toStdString().c_str();
     };
 }

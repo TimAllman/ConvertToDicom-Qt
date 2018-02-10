@@ -21,10 +21,7 @@
  */
 #include "imagereader.h"
 
-#include <itkImage.h>
-#include <itkImageIOBase.h>
-#include <itkImageFileReader.h>
-#include <itkExtractImageFilter.h>
+#include "itkheaders.pch.h"
 
 ImageReader::ImageReader()
     :logger(log4cplus::Logger::getInstance(std::string(LOGGER_NAME) + ".ImageReader"))

@@ -25,8 +25,8 @@ DEFINES += QT_DEPRECATED_WARNINGS
 TRANSLATIONS = francais.ts
 
 SOURCES += main.cpp\
-        mainwindow.cpp \
-        seriesinfo.cpp \
+    mainwindow.cpp \
+    seriesinfo.cpp \
     settings.cpp \
     dumpmetadatadictionary.cpp \
     dicomattributesdialog.cpp \
@@ -35,20 +35,27 @@ SOURCES += main.cpp\
     imagereader.cpp \
     dicomserieswriter.cpp \
     logger.cpp \
-    dicomdictionaryinterface.cpp
+    dicomdictionaryinterface.cpp \
+    dicomparametersreader.cpp
 
-HEADERS  += mainwindow.h \
-        seriesinfo.h \
+HEADERS += mainwindow.h \
+    seriesinfo.h \
     settings.h \
     dumpmetadatadictionary.h \
-    typedefs.h \
     dicomattributesdialog.h \
     seriesconverter.h \
     errorcodes.h \
     logger.h \
     imagereader.h \
     dicomserieswriter.h \
-    dicomdictionaryinterface.h
+    dicomdictionaryinterface.h \
+    dicomparametersreader.h \
+    itktypedefs.h
+
+# Precompile the ITK headers
+CONFIG += precompile_header
+PRECOMPILED_HEADER = itkheaders.pch.h
+HEADERS += itkheaders.pch.h
 
 FORMS    += mainwindow.ui \
     dicomattributesdialog.ui

@@ -24,9 +24,7 @@
 #include "imagereader.h"
 #include "seriesinfo.h"
 #include "dicomserieswriter.h"
-#include "itkheaders.h"
-
-#include <itkGDCMImageIO.h>
+#include "itkheaders.pch.h"
 
 #include <vector>
 #include <sstream>
@@ -41,9 +39,173 @@ SeriesConverter::SeriesConverter()
 
 }
 
-/**
- * Create and store the acquisition times of the output files.
- */
+ErrorCode SeriesConverter::convertFiles()
+{
+    inputDir = seriesInfo->inputDir();
+    outputDir = seriesInfo->outputDir();
+
+    /*
+     * There are three steps here.
+     *
+     * 1) Get the names of the files in this directory.
+     * 2) Read in the files and store them in memory as a series of slices
+     * 3) Write out the images as a series of DICOM images.
+     *
+     * We fail if any step is not successful.
+     */
+    ErrorCode errCode = loadFileNames();
+    if (errCode != ErrorCode::SUCCESS)
+        return errCode;
+
+    errCode = readFiles();
+    if (errCode != ErrorCode::SUCCESS)
+        return errCode;
+
+    errCode = writeFiles();
+    if (errCode != ErrorCode::SUCCESS)
+        return errCode;
+
+    return ErrorCode::SUCCESS;
+}
+
+ErrorCode SeriesConverter::makeFullOutputPathDir(const QString& dirName)
+{
+    QString pathName = makeOutputPathName(dirName);
+    seriesInfo->setOutputPath(pathName);
+    LOG4CPLUS_DEBUG(logger, "Output path: " << seriesInfo->outputPath().toStdString());
+
+    QDir pathDir(pathName);
+    bool success = pathDir.mkpath(pathName);
+
+    if (!success)
+    {
+        return ErrorCode::ERROR_CREATING_DIRECTORY;
+    }
+    // See if the directory is empty
+    else if(pathDir.entryList(QDir::Files).length() != 0)
+    {
+        return ErrorCode::ERROR_DIRECTORY_NOT_EMPTY;
+    }
+    else return ErrorCode::SUCCESS;
+}
+
+ErrorCode SeriesConverter::extractImageParameters()
+{
+    LOG4CPLUS_TRACE(logger, "Enter");
+
+    // Take the information we need from the first image
+    if (loadFileNames() == ErrorCode::ERROR_FILE_NOT_FOUND)
+    {
+        LOG4CPLUS_ERROR(logger, "Could not find files in " << seriesInfo->inputDir().path().toStdString());
+        return ErrorCode::ERROR_FILE_NOT_FOUND;
+    }
+
+    std::string firstFileName(fileNames[0].toStdString());
+    itk::ImageIOBase::Pointer imageIO =
+        itk::ImageIOFactory::CreateImageIO(firstFileName.c_str(), itk::ImageIOFactory::ReadMode);
+
+    // If there is a problem, catch it
+    if (imageIO.IsNull())
+    {
+        LOG4CPLUS_ERROR(logger, "Could not get metadata from file: " << firstFileName);
+        return ErrorCode::ERROR_READING_FILE;
+    };
+
+    imageIO->SetFileName(firstFileName);
+    imageIO->ReadImageInformation();
+
+    LOG4CPLUS_DEBUG(logger, "ImageIO class name = " << imageIO->GetNameOfClass());
+
+    //    if (std::string(imageIO->GetNameOfClass()) == std::string("GDCMImageIO"))
+    //    {
+
+    //        itk::GDCMImageIO::Pointer& p = reinterpret_cast<itk::GDCMImageIO::Pointer&>(imageIO);
+    //        itk::MetaDataDictionary seriesDict = p->GetMetaDataDictionary();
+
+    //    }
+
+    // Get the number of dimensions.
+    unsigned numDims = imageIO->GetNumberOfDimensions();
+    LOG4CPLUS_DEBUG(logger, "dimensions = " << numDims);
+
+    int numFiles = fileNames.length();
+
+    if (numDims == 3)
+    {
+        seriesInfo->setImageSlicesPerImage(int(imageIO->GetDimensions(2)));
+        seriesInfo->setImageSliceSpacing(int(imageIO->GetSpacing(2)));
+        seriesInfo->setSeriesNumberOfSlices(numFiles * seriesInfo->imageSlicesPerImage());
+    }
+    else
+    {
+        seriesInfo->setImageNumberOfImages(1);
+        // If we have a value use it, otherwise set to 1.0 mm
+        if (seriesInfo->imageSliceSpacing() == 0.0)
+            seriesInfo->setImageSliceSpacing(1.0);
+        seriesInfo->setSeriesNumberOfSlices(numFiles);
+    }
+
+    seriesInfo->setImageNumberOfImages(numFiles / seriesInfo->imageSlicesPerImage());
+
+    LOG4CPLUS_DEBUG(logger, "slicesPerImage = " << seriesInfo->imageSlicesPerImage());
+    LOG4CPLUS_DEBUG(logger, "imageSliceSpacing = " << seriesInfo->imageSliceSpacing());
+    LOG4CPLUS_DEBUG(logger, "numberOfImages = " << seriesInfo->imageNumberOfImages());
+
+    // use for creating strings below.
+    std::ostringstream value;
+
+    // Set the Image Orientation Patient attribute from the image direction info.
+    std::vector<double> dir = imageIO->GetDirection(0);
+    value << dir[0] << "\\" << dir[1] << "\\" << dir[2] << "\\";
+    dir = imageIO->GetDirection(1);
+    value << dir[0] << "\\" << dir[1] << "\\" << dir[2];
+    std::string imageOrientationPatient = value.str();
+    seriesInfo->setImagePatientOrientation(imageOrientationPatient.c_str());
+
+    LOG4CPLUS_DEBUG(logger, "imagePatientOrientation = "
+                    << seriesInfo->imagePatientOrientation().toStdString());
+
+    // Image Position Patient
+    seriesInfo->setImagePositionPatientX(imageIO->GetOrigin(0));
+    seriesInfo->setImagePositionPatientY(imageIO->GetOrigin(1));
+    if (numDims == 3)
+        seriesInfo->setImagePositionPatientZ(imageIO->GetOrigin(2));
+    else
+        seriesInfo->setImagePositionPatientZ(0.0);
+
+    LOG4CPLUS_DEBUG(logger, "imagePatientPosition(X, Y, Z) = " << seriesInfo->imagePositionPatientX() << ", "
+                    << seriesInfo->imagePositionPatientY() << ", " << seriesInfo->imagePositionPatientZ());
+
+    return ErrorCode::SUCCESS;
+}
+
+ErrorCode SeriesConverter::loadFileNames()
+{
+    LOG4CPLUS_TRACE(logger, "Enter");
+
+    // If the array is not empty, empty it
+    fileNames.clear();
+
+    QDir dir(seriesInfo->inputDir());
+    QStringList fNames = dir.entryList(QDir::Files | QDir::Readable, QDir::Name);
+
+    // we have to prepend the directory path to the file names
+    int len = fNames.length();
+    for (int idx = 0; idx < len; ++idx)
+    {
+        QString path = seriesInfo->inputDirStr() + "/" + fNames[idx];
+        fileNames.append(path);
+    }
+
+    LOG4CPLUS_INFO(logger, "Loading " << fileNames.length() << " files from directory: "
+                   << dir.absolutePath().toStdString());
+
+    if (fileNames.isEmpty())
+        return ErrorCode::ERROR_FILE_NOT_FOUND;
+    else
+        return ErrorCode::SUCCESS;
+}
+
 void SeriesConverter::createTimesArray()
 {
     LOG4CPLUS_TRACE(logger, "Enter");
@@ -73,37 +235,6 @@ void SeriesConverter::createTimesArray()
     LOG4CPLUS_DEBUG(logger, "acqTimes = " << stream.str());
 }
 
-ErrorCode SeriesConverter::loadFileNames()
-{
-    LOG4CPLUS_TRACE(logger, "Enter");
-
-    // If the array is not empty, empty it
-    fileNames.clear();
-
-    QDir dir(seriesInfo->inputDir());
-    QStringList fNames = dir.entryList(QDir::Files | QDir::Readable, QDir::Name);
-
-    // we have to prepend the directory path to the file names
-    int len = fNames.length();
-    for (int idx = 0; idx < len; ++idx)
-    {
-        QString path = seriesInfo->inputDirStr() + "/" + fNames[idx];
-        fileNames.append(path);
-    }
-    LOG4CPLUS_INFO(logger, "Loading " << fileNames.length() << " files from directory: "
-                   << dir.absolutePath().toStdString());
-
-    if (fileNames.isEmpty())
-        return ErrorCode::ERROR_FILE_NOT_FOUND;
-    else
-        return ErrorCode::SUCCESS;
-}
-
-
-/**
- * Checks the consistency of the dimensionality of each image and number of slices.
- * return SUCCESS if all is well.
- */
 ErrorCode SeriesConverter::inputImagesConsistent()
 {
     // Get the image info from the first file
@@ -148,7 +279,8 @@ ErrorCode SeriesConverter::inputImagesConsistent()
         unsigned numDims = imageIO->GetNumberOfDimensions();
         if (numDims != numDims_1)
         {
-            LOG4CPLUS_ERROR(logger, "File " << fileName.c_str() << ": inconsistent number of dimension: " << numDims);
+            LOG4CPLUS_ERROR(logger, "File " << fileName.c_str()
+                            << ": inconsistent number of dimension: " << numDims);
             return ErrorCode::ERROR_IMAGE_INCONSISTENT;
         }
 
@@ -156,13 +288,15 @@ ErrorCode SeriesConverter::inputImagesConsistent()
         unsigned long dim1 = imageIO->GetDimensions(1);
         if (dim0 != dim0_1)
         {
-            LOG4CPLUS_ERROR(logger, "File " <<  fileName.c_str() << ": inconsistent dimension 0: %d" << dim0_1);
+            LOG4CPLUS_ERROR(logger, "File " <<  fileName.c_str()
+                            << ": inconsistent dimension 0: %d" << dim0_1);
             return ErrorCode::ERROR_IMAGE_INCONSISTENT;
         }
 
         if (dim1 != dim1_1)
         {
-            LOG4CPLUS_ERROR(logger, "File " <<  fileName.c_str() << ": inconsistent dimension 1: %d" << dim1_1);
+            LOG4CPLUS_ERROR(logger, "File " <<  fileName.c_str()
+                            << ": inconsistent dimension 1: %d" << dim1_1);
             return ErrorCode::ERROR_IMAGE_INCONSISTENT;
         }
 
@@ -171,7 +305,8 @@ ErrorCode SeriesConverter::inputImagesConsistent()
             unsigned long dim2 = imageIO->GetDimensions(2);
             if (dim2 != dim2_1)
             {
-                LOG4CPLUS_ERROR(logger, "File " <<  fileName.c_str() << ": inconsistent dimension 2: %d" << dim2_1);
+                LOG4CPLUS_ERROR(logger, "File " <<  fileName.c_str()
+                                << ": inconsistent dimension 2: %d" << dim2_1);
                 return ErrorCode::ERROR_IMAGE_INCONSISTENT;
             }
         }
@@ -180,113 +315,18 @@ ErrorCode SeriesConverter::inputImagesConsistent()
     return ErrorCode::SUCCESS;
 }
 
-ErrorCode SeriesConverter::extractImageParameters()
+QString SeriesConverter::makeOutputPathName(const QString& dirName)
 {
-    LOG4CPLUS_TRACE(logger, "Enter");
 
-    // Take the information we need from the first image
-    if (loadFileNames() == ErrorCode::ERROR_FILE_NOT_FOUND)
-    {
-        LOG4CPLUS_ERROR(logger, "Could not find files in " << seriesInfo->inputDir().path().toStdString());
-        return ErrorCode::ERROR_FILE_NOT_FOUND;
-    }
+    QString path = QString("%1/%2/%3 - %4/%5 - %6/")
+                   .arg(dirName)
+                   .arg(seriesInfo->patientName())
+                   .arg(seriesInfo->studyDescription())
+                   .arg(seriesInfo->studyID())
+                   .arg(seriesInfo->seriesDescription())
+                   .arg(seriesInfo->seriesNumber());
 
-    std::string firstFileName(fileNames[0].toStdString());
-    itk::ImageIOBase::Pointer imageIO =
-        itk::ImageIOFactory::CreateImageIO(firstFileName.c_str(), itk::ImageIOFactory::ReadMode);
-
-    // If there is a problem, catch it
-    if (imageIO.IsNull())
-    {
-        LOG4CPLUS_ERROR(logger, "Could not get metadata from file: " << firstFileName);
-        return ErrorCode::ERROR_READING_FILE;
-    };
-
-
-    imageIO->SetFileName(firstFileName);
-    imageIO->ReadImageInformation();
-
-    LOG4CPLUS_DEBUG(logger, "ImageIO class name = " << imageIO->GetNameOfClass());
-
-    //    if (std::string(imageIO->GetNameOfClass()) == std::string("GDCMImageIO"))
-    //    {
-
-    //        itk::GDCMImageIO::Pointer& p = reinterpret_cast<itk::GDCMImageIO::Pointer&>(imageIO);
-    //        itk::MetaDataDictionary seriesDict = p->GetMetaDataDictionary();
-
-    //    }
-
-    // Get the number of dimensions.
-    unsigned numDims = imageIO->GetNumberOfDimensions();
-    LOG4CPLUS_DEBUG(logger, "dimensions = " << numDims);
-
-    int numFiles = fileNames.length();
-
-    if (numDims == 3)
-    {
-        seriesInfo->setSeriesSlicesPerImage(int(imageIO->GetDimensions(2)));
-        seriesInfo->setImageSliceSpacing(int(imageIO->GetSpacing(2)));
-        seriesInfo->setSeriesNumberOfSlices(numFiles * seriesInfo->imageSlicesPerImage());
-    }
-    else
-    {
-        seriesInfo->setImageNumberOfImages(1);
-        // If we have a value use it, otherwise set to 1.0 mm
-        if (seriesInfo->imageSliceSpacing() == 0.0)
-            seriesInfo->setImageSliceSpacing(1.0);
-        seriesInfo->setSeriesNumberOfSlices(numFiles);
-    }
-
-    seriesInfo->setImageNumberOfImages(numFiles / seriesInfo->imageSlicesPerImage());
-
-    LOG4CPLUS_DEBUG(logger, "slicesPerImage = " << seriesInfo->imageSlicesPerImage());
-    LOG4CPLUS_DEBUG(logger, "imageSliceSpacing = " << seriesInfo->imageSliceSpacing());
-    LOG4CPLUS_DEBUG(logger, "numberOfImages = " << seriesInfo->imageNumberOfImages());
-
-    // use for creating strings below.
-    std::ostringstream value;
-
-    // Set the Image Orientation Patient attribute from the image direction info.
-    std::vector<double> dir = imageIO->GetDirection(0);
-    value << dir[0] << "\\" << dir[1] << "\\" << dir[2] << "\\";
-    dir = imageIO->GetDirection(1);
-    value << dir[0] << "\\" << dir[1] << "\\" << dir[2];
-    std::string imageOrientationPatient = value.str();
-    seriesInfo->setImagePatientOrientation(imageOrientationPatient.c_str());
-
-    LOG4CPLUS_DEBUG(logger, "imagePatientOrientation = " << seriesInfo->imagePatientOrientation().toStdString());
-
-    // Image Position Patient
-    seriesInfo->setImagePositionPatientX(imageIO->GetOrigin(0));
-    seriesInfo->setImagePositionPatientY(imageIO->GetOrigin(1));
-    if (numDims == 3)
-        seriesInfo->setImagePositionPatientZ(imageIO->GetOrigin(2));
-    else
-        seriesInfo->setImagePositionPatientZ(0.0);
-
-    LOG4CPLUS_DEBUG(logger, "imagePatientPosition(X, Y, Z) = " << seriesInfo->imagePositionPatientX() << ", "
-                    << seriesInfo->imagePositionPatientY() << ", " << seriesInfo->imagePositionPatientZ());
-
-    return ErrorCode::SUCCESS;
-}
-
-ErrorCode SeriesConverter::convertFiles()
-{
-    inputDir = seriesInfo->inputDir();
-    outputDir = seriesInfo->outputDir();
-
-    loadFileNames(); // errors alread checked
-
-    ErrorCode err = readFiles();
-    if (err != ErrorCode::SUCCESS)
-        return err;
-
-    err = writeFiles();
-    if (err != ErrorCode::SUCCESS)
-        return err;
-
-    return ErrorCode::SUCCESS;
-
+    return path;
 }
 
 ErrorCode SeriesConverter::readFiles()
@@ -321,11 +361,12 @@ ErrorCode SeriesConverter::readFiles()
         }
     }
 
-    // Fix up some series information that may not be set yet. If it hasn't been we use some defaults.
+    // Fix up some series information that may not be set yet. If it hasn't been set
+    // we use some defaults.
     if (seriesInfo->imageNumberOfImages() == 0)
     {
         seriesInfo->setImageNumberOfImages(numberOfImages);
-        seriesInfo->setSeriesSlicesPerImage(slicesPerImage);
+        seriesInfo->setImageSlicesPerImage(slicesPerImage);
         seriesInfo->setSeriesNumberOfSlices(numberOfSlices);
     }
 
@@ -374,40 +415,7 @@ ErrorCode SeriesConverter::writeFiles()
     return writer.WriteFileSeries();
 }
 
-QString SeriesConverter::makeOutputPathName(const QString& dirName)
-{
 
-    QString path = QString("%1/%2/%3 - %4/%5 - %6/")
-                   .arg(dirName)
-                   .arg(seriesInfo->patientName())
-                   .arg(seriesInfo->studyDescription())
-                   .arg(seriesInfo->studyID())
-                   .arg(seriesInfo->seriesDescription())
-                   .arg(seriesInfo->seriesNumber());
-
-    return path;
-}
-
-ErrorCode SeriesConverter::makeFullOutputPathDir(const QString& dirName)
-{
-    QString pathName = makeOutputPathName(dirName);
-    seriesInfo->setOutputPath(pathName);
-    LOG4CPLUS_DEBUG(logger, "Output path: " << seriesInfo->outputPath().toStdString());
-
-    QDir pathDir(pathName);
-    bool success = pathDir.mkpath(pathName);
-
-    if (!success)
-    {
-        return ErrorCode::ERROR_CREATING_DIRECTORY;
-    }
-    // See if the directory is empty
-    else if(pathDir.entryList(QDir::Files).length() != 0)
-    {
-        return ErrorCode::ERROR_DIRECTORY_NOT_EMPTY;
-    }
-    else return ErrorCode::SUCCESS;
-}
 
 
 

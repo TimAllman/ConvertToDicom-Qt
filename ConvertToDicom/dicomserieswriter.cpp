@@ -22,15 +22,7 @@
 #include "dicomserieswriter.h"
 #include "dumpmetadatadictionary.h"
 
-#include <itkGDCMImageIO.h>
-#include <itkNumericSeriesFileNames.h>
-#include <itkImage.h>
-#include <itkIntTypes.h>
-#include <itksys/SystemTools.hxx>
-#include <itkImageSeriesWriter.h>
-#include <itkVersion.h>
-#include <itkTileImageFilter.h>
-#include <gdcmUIDGenerator.h>
+#include "itkheaders.pch.h"
 
 #include <QTime>
 

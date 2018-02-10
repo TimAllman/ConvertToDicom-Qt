@@ -23,11 +23,17 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
+    Settings settings;
+    //QRect geometry = settings.value();
+
     // Do this to show the DICOM dialog
-    connect(ui->editDicomAttributesPushButton, SIGNAL(clicked()), this, SLOT(handleEditDicomAttributesButtonClicked()));
-    connect(ui->sourceDirChoosePushButton, SIGNAL(clicked()), this, SLOT(handleSourceDirPushButtonClicked()));
+    connect(ui->editDicomAttributesPushButton, SIGNAL(clicked()), this,
+            SLOT(handleEditDicomAttributesButtonClicked()));
+    connect(ui->sourceDirChoosePushButton, SIGNAL(clicked()), this,
+            SLOT(handleSourceDirPushButtonClicked()));
     connect(ui->destDirChooseBushButton, SIGNAL(clicked()), this, SLOT(handleDestDirPushButtonClicked()));
-    connect(ui->overwriteFilesCheckBox, SIGNAL(clicked(bool)), this, SLOT(handleOverwriteFilesCheckBoxClicked(bool)));
+    connect(ui->overwriteFilesCheckBox, SIGNAL(clicked(bool)), this,
+            SLOT(handleOverwriteFilesCheckBoxClicked(bool)));
     connect(ui->convertPushButton, SIGNAL(clicked()), this, SLOT(handleConvertButtonClicked()));
     connect(ui->closePushButton, SIGNAL(clicked()), this, SLOT(handleCloseButtonClicked()));
 
@@ -47,18 +53,21 @@ MainWindow::~MainWindow()
 void MainWindow::handleEditDicomAttributesButtonClicked()
 {
     if (dicomAttributesDialog == 0)
+    {
         dicomAttributesDialog = new DicomAttributesDialog(this);
+    }
 
-//#if defined(Q_OS_MACOS) || defined(Q_OS_IOS)
-//    dicomAttributesDialog->setWindowFlags(Qt::Sheet);
-//#endif
+#if defined(Q_OS_MACOS) || defined(Q_OS_IOS)
+    dicomAttributesDialog->setWindowFlags(Qt::Sheet);
+#endif
 
     seriesConverter->setInputDir(seriesInfo->inputDir());
 
     if (seriesConverter->extractImageParameters() != ErrorCode::SUCCESS)
     {
         QString msg = tr("Could not read image file(s) in input directory.");
-        QMessageBox::critical(this, seriesInfo->inputDirStr() + " does not contain readable image files.", msg);
+        QMessageBox::critical(this, seriesInfo->inputDirStr() +
+                              " does not contain readable image files.", msg);
 
         LOG4CPLUS_INFO(logger, (msg + seriesInfo->inputDirStr()).toStdString());
 

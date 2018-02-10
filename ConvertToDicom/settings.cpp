@@ -29,8 +29,9 @@
 #include <QDir>
 #include <QDateTime>
 
+QString Settings::MainWindowGeometryKey = "MainWindowGeometry";
 QString Settings::LoggingLevelKey = "LoggingLevel";
-QString Settings::OverwriteFilesKey = "OverwriteFilesYYY";
+QString Settings::OverwriteFilesKey = "OverwriteFiles";
 QString Settings::InputDirKey = "InputDir";
 QString Settings::OutputDirKey = "OutputDir";
 QString Settings::SeriesTimeIncrementKey = "TimeIncrement";

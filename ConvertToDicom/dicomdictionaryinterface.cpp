@@ -19,9 +19,10 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 #include "dicomdictionaryinterface.h"
 
-#include <itkMetaDataObject.h>
+#include "itkheaders.pch.h"
 
 static QString PATIENTS_NAME_TAG = "0010|0010";
 static QString PATIENTS_ID_TAG = "0010|0020";
@@ -40,8 +41,6 @@ static QString SPACING_BETWEEN_SLICES_TAG = "0018|0088";
 static QString SLICE_THICKNESS_TAG = "0018|0050";
 static QString IMAGE_POSITION_PATIENT_TAG = "0020|0032";
 static QString IMAGE_ORIENTATION_PATIENT_TAG = "0020|0037";
-
-
 
 DicomDictionaryInterface::DicomDictionaryInterface(DicomDictionaryInterface::DictionaryArrayType dictionaryArray)
     : dictArray(dictionaryArray)
@@ -64,7 +63,6 @@ bool DicomDictionaryInterface::setAttribute(const QString& tag, const QVariant& 
         case QMetaType::ULong:
             itk::EncapsulateMetaData<unsigned long>(*dict, tag.toStdString(), unsigned(value.toUInt()));
             break;
-
         default:
             return false;
     }

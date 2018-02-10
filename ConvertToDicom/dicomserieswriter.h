@@ -1,5 +1,5 @@
 //
-//  dicomfilewriter.h
+//  dicomserieswriter.h
 //  ConvertToDicom
 //
 
@@ -19,12 +19,12 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-#ifndef DICOMFILEWRITER_H
-#define DICOMFILEWRITER_H
+#ifndef DICOMSERIESWRITER_H
+#define DICOMSERIESWRITER_H
 
 #include "logger.h"
 #include "errorcodes.h"
-#include "typedefs.h"
+#include "itktypedefs.h"
 #include "seriesinfo.h"
 
 #include <QString>
@@ -38,7 +38,7 @@
 class DicomSeriesWriter
 {
 public:
-    typedef unsigned short DicomPixelType; ///< Always write with this pixel type.
+    //typedef unsigned short DicomPixelType; ///< Always write with this pixel type.
 
 /**
  * Class constructor.
@@ -87,6 +87,4 @@ private:
     Logger logger; ///< Logger for this class.
 };
 
-
-
-#endif // DICOMFILEWRITER_H
+#endif // DICOMSERIESWRITER_H
