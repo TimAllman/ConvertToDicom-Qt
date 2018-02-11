@@ -23,8 +23,12 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
+    // Gave the main window's previous size and position
     Settings settings;
-    //QRect geometry = settings.value();
+    settings.beginGroup("MainWindow");
+    resize(settings.value("size", QSize(600, 400)).toSize());
+    move(settings.value("pos", QPoint(200, 200)).toPoint());
+    settings.endGroup();
 
     // Do this to show the DICOM dialog
     connect(ui->editDicomAttributesPushButton, SIGNAL(clicked()), this,
@@ -43,6 +47,13 @@ MainWindow::MainWindow(QWidget *parent) :
 
 MainWindow::~MainWindow()
 {
+    // Save the main window's size and position
+    Settings settings;
+    settings.beginGroup("MainWindow");
+    settings.setValue("size", size());
+    settings.setValue("pos", pos());
+    settings.endGroup();
+
     saveWidgetInfo();
     seriesInfo->saveSettings();
 
@@ -100,11 +111,6 @@ void MainWindow::handleSourceDirPushButtonClicked()
     }
 }
 
-void MainWindow::handleSourceDirLineEditEditingFinished()
-{
-    seriesInfo->setInputDir(ui->sourceDirLineEdit->text());
-}
-
 void MainWindow::handleDestDirPushButtonClicked()
 {
     QFileDialog dlg(this, "Destination Directory", seriesInfo->outputDirStr());
@@ -121,9 +127,24 @@ void MainWindow::handleDestDirPushButtonClicked()
     }
 }
 
+void MainWindow::handleSourceDirLineEditEditingFinished()
+{
+    seriesInfo->setInputDir(ui->sourceDirLineEdit->text());
+}
+
+void MainWindow::handleSourceDirLineEditTextEdited()
+{
+
+}
+
 void MainWindow::handleDestDirLineEditEditingFinished()
 {
     seriesInfo->setOutputDir(ui->destDirLineEdit->text());
+}
+
+void MainWindow::handleDestDirLineEditTextEdited()
+{
+
 }
 
 void MainWindow::handleOverwriteFilesCheckBoxClicked(bool checked)
@@ -223,6 +244,35 @@ void MainWindow::handleCloseButtonClicked()
 }
 
 
+bool MainWindow::isValidSourceDirectory(const QString& dirName)
+{
+    QDir dir(dirName);
+
+    if (!dir.exists())
+        return false;
+
+
+}
+
+bool MainWindow::isValidDestDirectory(const QString& dirName)
+{
+    QDir dir(dirName);
+
+    if (!dir.exists())
+        return false;
+
+    if (seriesInfo->overwriteFiles())
+    {
+        return true;
+    }
+    else
+    {
+        if (dir.isEmpty())
+            return true;
+        else
+            return false;
+    }
+}
 
 
 
