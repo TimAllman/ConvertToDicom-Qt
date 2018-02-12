@@ -179,6 +179,21 @@ ErrorCode SeriesConverter::extractImageParameters()
     return ErrorCode::SUCCESS;
 }
 
+bool SeriesConverter::isValidSourceDir(const QString& dirPath)
+{
+    inputDir = dirPath;
+
+    ErrorCode errCode = loadFileNames();
+    if (errCode != ErrorCode::SUCCESS)
+        return false;
+
+    errCode = extractImageParameters();
+    if (errCode != ErrorCode::SUCCESS)
+        return false;
+
+    return true;
+}
+
 ErrorCode SeriesConverter::loadFileNames()
 {
     LOG4CPLUS_TRACE(logger, "Enter");

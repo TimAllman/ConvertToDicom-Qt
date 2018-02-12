@@ -80,6 +80,13 @@ public:
      */
     ErrorCode extractImageParameters();
 
+    /**
+     * Determines whether a directory is a valid souurce directory.
+     * @param dirPath The path of the directory.
+     * @return true if we can use dirPath, false otherwise.
+     */
+    bool isValidSourceDir(const QString& dirPath);
+
 private:
     /**
       * @brief loadFileNames

@@ -129,22 +129,42 @@ void MainWindow::handleDestDirPushButtonClicked()
 
 void MainWindow::handleSourceDirLineEditEditingFinished()
 {
-    seriesInfo->setInputDir(ui->sourceDirLineEdit->text());
+    QString dirPath = ui->sourceDirLineEdit->text();
+
+    if (isValidSourceDirectory(dirPath))
+    {
+        seriesInfo->setInputDir(dirPath);
+    }
 }
 
 void MainWindow::handleSourceDirLineEditTextEdited()
 {
+    QString dirPath = ui->sourceDirLineEdit->text();
 
+    if (isValidSourceDirectory(dirPath))
+    {
+        seriesInfo->setInputDir(dirPath);
+    }
 }
 
 void MainWindow::handleDestDirLineEditEditingFinished()
 {
-    seriesInfo->setOutputDir(ui->destDirLineEdit->text());
+    QString dirPath = ui->destDirLineEdit->text();
+
+    if (isValidDestDirectory(dirPath))
+    {
+        seriesInfo->setOutputDir(dirPath);
+    }
 }
 
 void MainWindow::handleDestDirLineEditTextEdited()
 {
+    QString dirPath = ui->destDirLineEdit->text();
 
+    if (isValidDestDirectory(dirPath))
+    {
+        seriesInfo->setOutputDir(dirPath);
+    }
 }
 
 void MainWindow::handleOverwriteFilesCheckBoxClicked(bool checked)
@@ -251,7 +271,7 @@ bool MainWindow::isValidSourceDirectory(const QString& dirName)
     if (!dir.exists())
         return false;
 
-
+    return (seriesConverter->extractImageParameters() == ErrorCode::SUCCESS);
 }
 
 bool MainWindow::isValidDestDirectory(const QString& dirName)
