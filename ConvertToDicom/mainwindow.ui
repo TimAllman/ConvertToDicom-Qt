@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>600</width>
+    <width>863</width>
     <height>415</height>
    </rect>
   </property>
@@ -26,196 +26,230 @@
      <verstretch>0</verstretch>
     </sizepolicy>
    </property>
-   <layout class="QVBoxLayout" name="verticalLayout_4">
-    <property name="sizeConstraint">
-     <enum>QLayout::SetMinimumSize</enum>
-    </property>
+   <layout class="QHBoxLayout" name="horizontalLayout_8">
     <item>
-     <layout class="QHBoxLayout" name="horizontalLayout_3">
-      <item>
-       <widget class="QGroupBox" name="groupBox">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="title">
-         <string>Source Directory</string>
-        </property>
-        <layout class="QHBoxLayout" name="horizontalLayout_2">
-         <item>
-          <layout class="QVBoxLayout" name="verticalLayout">
-           <item>
-            <layout class="QHBoxLayout" name="horizontalLayout">
-             <property name="spacing">
-              <number>-1</number>
-             </property>
+     <widget class="QSplitter" name="splitter">
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+      <widget class="QWidget" name="">
+       <layout class="QVBoxLayout" name="verticalLayout_4">
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_3">
+          <item>
+           <widget class="QGroupBox" name="groupBox">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="title">
+             <string>Source Directory</string>
+            </property>
+            <layout class="QHBoxLayout" name="horizontalLayout_2">
              <item>
-              <widget class="QLineEdit" name="sourceDirLineEdit">
-               <property name="sizePolicy">
-                <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
-                 <horstretch>0</horstretch>
-                 <verstretch>0</verstretch>
-                </sizepolicy>
+              <layout class="QVBoxLayout" name="verticalLayout">
+               <item>
+                <layout class="QHBoxLayout" name="horizontalLayout">
+                 <property name="spacing">
+                  <number>-1</number>
+                 </property>
+                 <item>
+                  <widget class="QLineEdit" name="sourceDirLineEdit">
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QPushButton" name="sourceDirChoosePushButton">
+                   <property name="text">
+                    <string>Choose</string>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
+               </item>
+              </layout>
+             </item>
+            </layout>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <widget class="QGroupBox" name="groupBox_2">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="title">
+           <string>Destination Directory</string>
+          </property>
+          <layout class="QVBoxLayout" name="verticalLayout_3">
+           <item>
+            <layout class="QVBoxLayout" name="verticalLayout_2">
+             <item>
+              <layout class="QHBoxLayout" name="horizontalLayout_5">
+               <property name="spacing">
+                <number>-1</number>
+               </property>
+               <item>
+                <widget class="QLineEdit" name="destDirLineEdit">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QPushButton" name="destDirChooseBushButton">
+                 <property name="text">
+                  <string>Choose</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </item>
+            </layout>
+           </item>
+           <item>
+            <widget class="QCheckBox" name="overwriteFilesCheckBox">
+             <property name="text">
+              <string>Overwrite</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item>
+         <widget class="QGroupBox" name="groupBox_3">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="title">
+           <string/>
+          </property>
+          <layout class="QHBoxLayout" name="horizontalLayout_6">
+           <item>
+            <layout class="QHBoxLayout" name="horizontalLayout_4">
+             <item>
+              <widget class="QLabel" name="label">
+               <property name="text">
+                <string>DICOM Attributes</string>
+               </property>
+               <property name="buddy">
+                <cstring>editDicomAttributesPushButton</cstring>
                </property>
               </widget>
              </item>
              <item>
-              <widget class="QPushButton" name="sourceDirChoosePushButton">
+              <widget class="QPushButton" name="editDicomAttributesPushButton">
                <property name="text">
-                <string>Choose</string>
+                <string>Edit</string>
                </property>
               </widget>
              </item>
             </layout>
            </item>
-          </layout>
-         </item>
-        </layout>
-       </widget>
-      </item>
-     </layout>
-    </item>
-    <item>
-     <widget class="QGroupBox" name="groupBox_2">
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-        <horstretch>0</horstretch>
-        <verstretch>0</verstretch>
-       </sizepolicy>
-      </property>
-      <property name="title">
-       <string>Destination Directory</string>
-      </property>
-      <layout class="QVBoxLayout" name="verticalLayout_3">
-       <item>
-        <layout class="QVBoxLayout" name="verticalLayout_2">
-         <item>
-          <layout class="QHBoxLayout" name="horizontalLayout_5">
-           <property name="spacing">
-            <number>-1</number>
-           </property>
            <item>
-            <widget class="QLineEdit" name="destDirLineEdit">
-             <property name="sizePolicy">
-              <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
-               <horstretch>0</horstretch>
-               <verstretch>0</verstretch>
-              </sizepolicy>
+            <spacer name="horizontalSpacer">
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
              </property>
-            </widget>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>350</width>
+               <height>20</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item>
+         <widget class="QGroupBox" name="groupBox_4">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="title">
+           <string/>
+          </property>
+          <layout class="QHBoxLayout" name="horizontalLayout_7">
+           <item>
+            <spacer name="horizontalSpacer_2">
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>367</width>
+               <height>20</height>
+              </size>
+             </property>
+            </spacer>
            </item>
            <item>
-            <widget class="QPushButton" name="destDirChooseBushButton">
+            <widget class="QPushButton" name="convertPushButton">
              <property name="text">
-              <string>Choose</string>
+              <string>Convert</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="closePushButton">
+             <property name="text">
+              <string>Close</string>
              </property>
             </widget>
            </item>
           </layout>
-         </item>
-        </layout>
-       </item>
-       <item>
-        <widget class="QCheckBox" name="overwriteFilesCheckBox">
-         <property name="text">
-          <string>Overwrite</string>
-         </property>
-        </widget>
-       </item>
-      </layout>
-     </widget>
-    </item>
-    <item>
-     <widget class="QGroupBox" name="groupBox_3">
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-        <horstretch>0</horstretch>
-        <verstretch>0</verstretch>
-       </sizepolicy>
-      </property>
-      <property name="title">
-       <string/>
-      </property>
-      <layout class="QHBoxLayout" name="horizontalLayout_6">
-       <item>
-        <layout class="QHBoxLayout" name="horizontalLayout_4">
-         <item>
-          <widget class="QLabel" name="label">
-           <property name="text">
-            <string>DICOM Attributes</string>
-           </property>
-           <property name="buddy">
-            <cstring>editDicomAttributesPushButton</cstring>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QPushButton" name="editDicomAttributesPushButton">
-           <property name="text">
-            <string>Edit</string>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </item>
-       <item>
-        <spacer name="horizontalSpacer">
-         <property name="orientation">
-          <enum>Qt::Horizontal</enum>
-         </property>
-         <property name="sizeHint" stdset="0">
-          <size>
-           <width>350</width>
-           <height>20</height>
-          </size>
-         </property>
-        </spacer>
-       </item>
-      </layout>
-     </widget>
-    </item>
-    <item>
-     <widget class="QGroupBox" name="groupBox_4">
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-        <horstretch>0</horstretch>
-        <verstretch>0</verstretch>
-       </sizepolicy>
-      </property>
-      <property name="title">
-       <string/>
-      </property>
-      <layout class="QHBoxLayout" name="horizontalLayout_7">
-       <item>
-        <spacer name="horizontalSpacer_2">
-         <property name="orientation">
-          <enum>Qt::Horizontal</enum>
-         </property>
-         <property name="sizeHint" stdset="0">
-          <size>
-           <width>367</width>
-           <height>20</height>
-          </size>
-         </property>
-        </spacer>
-       </item>
-       <item>
-        <widget class="QPushButton" name="convertPushButton">
-         <property name="text">
-          <string>Convert</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QPushButton" name="closePushButton">
-         <property name="text">
-          <string>Close</string>
-         </property>
-        </widget>
-       </item>
-      </layout>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QGroupBox" name="previewGroupBox">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="MinimumExpanding" vsizetype="Preferred">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>200</width>
+         <height>0</height>
+        </size>
+       </property>
+       <property name="title">
+        <string>Preview</string>
+       </property>
+       <layout class="QVBoxLayout" name="verticalLayout_5">
+        <item>
+         <widget class="QTextEdit" name="previewTextEdit">
+          <property name="readOnly">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
      </widget>
     </item>
    </layout>
@@ -225,7 +259,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>600</width>
+     <width>863</width>
      <height>22</height>
     </rect>
    </property>

@@ -99,7 +99,18 @@ bool MainWindow::isValidSourceDirectory(const QString& dirPath)
 
 void MainWindow::updatePreview()
 {
+    QString numImages = QString::number(seriesInfo->imageNumberOfImages());
+    QString slicesPerImage = QString::number(seriesInfo->imageSlicesPerImage());
 
+    QString text = "Number of images: " + numImages + QChar::LineFeed
+                   + "Slices per image: " + slicesPerImage + QChar::LineFeed;
+
+    ui->previewTextEdit->setPlainText(text);
+}
+
+void MainWindow::clearPreview()
+{
+    ui->previewTextEdit->clear();
 }
 
 bool MainWindow::isValidDestDirectory(const QString& dirPath)
@@ -283,7 +294,10 @@ void MainWindow::handleSourceDirLineEditEditingFinished()
     if (isValidSourceDirectory(dirPath))
     {
         seriesInfo->setInputDir(dirPath);
+        updatePreview();
     }
+    else
+        clearPreview();
 }
 
 void MainWindow::handleSourceDirLineEditTextEdited()
@@ -293,7 +307,10 @@ void MainWindow::handleSourceDirLineEditTextEdited()
     if (isValidSourceDirectory(dirPath))
     {
         seriesInfo->setInputDir(dirPath);
+        updatePreview();
     }
+    else
+        clearPreview();
 }
 
 void MainWindow::handleDestDirLineEditEditingFinished()
@@ -303,7 +320,10 @@ void MainWindow::handleDestDirLineEditEditingFinished()
     if (isValidDestDirectory(dirPath))
     {
         seriesInfo->setOutputDir(dirPath);
+        updatePreview();
     }
+    else
+        clearPreview();
 }
 
 void MainWindow::handleDestDirLineEditTextEdited()
@@ -313,6 +333,9 @@ void MainWindow::handleDestDirLineEditTextEdited()
     if (isValidDestDirectory(dirPath))
     {
         seriesInfo->setOutputDir(dirPath);
+        updatePreview();
     }
+    else
+        clearPreview();
 }
 

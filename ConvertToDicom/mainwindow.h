@@ -51,6 +51,7 @@ public:
     bool isValidDestDirectory(const QString& dirName);
 
     void updatePreview();
+    void clearPreview();
 
 public slots:
     /**
