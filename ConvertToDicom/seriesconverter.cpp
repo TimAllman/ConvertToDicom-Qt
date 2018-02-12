@@ -181,16 +181,40 @@ ErrorCode SeriesConverter::extractImageParameters()
 
 bool SeriesConverter::isValidSourceDir(const QString& dirPath)
 {
+    LOG4CPLUS_DEBUG(logger, "Checking source dir validity: " << dirPath.toStdString());
+
+    QDir dir(dirPath);
+    bool exists = dir.exists();
+    if (!exists)
+    {
+        LOG4CPLUS_DEBUG(logger, "    Directory does not exist.");
+        return false;
+    }
+
+    bool empty = dir.isEmpty();
+    if (empty)
+    {
+        LOG4CPLUS_DEBUG(logger, "    Directory is empty.");
+        return false;
+    }
+
     inputDir = dirPath;
 
-    ErrorCode errCode = loadFileNames();
-    if (errCode != ErrorCode::SUCCESS)
-        return false;
+    //    ErrorCode errCode = loadFileNames();
+    //    if (errCode != ErrorCode::SUCCESS)
+    //    {
+    //        LOG4CPLUS_DEBUG(logger, "    Failed to load file names.");
+    //        return false;
+    //    }
 
-    errCode = extractImageParameters();
+    ErrorCode errCode = extractImageParameters();
     if (errCode != ErrorCode::SUCCESS)
+    {
+        LOG4CPLUS_DEBUG(logger, "    Failed to extract image metadata.");
         return false;
+    }
 
+    LOG4CPLUS_DEBUG(logger, "    Directory valid.");
     return true;
 }
 
@@ -201,19 +225,19 @@ ErrorCode SeriesConverter::loadFileNames()
     // If the array is not empty, empty it
     fileNames.clear();
 
-    QDir dir(seriesInfo->inputDir());
-    QStringList fNames = dir.entryList(QDir::Files | QDir::Readable, QDir::Name);
+    QStringList fNames = inputDir.entryList(QDir::Files | QDir::Readable, QDir::Name);
 
     // we have to prepend the directory path to the file names
     int len = fNames.length();
     for (int idx = 0; idx < len; ++idx)
     {
-        QString path = seriesInfo->inputDirStr() + "/" + fNames[idx];
+        QString path = inputDir.absolutePath() + "/" + fNames[idx];
+        LOG4CPLUS_DEBUG(logger, fNames[idx].toStdString());
         fileNames.append(path);
     }
 
     LOG4CPLUS_INFO(logger, "Loading " << fileNames.length() << " files from directory: "
-                   << dir.absolutePath().toStdString());
+                   << inputDir.absolutePath().toStdString());
 
     if (fileNames.isEmpty())
         return ErrorCode::ERROR_FILE_NOT_FOUND;

@@ -30,7 +30,7 @@ MainWindow::MainWindow(QWidget *parent) :
     move(settings.value("pos", QPoint(200, 200)).toPoint());
     settings.endGroup();
 
-    // Do this to show the DICOM dialog
+    // Connect our signals and slots
     connect(ui->editDicomAttributesPushButton, SIGNAL(clicked()), this,
             SLOT(handleEditDicomAttributesButtonClicked()));
     connect(ui->sourceDirChoosePushButton, SIGNAL(clicked()), this,
@@ -40,9 +40,18 @@ MainWindow::MainWindow(QWidget *parent) :
             SLOT(handleOverwriteFilesCheckBoxClicked(bool)));
     connect(ui->convertPushButton, SIGNAL(clicked()), this, SLOT(handleConvertButtonClicked()));
     connect(ui->closePushButton, SIGNAL(clicked()), this, SLOT(handleCloseButtonClicked()));
+    connect(ui->sourceDirLineEdit, SIGNAL(textChanged(const QString&)), this,
+            SLOT(handleSourceDirLineEditTextEdited()));
+    connect(ui->sourceDirLineEdit, SIGNAL(editingFinished()), this,
+            SLOT(handleSourceDirLineEditEditingFinished()));
+    connect(ui->destDirLineEdit, SIGNAL(textChanged(const QString&)), this,
+            SLOT(handleDestDirLineEditTextEdited()));
+    connect(ui->destDirLineEdit, SIGNAL(editingFinished()), this,
+            SLOT(handleDestDirLineEditEditingFinished()));
 
     // Some values to start with
     loadWidgetInfo();
+    LOG4CPLUS_INFO(logger, "MainWindow opened.");
 }
 
 MainWindow::~MainWindow()
@@ -59,6 +68,66 @@ MainWindow::~MainWindow()
 
     delete ui;
     delete dicomAttributesDialog;
+    LOG4CPLUS_DEBUG(logger, "MainWindow closed.");
+}
+
+void MainWindow::loadWidgetInfo()
+{
+    // get the current information
+    ui->sourceDirLineEdit->setText(seriesInfo->inputDirStr());
+    ui->destDirLineEdit->setText(seriesInfo->outputDirStr());
+    ui->overwriteFilesCheckBox->setChecked(seriesInfo->overwriteFiles());
+}
+
+void MainWindow::saveWidgetInfo()
+{
+    // save the current information
+    seriesInfo->setInputDir(ui->sourceDirLineEdit->text());
+    seriesInfo->setOutputDir(ui->destDirLineEdit->text());
+    seriesInfo->setOverwriteFiles(ui->overwriteFilesCheckBox->isChecked());
+}
+
+bool MainWindow::isValidSourceDirectory(const QString& dirPath)
+{
+    bool valid = seriesConverter->isValidSourceDir(dirPath);
+
+    std::string valStr = valid ? "valid" : "invalid";
+    LOG4CPLUS_DEBUG(logger, "Source directory " << dirPath.toStdString() << " " << valStr);
+
+    return valid;
+}
+
+void MainWindow::updatePreview()
+{
+
+}
+
+bool MainWindow::isValidDestDirectory(const QString& dirPath)
+{
+    QDir dir(dirPath);
+
+    if (!dir.exists())
+    {
+        LOG4CPLUS_DEBUG(logger, "Destination directory " << dirPath.toStdString() << " does not exist.");
+        return false;
+    }
+
+    if (dir.isEmpty())
+    {
+        LOG4CPLUS_DEBUG(logger, "Destination directory " << dirPath.toStdString() << " is empty.");
+        return true;
+    }
+    else
+    {
+        LOG4CPLUS_DEBUG(logger, "Destination directory " << dirPath.toStdString() << " is not empty.");
+
+        bool overwrite = seriesInfo->overwriteFiles();
+        if (overwrite)
+            LOG4CPLUS_DEBUG(logger, "  Overwriting contents of " << dirPath.toStdString());
+        else
+            LOG4CPLUS_DEBUG(logger, "  Cannot overwrite contents of " << dirPath.toStdString());
+        return (overwrite);
+    }
 }
 
 void MainWindow::handleEditDicomAttributesButtonClicked()
@@ -124,46 +193,6 @@ void MainWindow::handleDestDirPushButtonClicked()
     {
         seriesInfo->setOutputDir(dlg.directory());
         ui->destDirLineEdit->setText(seriesInfo->outputDirStr());
-    }
-}
-
-void MainWindow::handleSourceDirLineEditEditingFinished()
-{
-    QString dirPath = ui->sourceDirLineEdit->text();
-
-    if (isValidSourceDirectory(dirPath))
-    {
-        seriesInfo->setInputDir(dirPath);
-    }
-}
-
-void MainWindow::handleSourceDirLineEditTextEdited()
-{
-    QString dirPath = ui->sourceDirLineEdit->text();
-
-    if (isValidSourceDirectory(dirPath))
-    {
-        seriesInfo->setInputDir(dirPath);
-    }
-}
-
-void MainWindow::handleDestDirLineEditEditingFinished()
-{
-    QString dirPath = ui->destDirLineEdit->text();
-
-    if (isValidDestDirectory(dirPath))
-    {
-        seriesInfo->setOutputDir(dirPath);
-    }
-}
-
-void MainWindow::handleDestDirLineEditTextEdited()
-{
-    QString dirPath = ui->destDirLineEdit->text();
-
-    if (isValidDestDirectory(dirPath))
-    {
-        seriesInfo->setOutputDir(dirPath);
     }
 }
 
@@ -242,57 +271,48 @@ void MainWindow::handleConvertButtonClicked()
 
 }
 
-void MainWindow::loadWidgetInfo()
-{
-    // get the current information
-    ui->sourceDirLineEdit->setText(seriesInfo->inputDirStr());
-    ui->destDirLineEdit->setText(seriesInfo->outputDirStr());
-    ui->overwriteFilesCheckBox->setChecked(seriesInfo->overwriteFiles());
-}
-
-void MainWindow::saveWidgetInfo()
-{
-    // save the current information
-    seriesInfo->setInputDir(ui->sourceDirLineEdit->text());
-    seriesInfo->setOutputDir(ui->destDirLineEdit->text());
-    seriesInfo->setOverwriteFiles(ui->overwriteFilesCheckBox->isChecked());
-}
-
 void MainWindow::handleCloseButtonClicked()
 {
     QApplication::closeAllWindows();
 }
 
-
-bool MainWindow::isValidSourceDirectory(const QString& dirName)
+void MainWindow::handleSourceDirLineEditEditingFinished()
 {
-    QDir dir(dirName);
+    QString dirPath = ui->sourceDirLineEdit->text();
 
-    if (!dir.exists())
-        return false;
-
-    return (seriesConverter->extractImageParameters() == ErrorCode::SUCCESS);
-}
-
-bool MainWindow::isValidDestDirectory(const QString& dirName)
-{
-    QDir dir(dirName);
-
-    if (!dir.exists())
-        return false;
-
-    if (seriesInfo->overwriteFiles())
+    if (isValidSourceDirectory(dirPath))
     {
-        return true;
-    }
-    else
-    {
-        if (dir.isEmpty())
-            return true;
-        else
-            return false;
+        seriesInfo->setInputDir(dirPath);
     }
 }
 
+void MainWindow::handleSourceDirLineEditTextEdited()
+{
+    QString dirPath = ui->sourceDirLineEdit->text();
 
+    if (isValidSourceDirectory(dirPath))
+    {
+        seriesInfo->setInputDir(dirPath);
+    }
+}
+
+void MainWindow::handleDestDirLineEditEditingFinished()
+{
+    QString dirPath = ui->destDirLineEdit->text();
+
+    if (isValidDestDirectory(dirPath))
+    {
+        seriesInfo->setOutputDir(dirPath);
+    }
+}
+
+void MainWindow::handleDestDirLineEditTextEdited()
+{
+    QString dirPath = ui->destDirLineEdit->text();
+
+    if (isValidDestDirectory(dirPath))
+    {
+        seriesInfo->setOutputDir(dirPath);
+    }
+}
 

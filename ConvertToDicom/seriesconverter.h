@@ -128,15 +128,15 @@ private:
      */
     ErrorCode writeFiles();
 
-    QStringList fileNames;            ///< The list of input file names.
+    QStringList fileNames;     ///< The list of input file names.
 
-    QDir inputDir;         ///< Where the input files are found.
-    QDir outputDir;        ///< Where to put the output file tree.
-    SeriesInfo* seriesInfo;  ///< Information about the series.
+    QDir inputDir;            ///< Where the input files are found.
+    QDir outputDir;           ///< Where to put the output file tree.
+    SeriesInfo* seriesInfo;   ///< Information about the series.
 
     QVector<Image2DType::Pointer> imageStack;
 
-    Logger logger;                      ///< Logger for this class.
+    Logger logger;           ///< Logger for this class.
 };
 
 #endif // SERIESCONVERTER_H
