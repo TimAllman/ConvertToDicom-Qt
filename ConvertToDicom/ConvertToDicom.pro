@@ -36,7 +36,8 @@ SOURCES += main.cpp\
     dicomserieswriter.cpp \
     logger.cpp \
     dicomdictionaryinterface.cpp \
-    dicomparametersreader.cpp
+    dicomparametersreader.cpp \
+    imageinfo.cpp
 
 HEADERS += mainwindow.h \
     seriesinfo.h \
@@ -50,7 +51,8 @@ HEADERS += mainwindow.h \
     dicomserieswriter.h \
     dicomdictionaryinterface.h \
     dicomparametersreader.h \
-    itktypedefs.h
+    itktypedefs.h \
+    imageinfo.h
 
 # Precompile the ITK headers
 CONFIG += precompile_header
@@ -167,9 +169,9 @@ DEPENDPATH += $$PWD/../../../usr/local/ITK-4.11/x86_64/Release/include/ITK-4.11
 
 DISTFILES += \
     licence.txt \
-    doxyfile \
     ../README.md \
-    ../thoughts.txt
+    ../thoughts.txt \
+    ../Doxyfile
 
 win32:CONFIG(release, debug|release): LIBS += -L$$PWD/../../../usr/local/lib/release/ -llog4cplusS
 else:win32:CONFIG(debug, debug|release): LIBS += -L$$PWD/../../../usr/local/lib/debug/ -llog4cplusS

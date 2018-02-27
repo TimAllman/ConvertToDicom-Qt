@@ -37,7 +37,7 @@
 #include <log4cplus/loggingmacros.h>
 
 SeriesInfo::SeriesInfo()
-    : logger(log4cplus::Logger::getInstance(std::string(LOGGER_NAME) + ".SeriesInfo")),
+    : m_logger(log4cplus::Logger::getInstance(std::string(LOGGER_NAME) + ".SeriesInfo")),
       locale(),
       m_imageSlicesPerImage(0),
       m_imageNumberOfImages(0),
@@ -59,7 +59,7 @@ SeriesInfo::~SeriesInfo()
 
 void SeriesInfo::loadSettings()
 {
-    LOG4CPLUS_TRACE(logger, "Enter");
+    LOG4CPLUS_TRACE(m_logger, "Enter");
 
     // Fill up with the saved settings
     // The defaults are set here as well.
@@ -92,12 +92,12 @@ void SeriesInfo::loadSettings()
     setSeriesPositionPatient(settings.value(Settings::SeriesPatientPositionKey, "FFS").toString());
 
 
-    LOG4CPLUS_DEBUG(logger, "Loaded current settings and set default settings.");
+    LOG4CPLUS_DEBUG(m_logger, "Loaded current settings and set default settings.");
 }
 
 void SeriesInfo::saveSettings()
 {
-    LOG4CPLUS_TRACE(logger, "Enter");
+    LOG4CPLUS_TRACE(m_logger, "Enter");
 
     Settings settings; // uses preset program information
 
@@ -127,12 +127,12 @@ void SeriesInfo::saveSettings()
 
     settings.sync();
 
-    LOG4CPLUS_DEBUG(logger, "Saved settings.");
+    LOG4CPLUS_DEBUG(m_logger, "Saved settings.");
 }
 
 itk::MetaDataDictionary SeriesInfo::makeMetaDataDictionary() const
 {
-    LOG4CPLUS_TRACE(logger, "Enter");
+    LOG4CPLUS_TRACE(m_logger, "Enter");
 
     // fill the dictionary from our Dicom
     if (dict.GetKeys().size() == 0)
@@ -173,7 +173,7 @@ itk::MetaDataDictionary SeriesInfo::makeMetaDataDictionary() const
         itk::EncapsulateMetaData<std::string>(dict, "0020|0032", imagePositionPatientString().toStdString());
     }
 
-    LOG4CPLUS_TRACE(logger, "Initial MetaDataDictionary:\n" << DumpDicomMetaDataDictionary(dict));
+    LOG4CPLUS_TRACE(m_logger, "Initial MetaDataDictionary:\n" << DumpDicomMetaDataDictionary(dict));
 
     return dict;
 }
@@ -212,7 +212,7 @@ QString SeriesInfo::imagePositionPatientString(int sliceIdx) const
     ipp[1] =  imagePositionPatientY();
     ipp[2] =  imagePositionPatientZ();
 
-    LOG4CPLUS_DEBUG(logger, "Initial IPP = " << imagePositionPatientString().toStdString());
+    LOG4CPLUS_DEBUG(m_logger, "Initial IPP = " << imagePositionPatientString().toStdString());
 
     ipp = rot * ipp;                            // rotate ipp into image coordinates
     ipp[2] += m_imageSliceSpacing * sliceIdx;    // increment Z component
@@ -220,7 +220,7 @@ QString SeriesInfo::imagePositionPatientString(int sliceIdx) const
 
     char ippStr[30];
     sprintf(ippStr, "%.2f\\%.2f\\%.2f", ipp(0), ipp(1), ipp(2));
-    LOG4CPLUS_DEBUG(logger, "Incremented IPP = " << ippStr);
+    LOG4CPLUS_DEBUG(m_logger, "Incremented IPP = " << ippStr);
 
     return ippStr;
 

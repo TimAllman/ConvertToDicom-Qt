@@ -1,0 +1,67 @@
+\hypertarget{class_dicom_parameters_reader}{}\section{Dicom\+Parameters\+Reader Class Reference}
+\label{class_dicom_parameters_reader}\index{Dicom\+Parameters\+Reader@{Dicom\+Parameters\+Reader}}
+
+
+Class to read a dicom series and extract parameters from its dictionary, placing them into the global \hyperlink{class_series_info}{Series\+Info} instance.  
+
+
+
+
+{\ttfamily \#include $<$dicomparametersreader.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_dicom_parameters_reader_a5d2aff3c73d3ccd3cce88dd4bec78615}{Dicom\+Parameters\+Reader} (const Q\+String \&directory\+Path)
+\begin{DoxyCompactList}\small\item\em Class constructor. \end{DoxyCompactList}\item 
+Error\+Code \hyperlink{class_dicom_parameters_reader_a7f324d9d7f529d513148bed8dc85691a}{Read\+Parameters} ()
+\begin{DoxyCompactList}\small\item\em Do the parameter reading. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_dicom_parameters_reader_ae8d2cebcb2193bb24c7f4bb29ee6fcdd}\label{class_dicom_parameters_reader_ae8d2cebcb2193bb24c7f4bb29ee6fcdd}} 
+Error\+Code {\bfseries Get\+Directory\+Contents} ()
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Class to read a dicom series and extract parameters from its dictionary, placing them into the global \hyperlink{class_series_info}{Series\+Info} instance. 
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_dicom_parameters_reader_a5d2aff3c73d3ccd3cce88dd4bec78615}\label{class_dicom_parameters_reader_a5d2aff3c73d3ccd3cce88dd4bec78615}} 
+\index{Dicom\+Parameters\+Reader@{Dicom\+Parameters\+Reader}!Dicom\+Parameters\+Reader@{Dicom\+Parameters\+Reader}}
+\index{Dicom\+Parameters\+Reader@{Dicom\+Parameters\+Reader}!Dicom\+Parameters\+Reader@{Dicom\+Parameters\+Reader}}
+\subsubsection{\texorpdfstring{Dicom\+Parameters\+Reader()}{DicomParametersReader()}}
+{\footnotesize\ttfamily Dicom\+Parameters\+Reader\+::\+Dicom\+Parameters\+Reader (\begin{DoxyParamCaption}\item[{const Q\+String \&}]{directory\+Path }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+
+
+
+Class constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em directory\+Path} & The input directory path. This the full path of the directory containing the D\+I\+C\+OM file(s). \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_dicom_parameters_reader_a7f324d9d7f529d513148bed8dc85691a}\label{class_dicom_parameters_reader_a7f324d9d7f529d513148bed8dc85691a}} 
+\index{Dicom\+Parameters\+Reader@{Dicom\+Parameters\+Reader}!Read\+Parameters@{Read\+Parameters}}
+\index{Read\+Parameters@{Read\+Parameters}!Dicom\+Parameters\+Reader@{Dicom\+Parameters\+Reader}}
+\subsubsection{\texorpdfstring{Read\+Parameters()}{ReadParameters()}}
+{\footnotesize\ttfamily Error\+Code Dicom\+Parameters\+Reader\+::\+Read\+Parameters (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Do the parameter reading. 
+
+\begin{DoxyReturn}{Returns}
+Suitable value in Error\+Code enum. 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+dicomparametersreader.\+h\item 
+dicomparametersreader.\+cpp\end{DoxyCompactItemize}

@@ -38,6 +38,8 @@ const char* ErrorCodeAsString(ErrorCode code)
             return "Error reading file";
         case ErrorCode::ERROR_WRITING_FILE:
             return "Error writing file";
+        case ErrorCode::ERROR_READING_PARAMETERS:
+            return "Error reading image parameters";
         case ErrorCode::ERROR_CREATING_DIRECTORY:
             return "Error creating directory";
         case ErrorCode::ERROR_DIRECTORY_NOT_EMPTY:

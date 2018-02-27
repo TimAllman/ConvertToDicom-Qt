@@ -1,0 +1,55 @@
+\hypertarget{class_image_reader}{}\section{Image\+Reader Class Reference}
+\label{class_image_reader}\index{Image\+Reader@{Image\+Reader}}
+
+
+Reads an image on disk, creating a std\+::vector of slices.  
+
+
+
+
+{\ttfamily \#include $<$imagereader.\+h$>$}
+
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_image_reader_abc7391a4bfa9f600de693649c105ee1f}\label{class_image_reader_abc7391a4bfa9f600de693649c105ee1f}} 
+typedef std\+::vector$<$ Image2\+D\+Type\+::\+Pointer $>$ \hyperlink{class_image_reader_abc7391a4bfa9f600de693649c105ee1f}{Image\+Vector}
+\begin{DoxyCompactList}\small\item\em Used as a return type for Read\+Image. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_image_reader_a2b24331603b06f5c218212c26a3ee24b}\label{class_image_reader_a2b24331603b06f5c218212c26a3ee24b}} 
+\hyperlink{class_image_reader_a2b24331603b06f5c218212c26a3ee24b}{Image\+Reader} ()
+\begin{DoxyCompactList}\small\item\em Default constructor. \end{DoxyCompactList}\item 
+\hyperlink{class_image_reader_abc7391a4bfa9f600de693649c105ee1f}{Image\+Vector} \hyperlink{class_image_reader_a58ff32562a6c769c57f4be1bcdf6ca4d}{Read\+Image} (const std\+::string \&name)
+\begin{DoxyCompactList}\small\item\em Read an image (2D or 3D) on disk. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Reads an image on disk, creating a std\+::vector of slices. 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_image_reader_a58ff32562a6c769c57f4be1bcdf6ca4d}\label{class_image_reader_a58ff32562a6c769c57f4be1bcdf6ca4d}} 
+\index{Image\+Reader@{Image\+Reader}!Read\+Image@{Read\+Image}}
+\index{Read\+Image@{Read\+Image}!Image\+Reader@{Image\+Reader}}
+\subsubsection{\texorpdfstring{Read\+Image()}{ReadImage()}}
+{\footnotesize\ttfamily \hyperlink{class_image_reader_abc7391a4bfa9f600de693649c105ee1f}{Image\+Reader\+::\+Image\+Vector} Image\+Reader\+::\+Read\+Image (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{name }\end{DoxyParamCaption})}
+
+
+
+Read an image (2D or 3D) on disk. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & The name of the file. May be relative or absolute path name. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+An \hyperlink{class_image_reader_abc7391a4bfa9f600de693649c105ee1f}{Image\+Reader\+::\+Image\+Vector} of the image slices. 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+imagereader.\+h\item 
+imagereader.\+cpp\end{DoxyCompactItemize}

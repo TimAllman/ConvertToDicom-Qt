@@ -1,0 +1,459 @@
+\hypertarget{class_series_info}{}\section{Series\+Info Class Reference}
+\label{class_series_info}\index{Series\+Info@{Series\+Info}}
+
+
+The \hyperlink{class_series_info}{Series\+Info} class This class contains all of the D\+I\+C\+OM and other information needed to do the conversions.  
+
+
+
+
+{\ttfamily \#include $<$seriesinfo.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \hyperlink{class_series_info_a21fe1bd18d2f9e2b1f7ceb22e7ad98a3}{overwrite\+Files} () const
+\begin{DoxyCompactList}\small\item\em overwrite\+Files Get flag which indicates whether generated files will overwrite existing files. \end{DoxyCompactList}\item 
+Q\+Dir \hyperlink{class_series_info_ab30b8c01a3413b913f00203b2ef5a117}{input\+Dir} () const
+\begin{DoxyCompactList}\small\item\em input\+Dir Get the directory containing the files to be converted. \end{DoxyCompactList}\item 
+Q\+String \hyperlink{class_series_info_a550fbfcf3061fdd50850baa788bf376d}{input\+Dir\+Str} () const
+\begin{DoxyCompactList}\small\item\em input\+Dir\+Str \end{DoxyCompactList}\item 
+Q\+Dir \hyperlink{class_series_info_af94b9048bc3b60b5d151f227299b394b}{output\+Dir} () const
+\begin{DoxyCompactList}\small\item\em output\+Dir This is a base subdirectory for the output of this program. \end{DoxyCompactList}\item 
+Q\+String \hyperlink{class_series_info_abc897c5c859293338e45d193ac62c674}{output\+Dir\+Str} () const
+\begin{DoxyCompactList}\small\item\em output\+Dir\+Str \end{DoxyCompactList}\item 
+Q\+String \hyperlink{class_series_info_a7088530574522d3d1123806c766402f2}{output\+Path} () const
+\begin{DoxyCompactList}\small\item\em output\+Path The full output path is a chain of subdirectories of based upon \hyperlink{class_series_info_abc897c5c859293338e45d193ac62c674}{output\+Dir\+Str()}, patient\textquotesingle{}s name, study description, study ID, series description and series number. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_series_info_ae6eda4a724007bddd85b5b6832648590}\label{class_series_info_ae6eda4a724007bddd85b5b6832648590}} 
+Q\+String {\bfseries patient\+Name} () const
+\item 
+\mbox{\Hypertarget{class_series_info_a5b04d7095b2bf6728bc02e5f5fd9964a}\label{class_series_info_a5b04d7095b2bf6728bc02e5f5fd9964a}} 
+Q\+String {\bfseries patient\+ID} () const
+\item 
+\mbox{\Hypertarget{class_series_info_a6718f39279d903a522c6c7e6dc9558b7}\label{class_series_info_a6718f39279d903a522c6c7e6dc9558b7}} 
+Q\+Date {\bfseries patient\+D\+OB} () const
+\item 
+\mbox{\Hypertarget{class_series_info_ad2d4cfc6d71e16b8f44910937dad7d8a}\label{class_series_info_ad2d4cfc6d71e16b8f44910937dad7d8a}} 
+Q\+String {\bfseries patient\+D\+O\+B\+Str} () const
+\item 
+\mbox{\Hypertarget{class_series_info_a4330c792ea2a959d442139856afe783d}\label{class_series_info_a4330c792ea2a959d442139856afe783d}} 
+Q\+String {\bfseries patient\+Sex} () const
+\item 
+\mbox{\Hypertarget{class_series_info_af6564a18ffa1fbddcf32d273dac430f9}\label{class_series_info_af6564a18ffa1fbddcf32d273dac430f9}} 
+Q\+String {\bfseries study\+Description} () const
+\item 
+\mbox{\Hypertarget{class_series_info_ac29186ca4e8d7703dbf2da4dac3871cf}\label{class_series_info_ac29186ca4e8d7703dbf2da4dac3871cf}} 
+Q\+String {\bfseries study\+ID} () const
+\item 
+\mbox{\Hypertarget{class_series_info_ad6b4be6ab8b9c1bf2377e98c5d1ffb31}\label{class_series_info_ad6b4be6ab8b9c1bf2377e98c5d1ffb31}} 
+Q\+String {\bfseries study\+Modality} () const
+\item 
+\mbox{\Hypertarget{class_series_info_a2eb0ac1652fc77f6d9d9bcfcae33c5af}\label{class_series_info_a2eb0ac1652fc77f6d9d9bcfcae33c5af}} 
+Q\+Date\+Time {\bfseries study\+Date\+Time} () const
+\item 
+\mbox{\Hypertarget{class_series_info_a99cc72da568ff148637b5f4dff5252c0}\label{class_series_info_a99cc72da568ff148637b5f4dff5252c0}} 
+Q\+String {\bfseries study\+Date\+Time\+Str} () const
+\item 
+\mbox{\Hypertarget{class_series_info_a2decc9e9c01f7a9fc27c6a88f0871039}\label{class_series_info_a2decc9e9c01f7a9fc27c6a88f0871039}} 
+Q\+String {\bfseries study\+Instance\+U\+ID} () const
+\item 
+\mbox{\Hypertarget{class_series_info_a77d678e8efd4564738cdbd1e7accec11}\label{class_series_info_a77d678e8efd4564738cdbd1e7accec11}} 
+int {\bfseries series\+Number} () const
+\item 
+\mbox{\Hypertarget{class_series_info_a5d1cbb206f2ea1c9873ab0b8137ccda1}\label{class_series_info_a5d1cbb206f2ea1c9873ab0b8137ccda1}} 
+Q\+String {\bfseries series\+Number\+Str} () const
+\item 
+\mbox{\Hypertarget{class_series_info_a713638b77beb8e167bbd55a23e289ec6}\label{class_series_info_a713638b77beb8e167bbd55a23e289ec6}} 
+Q\+String {\bfseries series\+Description} () const
+\item 
+\mbox{\Hypertarget{class_series_info_a631bbb07847fdaab973df74f6f052b0e}\label{class_series_info_a631bbb07847fdaab973df74f6f052b0e}} 
+Q\+String {\bfseries series\+Position\+Patient} () const
+\item 
+double \hyperlink{class_series_info_aa3cd8fea1ca4d619817e07be017fb7d6}{series\+Time\+Increment} () const
+\begin{DoxyCompactList}\small\item\em series\+Time\+Increment \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_series_info_af1da8f078d398e0ab3fc8f5129518e0b}\label{class_series_info_af1da8f078d398e0ab3fc8f5129518e0b}} 
+Q\+String {\bfseries series\+Time\+Increment\+Str} () const
+\item 
+\mbox{\Hypertarget{class_series_info_a94facc78d30d5daeb6ae28fbdd824c77}\label{class_series_info_a94facc78d30d5daeb6ae28fbdd824c77}} 
+Q\+List$<$ Q\+Time $>$ \& {\bfseries acq\+Times} ()
+\item 
+\mbox{\Hypertarget{class_series_info_ab6e94bbff402e228a7b680d32d2d1a66}\label{class_series_info_ab6e94bbff402e228a7b680d32d2d1a66}} 
+int {\bfseries image\+Number\+Of\+Images} () const
+\item 
+\mbox{\Hypertarget{class_series_info_a2f21da996a318aec02438d5f7d7dd350}\label{class_series_info_a2f21da996a318aec02438d5f7d7dd350}} 
+Q\+String {\bfseries image\+Number\+Of\+Images\+Str} () const
+\item 
+\mbox{\Hypertarget{class_series_info_a595cb840a0fe00e330d58bee0161ba62}\label{class_series_info_a595cb840a0fe00e330d58bee0161ba62}} 
+int {\bfseries image\+Slices\+Per\+Image} () const
+\item 
+\mbox{\Hypertarget{class_series_info_a67207f1efd50367b46d946129fb6dfe1}\label{class_series_info_a67207f1efd50367b46d946129fb6dfe1}} 
+Q\+String {\bfseries image\+Slices\+Per\+Image\+Str} () const
+\item 
+\mbox{\Hypertarget{class_series_info_ae7a7057c7d20f59650077dfa52dec97d}\label{class_series_info_ae7a7057c7d20f59650077dfa52dec97d}} 
+int {\bfseries image\+Number\+Of\+Slices} () const
+\item 
+\mbox{\Hypertarget{class_series_info_ac8697c73a137e9047033e33b6352568b}\label{class_series_info_ac8697c73a137e9047033e33b6352568b}} 
+Q\+String {\bfseries image\+Number\+Of\+Slices\+Str} () const
+\item 
+\mbox{\Hypertarget{class_series_info_a7ac539de8bcb047280dd0ae04c1ff876}\label{class_series_info_a7ac539de8bcb047280dd0ae04c1ff876}} 
+double {\bfseries image\+Slice\+Spacing} () const
+\item 
+\mbox{\Hypertarget{class_series_info_adc5abb8c7656afc0ecf15eb4436ae712}\label{class_series_info_adc5abb8c7656afc0ecf15eb4436ae712}} 
+Q\+String {\bfseries image\+Slice\+Spacing\+Str} () const
+\item 
+\mbox{\Hypertarget{class_series_info_a91685a94ead368bbb9b1cd697d0e5c59}\label{class_series_info_a91685a94ead368bbb9b1cd697d0e5c59}} 
+double {\bfseries image\+Position\+PatientX} () const
+\item 
+\mbox{\Hypertarget{class_series_info_a3d273fccf13a4a3c84ba53bc545f4641}\label{class_series_info_a3d273fccf13a4a3c84ba53bc545f4641}} 
+Q\+String {\bfseries image\+Position\+Patient\+X\+Str} () const
+\item 
+\mbox{\Hypertarget{class_series_info_a63f3d9368ab755c8a7f6d7e54d03c09d}\label{class_series_info_a63f3d9368ab755c8a7f6d7e54d03c09d}} 
+double {\bfseries image\+Position\+PatientY} () const
+\item 
+\mbox{\Hypertarget{class_series_info_ae7e8c788abaf34369ce8cd360653a2f5}\label{class_series_info_ae7e8c788abaf34369ce8cd360653a2f5}} 
+Q\+String {\bfseries image\+Position\+Patient\+Y\+Str} () const
+\item 
+\mbox{\Hypertarget{class_series_info_a5a53ec11248767dc34393520ddc64d81}\label{class_series_info_a5a53ec11248767dc34393520ddc64d81}} 
+double {\bfseries image\+Position\+PatientZ} () const
+\item 
+\mbox{\Hypertarget{class_series_info_afd3b1a76c1f8986a5a787e2909df8b3f}\label{class_series_info_afd3b1a76c1f8986a5a787e2909df8b3f}} 
+Q\+String {\bfseries image\+Position\+Patient\+Z\+Str} () const
+\item 
+\mbox{\Hypertarget{class_series_info_ab31237968717e9c71d21d20a3929d115}\label{class_series_info_ab31237968717e9c71d21d20a3929d115}} 
+Q\+String {\bfseries image\+Patient\+Orientation} () const
+\item 
+void \hyperlink{class_series_info_a09ff36a5e9ad4ec4cd2030a8e5abefa2}{set\+Overwrite\+Files} (bool \hyperlink{class_series_info_a21fe1bd18d2f9e2b1f7ceb22e7ad98a3}{overwrite\+Files})
+\begin{DoxyCompactList}\small\item\em set\+Overwrite\+Files Set flag which indicates whether generated files will overwrite existing files. \end{DoxyCompactList}\item 
+void \hyperlink{class_series_info_a19ce250d3f423a513a6492b9bd5aa908}{set\+Input\+Dir} (const Q\+Dir \&\hyperlink{class_series_info_ab30b8c01a3413b913f00203b2ef5a117}{input\+Dir})
+\begin{DoxyCompactList}\small\item\em set\+Input\+Dir Set the input directory path \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_series_info_acf0f521d849807a9382fa791bf745482}\label{class_series_info_acf0f521d849807a9382fa791bf745482}} 
+void {\bfseries set\+Output\+Dir} (const Q\+Dir \&\hyperlink{class_series_info_af94b9048bc3b60b5d151f227299b394b}{output\+Dir})
+\item 
+\mbox{\Hypertarget{class_series_info_a2124d48ae7a2b09d99f7a3e3e67155f2}\label{class_series_info_a2124d48ae7a2b09d99f7a3e3e67155f2}} 
+void {\bfseries set\+Output\+Path} (const Q\+String \&\hyperlink{class_series_info_a7088530574522d3d1123806c766402f2}{output\+Path})
+\item 
+\mbox{\Hypertarget{class_series_info_ad94c20360198b39fd185cf77a158e4b3}\label{class_series_info_ad94c20360198b39fd185cf77a158e4b3}} 
+void {\bfseries set\+Image\+Number\+Of\+Images} (int number\+Of\+Images)
+\item 
+\mbox{\Hypertarget{class_series_info_ac3bc2f9b3b730ca1f6d9f5ee4f26d6ba}\label{class_series_info_ac3bc2f9b3b730ca1f6d9f5ee4f26d6ba}} 
+void {\bfseries set\+Image\+Slices\+Per\+Image} (int slices\+Per\+Image)
+\item 
+\mbox{\Hypertarget{class_series_info_ac6040514bc12b33a27508e393a47ad15}\label{class_series_info_ac6040514bc12b33a27508e393a47ad15}} 
+void {\bfseries set\+Series\+Number\+Of\+Slices} (int number\+Of\+Slices)
+\item 
+\mbox{\Hypertarget{class_series_info_ab47d111e20b8f0cc53a55518930efd6f}\label{class_series_info_ab47d111e20b8f0cc53a55518930efd6f}} 
+void {\bfseries set\+Patient\+Name} (const Q\+String \&patient\+Name)
+\item 
+\mbox{\Hypertarget{class_series_info_a489836b82b5ed54f307fd850369c3939}\label{class_series_info_a489836b82b5ed54f307fd850369c3939}} 
+void {\bfseries set\+Patient\+ID} (const Q\+String \&patient\+ID)
+\item 
+\mbox{\Hypertarget{class_series_info_aeae3148f709f152b9705f7e4524e8506}\label{class_series_info_aeae3148f709f152b9705f7e4524e8506}} 
+void {\bfseries set\+Patient\+D\+OB} (const Q\+Date \&patient\+D\+OB)
+\item 
+\mbox{\Hypertarget{class_series_info_a5f3e8081e83919e79577942b6b03033b}\label{class_series_info_a5f3e8081e83919e79577942b6b03033b}} 
+void {\bfseries set\+Patient\+Sex} (const Q\+String \&patient\+Sex)
+\item 
+\mbox{\Hypertarget{class_series_info_ada0323bceb521e6bce25fe2d9db76493}\label{class_series_info_ada0323bceb521e6bce25fe2d9db76493}} 
+void {\bfseries set\+Study\+Description} (const Q\+String \&study\+Description)
+\item 
+\mbox{\Hypertarget{class_series_info_ab9581aedaafd907979bf3f4f8f3a4eec}\label{class_series_info_ab9581aedaafd907979bf3f4f8f3a4eec}} 
+void {\bfseries set\+Study\+ID} (const Q\+String \&study\+ID)
+\item 
+\mbox{\Hypertarget{class_series_info_a4c6efd5f4a4c884389ce27e88c375591}\label{class_series_info_a4c6efd5f4a4c884389ce27e88c375591}} 
+void {\bfseries set\+Study\+Modality} (const Q\+String \&study\+Modality)
+\item 
+\mbox{\Hypertarget{class_series_info_a89b29213e8130a7804f51dcb5763aeec}\label{class_series_info_a89b29213e8130a7804f51dcb5763aeec}} 
+void {\bfseries set\+Study\+Date\+Time} (const Q\+Date\+Time \&study\+Date\+Time)
+\item 
+\mbox{\Hypertarget{class_series_info_a161916424ebbbc0525f07b06be33ab15}\label{class_series_info_a161916424ebbbc0525f07b06be33ab15}} 
+void {\bfseries set\+Study\+Instance\+U\+ID} (const Q\+String \&study\+Instance\+U\+ID)
+\item 
+\mbox{\Hypertarget{class_series_info_a1745cd80a9707532c530f9128b1c2bc0}\label{class_series_info_a1745cd80a9707532c530f9128b1c2bc0}} 
+void {\bfseries set\+Series\+Number} (const Q\+String \&series\+Number)
+\item 
+\mbox{\Hypertarget{class_series_info_a5fcc71c04f2a3389bf323d8a1f2e2c48}\label{class_series_info_a5fcc71c04f2a3389bf323d8a1f2e2c48}} 
+void {\bfseries set\+Series\+Number} (int series\+Number)
+\item 
+\mbox{\Hypertarget{class_series_info_a80045682d0da7012141780b03325cea5}\label{class_series_info_a80045682d0da7012141780b03325cea5}} 
+void {\bfseries set\+Series\+Description} (const Q\+String \&series\+Description)
+\item 
+\mbox{\Hypertarget{class_series_info_ac1600dfc5f367a0c940c28c07dfba526}\label{class_series_info_ac1600dfc5f367a0c940c28c07dfba526}} 
+void {\bfseries set\+Series\+Position\+Patient} (const Q\+String \&series\+Position\+Patient)
+\item 
+void \hyperlink{class_series_info_aacffddaa0cdb2dd931b89e57d429912e}{set\+Series\+Time\+Increment} (double time\+Increment)
+\begin{DoxyCompactList}\small\item\em set\+Series\+Time\+Increment \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_series_info_aedd83f1d0f57fe35ea8f8148205d974e}\label{class_series_info_aedd83f1d0f57fe35ea8f8148205d974e}} 
+void {\bfseries set\+Image\+Slice\+Spacing} (double image\+Slice\+Spacing)
+\item 
+\mbox{\Hypertarget{class_series_info_a7d8d7d402a289198ff7412cbe02ec8c5}\label{class_series_info_a7d8d7d402a289198ff7412cbe02ec8c5}} 
+void {\bfseries set\+Image\+Position\+PatientX} (double image\+Position\+PatientX)
+\item 
+\mbox{\Hypertarget{class_series_info_ae68eebb709fc373f180928bbce3fd0a5}\label{class_series_info_ae68eebb709fc373f180928bbce3fd0a5}} 
+void {\bfseries set\+Image\+Position\+PatientY} (double image\+Position\+PatientY)
+\item 
+\mbox{\Hypertarget{class_series_info_aa4ce9146cead6bfc3e01d99e1ecbca40}\label{class_series_info_aa4ce9146cead6bfc3e01d99e1ecbca40}} 
+void {\bfseries set\+Image\+Position\+PatientZ} (double image\+Position\+PatientZ)
+\item 
+\mbox{\Hypertarget{class_series_info_afd896e51680aa3bc2ca55128c525ca38}\label{class_series_info_afd896e51680aa3bc2ca55128c525ca38}} 
+void {\bfseries set\+Image\+Patient\+Orientation} (const Q\+String \&image\+Orientation\+Patient)
+\item 
+\mbox{\Hypertarget{class_series_info_a32d3ea80ee92f8b5343032083c49329b}\label{class_series_info_a32d3ea80ee92f8b5343032083c49329b}} 
+void \hyperlink{class_series_info_a32d3ea80ee92f8b5343032083c49329b}{load\+Settings} ()
+\begin{DoxyCompactList}\small\item\em load\+Settings Fills a data structure using the saved settings. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_series_info_a2227e5c01d043f356219e83cbe0384c0}\label{class_series_info_a2227e5c01d043f356219e83cbe0384c0}} 
+void \hyperlink{class_series_info_a2227e5c01d043f356219e83cbe0384c0}{save\+Settings} ()
+\begin{DoxyCompactList}\small\item\em save\+Settings Saves the contents of info to persistent storage. \end{DoxyCompactList}\item 
+bool \hyperlink{class_series_info_a3765099ab2658fa04ea0863f0b1e4b2b}{is\+Conistent} ()
+\begin{DoxyCompactList}\small\item\em Check for internal completeness and conistency. \end{DoxyCompactList}\item 
+itk\+::\+Meta\+Data\+Dictionary \hyperlink{class_series_info_a3855143383f2a9c6c66a05946e51d1f6}{meta\+Data\+Dictionary} () const
+\begin{DoxyCompactList}\small\item\em Get the parameters as a D\+I\+C\+OM dictionary. \end{DoxyCompactList}\item 
+Q\+String \hyperlink{class_series_info_ae0d61a82f9fe9caed2832478c2a2ed35}{image\+Position\+Patient\+String} () const
+\begin{DoxyCompactList}\small\item\em image\+Position\+Patient\+String \end{DoxyCompactList}\item 
+Q\+String \hyperlink{class_series_info_ae1484c1360ac3b7590eb938d8d5489ce}{image\+Position\+Patient\+String} (int slice\+Idx) const
+\begin{DoxyCompactList}\small\item\em image\+Position\+Patient\+String \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \hyperlink{class_series_info}{Series\+Info} $\ast$ \hyperlink{class_series_info_a1563e01e8605ce20c0f81976d7e729b4}{get\+Instance} ()
+\begin{DoxyCompactList}\small\item\em Get the global instance of this class. \end{DoxyCompactList}\item 
+static \hyperlink{class_series_info}{Series\+Info} $\ast$ \hyperlink{class_series_info_a8895ba10eb144998e6d15d57524f8ec1}{get\+Temp\+Instance} ()
+\begin{DoxyCompactList}\small\item\em Get a tempory instance of this class. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+The \hyperlink{class_series_info}{Series\+Info} class This class contains all of the D\+I\+C\+OM and other information needed to do the conversions. 
+
+It is set up as a singleton class because only one should ever be created and it allows the instance to be accessed globally. 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_series_info_a1563e01e8605ce20c0f81976d7e729b4}\label{class_series_info_a1563e01e8605ce20c0f81976d7e729b4}} 
+\index{Series\+Info@{Series\+Info}!get\+Instance@{get\+Instance}}
+\index{get\+Instance@{get\+Instance}!Series\+Info@{Series\+Info}}
+\subsubsection{\texorpdfstring{get\+Instance()}{getInstance()}}
+{\footnotesize\ttfamily static \hyperlink{class_series_info}{Series\+Info}$\ast$ Series\+Info\+::get\+Instance (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Get the global instance of this class. 
+
+\begin{DoxyReturn}{Returns}
+Pointer to single instance of this class. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_series_info_a8895ba10eb144998e6d15d57524f8ec1}\label{class_series_info_a8895ba10eb144998e6d15d57524f8ec1}} 
+\index{Series\+Info@{Series\+Info}!get\+Temp\+Instance@{get\+Temp\+Instance}}
+\index{get\+Temp\+Instance@{get\+Temp\+Instance}!Series\+Info@{Series\+Info}}
+\subsubsection{\texorpdfstring{get\+Temp\+Instance()}{getTempInstance()}}
+{\footnotesize\ttfamily static \hyperlink{class_series_info}{Series\+Info}$\ast$ Series\+Info\+::get\+Temp\+Instance (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Get a tempory instance of this class. 
+
+The new instance is a copy of the global instance. \begin{DoxyReturn}{Returns}
+Pointer to a temporary instance of this class. It must be {\ttfamily delete}d when no longer needed. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_series_info_ae0d61a82f9fe9caed2832478c2a2ed35}\label{class_series_info_ae0d61a82f9fe9caed2832478c2a2ed35}} 
+\index{Series\+Info@{Series\+Info}!image\+Position\+Patient\+String@{image\+Position\+Patient\+String}}
+\index{image\+Position\+Patient\+String@{image\+Position\+Patient\+String}!Series\+Info@{Series\+Info}}
+\subsubsection{\texorpdfstring{image\+Position\+Patient\+String()}{imagePositionPatientString()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Q\+String Series\+Info\+::image\+Position\+Patient\+String (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+image\+Position\+Patient\+String 
+
+\begin{DoxyReturn}{Returns}
+The Image\+Position\+Patient as a D\+I\+C\+OM compatible string. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_series_info_ae1484c1360ac3b7590eb938d8d5489ce}\label{class_series_info_ae1484c1360ac3b7590eb938d8d5489ce}} 
+\index{Series\+Info@{Series\+Info}!image\+Position\+Patient\+String@{image\+Position\+Patient\+String}}
+\index{image\+Position\+Patient\+String@{image\+Position\+Patient\+String}!Series\+Info@{Series\+Info}}
+\subsubsection{\texorpdfstring{image\+Position\+Patient\+String()}{imagePositionPatientString()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Q\+String Series\+Info\+::image\+Position\+Patient\+String (\begin{DoxyParamCaption}\item[{int}]{slice\+Idx }\end{DoxyParamCaption}) const}
+
+
+
+image\+Position\+Patient\+String 
+
+
+\begin{DoxyParams}{Parameters}
+{\em slice\+Idx} & The slice whose position we want. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The Image\+Position\+Patient for this slice as a D\+I\+C\+OM compatible string. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_series_info_ab30b8c01a3413b913f00203b2ef5a117}\label{class_series_info_ab30b8c01a3413b913f00203b2ef5a117}} 
+\index{Series\+Info@{Series\+Info}!input\+Dir@{input\+Dir}}
+\index{input\+Dir@{input\+Dir}!Series\+Info@{Series\+Info}}
+\subsubsection{\texorpdfstring{input\+Dir()}{inputDir()}}
+{\footnotesize\ttfamily Q\+Dir Series\+Info\+::input\+Dir (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+input\+Dir Get the directory containing the files to be converted. 
+
+\begin{DoxyReturn}{Returns}
+The current input directory. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_series_info_a550fbfcf3061fdd50850baa788bf376d}\label{class_series_info_a550fbfcf3061fdd50850baa788bf376d}} 
+\index{Series\+Info@{Series\+Info}!input\+Dir\+Str@{input\+Dir\+Str}}
+\index{input\+Dir\+Str@{input\+Dir\+Str}!Series\+Info@{Series\+Info}}
+\subsubsection{\texorpdfstring{input\+Dir\+Str()}{inputDirStr()}}
+{\footnotesize\ttfamily Q\+String Series\+Info\+::input\+Dir\+Str (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+input\+Dir\+Str 
+
+\begin{DoxyReturn}{Returns}
+The input directory as an absolute path string. 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{class_series_info_ab30b8c01a3413b913f00203b2ef5a117}{input\+Dir()} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{class_series_info_a3765099ab2658fa04ea0863f0b1e4b2b}\label{class_series_info_a3765099ab2658fa04ea0863f0b1e4b2b}} 
+\index{Series\+Info@{Series\+Info}!is\+Conistent@{is\+Conistent}}
+\index{is\+Conistent@{is\+Conistent}!Series\+Info@{Series\+Info}}
+\subsubsection{\texorpdfstring{is\+Conistent()}{isConistent()}}
+{\footnotesize\ttfamily bool Series\+Info\+::is\+Conistent (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Check for internal completeness and conistency. 
+
+Used for debugging. return Y\+ES if conistent, NO otherwise. \mbox{\Hypertarget{class_series_info_a3855143383f2a9c6c66a05946e51d1f6}\label{class_series_info_a3855143383f2a9c6c66a05946e51d1f6}} 
+\index{Series\+Info@{Series\+Info}!meta\+Data\+Dictionary@{meta\+Data\+Dictionary}}
+\index{meta\+Data\+Dictionary@{meta\+Data\+Dictionary}!Series\+Info@{Series\+Info}}
+\subsubsection{\texorpdfstring{meta\+Data\+Dictionary()}{metaDataDictionary()}}
+{\footnotesize\ttfamily itk\+::\+Meta\+Data\+Dictionary Series\+Info\+::meta\+Data\+Dictionary (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Get the parameters as a D\+I\+C\+OM dictionary. 
+
+\begin{DoxyReturn}{Returns}
+The dictionary. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_series_info_af94b9048bc3b60b5d151f227299b394b}\label{class_series_info_af94b9048bc3b60b5d151f227299b394b}} 
+\index{Series\+Info@{Series\+Info}!output\+Dir@{output\+Dir}}
+\index{output\+Dir@{output\+Dir}!Series\+Info@{Series\+Info}}
+\subsubsection{\texorpdfstring{output\+Dir()}{outputDir()}}
+{\footnotesize\ttfamily Q\+Dir Series\+Info\+::output\+Dir (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+output\+Dir This is a base subdirectory for the output of this program. 
+
+\begin{DoxySeeAlso}{See also}
+\hyperlink{class_series_info_a7088530574522d3d1123806c766402f2}{output\+Path()}. 
+\end{DoxySeeAlso}
+\begin{DoxyReturn}{Returns}
+The current output directory. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_series_info_abc897c5c859293338e45d193ac62c674}\label{class_series_info_abc897c5c859293338e45d193ac62c674}} 
+\index{Series\+Info@{Series\+Info}!output\+Dir\+Str@{output\+Dir\+Str}}
+\index{output\+Dir\+Str@{output\+Dir\+Str}!Series\+Info@{Series\+Info}}
+\subsubsection{\texorpdfstring{output\+Dir\+Str()}{outputDirStr()}}
+{\footnotesize\ttfamily Q\+String Series\+Info\+::output\+Dir\+Str (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+output\+Dir\+Str 
+
+\begin{DoxyReturn}{Returns}
+The output directory as an absolute path string. 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{class_series_info_af94b9048bc3b60b5d151f227299b394b}{output\+Dir()} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{class_series_info_a7088530574522d3d1123806c766402f2}\label{class_series_info_a7088530574522d3d1123806c766402f2}} 
+\index{Series\+Info@{Series\+Info}!output\+Path@{output\+Path}}
+\index{output\+Path@{output\+Path}!Series\+Info@{Series\+Info}}
+\subsubsection{\texorpdfstring{output\+Path()}{outputPath()}}
+{\footnotesize\ttfamily Q\+String Series\+Info\+::output\+Path (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+output\+Path The full output path is a chain of subdirectories of based upon \hyperlink{class_series_info_abc897c5c859293338e45d193ac62c674}{output\+Dir\+Str()}, patient\textquotesingle{}s name, study description, study ID, series description and series number. 
+
+\begin{DoxyReturn}{Returns}
+The full absolute output path directory as a string. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_series_info_a21fe1bd18d2f9e2b1f7ceb22e7ad98a3}\label{class_series_info_a21fe1bd18d2f9e2b1f7ceb22e7ad98a3}} 
+\index{Series\+Info@{Series\+Info}!overwrite\+Files@{overwrite\+Files}}
+\index{overwrite\+Files@{overwrite\+Files}!Series\+Info@{Series\+Info}}
+\subsubsection{\texorpdfstring{overwrite\+Files()}{overwriteFiles()}}
+{\footnotesize\ttfamily bool Series\+Info\+::overwrite\+Files (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+overwrite\+Files Get flag which indicates whether generated files will overwrite existing files. 
+
+\begin{DoxyReturn}{Returns}
+true if generated files will overwrite existing files, false otherwise. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_series_info_aa3cd8fea1ca4d619817e07be017fb7d6}\label{class_series_info_aa3cd8fea1ca4d619817e07be017fb7d6}} 
+\index{Series\+Info@{Series\+Info}!series\+Time\+Increment@{series\+Time\+Increment}}
+\index{series\+Time\+Increment@{series\+Time\+Increment}!Series\+Info@{Series\+Info}}
+\subsubsection{\texorpdfstring{series\+Time\+Increment()}{seriesTimeIncrement()}}
+{\footnotesize\ttfamily double Series\+Info\+::series\+Time\+Increment (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+series\+Time\+Increment 
+
+\begin{DoxyReturn}{Returns}
+The time increment in ms. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_series_info_a19ce250d3f423a513a6492b9bd5aa908}\label{class_series_info_a19ce250d3f423a513a6492b9bd5aa908}} 
+\index{Series\+Info@{Series\+Info}!set\+Input\+Dir@{set\+Input\+Dir}}
+\index{set\+Input\+Dir@{set\+Input\+Dir}!Series\+Info@{Series\+Info}}
+\subsubsection{\texorpdfstring{set\+Input\+Dir()}{setInputDir()}}
+{\footnotesize\ttfamily void Series\+Info\+::set\+Input\+Dir (\begin{DoxyParamCaption}\item[{const Q\+Dir \&}]{input\+Dir }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+set\+Input\+Dir Set the input directory path 
+
+
+\begin{DoxyParams}{Parameters}
+{\em input\+Dir} & The directory containing the files to be converted. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_series_info_a09ff36a5e9ad4ec4cd2030a8e5abefa2}\label{class_series_info_a09ff36a5e9ad4ec4cd2030a8e5abefa2}} 
+\index{Series\+Info@{Series\+Info}!set\+Overwrite\+Files@{set\+Overwrite\+Files}}
+\index{set\+Overwrite\+Files@{set\+Overwrite\+Files}!Series\+Info@{Series\+Info}}
+\subsubsection{\texorpdfstring{set\+Overwrite\+Files()}{setOverwriteFiles()}}
+{\footnotesize\ttfamily void Series\+Info\+::set\+Overwrite\+Files (\begin{DoxyParamCaption}\item[{bool}]{overwrite\+Files }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+set\+Overwrite\+Files Set flag which indicates whether generated files will overwrite existing files. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em overwrite\+Files} & Set flag to this value. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_series_info_aacffddaa0cdb2dd931b89e57d429912e}\label{class_series_info_aacffddaa0cdb2dd931b89e57d429912e}} 
+\index{Series\+Info@{Series\+Info}!set\+Series\+Time\+Increment@{set\+Series\+Time\+Increment}}
+\index{set\+Series\+Time\+Increment@{set\+Series\+Time\+Increment}!Series\+Info@{Series\+Info}}
+\subsubsection{\texorpdfstring{set\+Series\+Time\+Increment()}{setSeriesTimeIncrement()}}
+{\footnotesize\ttfamily void Series\+Info\+::set\+Series\+Time\+Increment (\begin{DoxyParamCaption}\item[{double}]{time\+Increment }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+set\+Series\+Time\+Increment 
+
+
+\begin{DoxyParams}{Parameters}
+{\em time\+Increment} & The time increment in seconds. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+seriesinfo.\+h\item 
+seriesinfo.\+cpp\end{DoxyCompactItemize}

@@ -1,0 +1,673 @@
+\hypertarget{class_dicom_dictionary_interface}{}\section{Dicom\+Dictionary\+Interface Class Reference}
+\label{class_dicom_dictionary_interface}\index{Dicom\+Dictionary\+Interface@{Dicom\+Dictionary\+Interface}}
+
+
+The \hyperlink{class_dicom_dictionary_interface}{Dicom\+Dictionary\+Interface} class This class provides a convenient to get and set data in an instance of itk\+::\+Meta\+Data\+Dictionary\+Array.  
+
+
+
+
+{\ttfamily \#include $<$dicomdictionaryinterface.\+h$>$}
+
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_dicom_dictionary_interface_a9fa034992ec9eadd94f1258c2b4458e4}\label{class_dicom_dictionary_interface_a9fa034992ec9eadd94f1258c2b4458e4}} 
+typedef std\+::vector$<$ itk\+::\+Meta\+Data\+Dictionary $\ast$ $>$ {\bfseries Dictionary\+Array\+Type}
+\item 
+typedef Dictionary\+Array\+Type\+::size\+\_\+type \hyperlink{class_dicom_dictionary_interface_a4fde43e0647ab57f29eb2c59c3d051ca}{Size\+Type}
+\begin{DoxyCompactList}\small\item\em This typedef is created merely to prevent compiler warnings. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_dicom_dictionary_interface_a8c97276448308399415acccb9608af44}{Dicom\+Dictionary\+Interface} (Dictionary\+Array\+Type dictionary\+Array)
+\begin{DoxyCompactList}\small\item\em Constructor with dictionary array. \end{DoxyCompactList}\item 
+Q\+String \hyperlink{class_dicom_dictionary_interface_a1e774258d452b2054b90db885eb7915e}{patients\+Name} ()
+\begin{DoxyCompactList}\small\item\em Get the value of Patient\textquotesingle{}s Name, \char`\"{}0010$\vert$0010\char`\"{}. \end{DoxyCompactList}\item 
+bool \hyperlink{class_dicom_dictionary_interface_a7f951011d920b735e5945b4641790379}{set\+Patients\+Name} (Q\+String \hyperlink{class_dicom_dictionary_interface_a1e774258d452b2054b90db885eb7915e}{patients\+Name})
+\begin{DoxyCompactList}\small\item\em Set the value of Patient\textquotesingle{}s Name, \char`\"{}0010$\vert$0010\char`\"{}. \end{DoxyCompactList}\item 
+Q\+String \hyperlink{class_dicom_dictionary_interface_a48dbeb476ece87a7d039bb593f907cd6}{patient\+ID} ()
+\begin{DoxyCompactList}\small\item\em Get the value of Patient ID, \char`\"{}0010$\vert$0020\char`\"{}. \end{DoxyCompactList}\item 
+bool \hyperlink{class_dicom_dictionary_interface_aaaf4f3a64da678b7121cea7e1a061eea}{set\+Patient\+ID} (Q\+String \hyperlink{class_dicom_dictionary_interface_a48dbeb476ece87a7d039bb593f907cd6}{patient\+ID})
+\begin{DoxyCompactList}\small\item\em Set the value of Patient ID, \char`\"{}0010$\vert$0020\char`\"{}. \end{DoxyCompactList}\item 
+Q\+String \hyperlink{class_dicom_dictionary_interface_aad0d067a3af09163b58aadde3feb792f}{patients\+Birth\+Date} ()
+\begin{DoxyCompactList}\small\item\em Get the value of Patient\textquotesingle{}s Birth Date, \char`\"{}0010$\vert$0030\char`\"{}. \end{DoxyCompactList}\item 
+bool \hyperlink{class_dicom_dictionary_interface_ab119dcc2983350c039c242d5797ac841}{set\+Patients\+Birth\+Date} (Q\+String \hyperlink{class_dicom_dictionary_interface_aad0d067a3af09163b58aadde3feb792f}{patients\+Birth\+Date})
+\begin{DoxyCompactList}\small\item\em Set the value of Patient\textquotesingle{}s Birth Date, \char`\"{}0010$\vert$0030\char`\"{}. \end{DoxyCompactList}\item 
+Q\+String \hyperlink{class_dicom_dictionary_interface_a73afb9037b49ac5e3c6f7e2eebd7d7d9}{patients\+Sex} ()
+\begin{DoxyCompactList}\small\item\em Get the value of Patient\textquotesingle{}s Sex, \char`\"{}0010$\vert$0040\char`\"{}. \end{DoxyCompactList}\item 
+bool \hyperlink{class_dicom_dictionary_interface_a3817ad4c976c14cc74d7e75e86dc0979}{set\+Patients\+Sex} (Q\+String \hyperlink{class_dicom_dictionary_interface_a73afb9037b49ac5e3c6f7e2eebd7d7d9}{patients\+Sex})
+\begin{DoxyCompactList}\small\item\em Set the value of Patient\textquotesingle{}s Sex, \char`\"{}0010$\vert$0040\char`\"{}. \end{DoxyCompactList}\item 
+Q\+String \hyperlink{class_dicom_dictionary_interface_a3adae61e4fd6287486b0d30f97e2baa3}{study\+Description} ()
+\begin{DoxyCompactList}\small\item\em Get the value of Study Description, \char`\"{}0008$\vert$1030\char`\"{}. \end{DoxyCompactList}\item 
+bool \hyperlink{class_dicom_dictionary_interface_a9e9f77bd949b1e3b6b31899fd8ad68ec}{set\+Study\+Description} (Q\+String \hyperlink{class_dicom_dictionary_interface_a3adae61e4fd6287486b0d30f97e2baa3}{study\+Description})
+\begin{DoxyCompactList}\small\item\em Set the value of Study Description, \char`\"{}0008$\vert$1030\char`\"{}. \end{DoxyCompactList}\item 
+Q\+String \hyperlink{class_dicom_dictionary_interface_a39bf8ab26ca9b98b5eb5e844b33453f2}{study\+ID} ()
+\begin{DoxyCompactList}\small\item\em Get the value of Study ID, \char`\"{}0020$\vert$0010\char`\"{}. \end{DoxyCompactList}\item 
+bool \hyperlink{class_dicom_dictionary_interface_a12f56660f15526764fd5d1d9e010c453}{set\+Study\+ID} (Q\+String \hyperlink{class_dicom_dictionary_interface_a39bf8ab26ca9b98b5eb5e844b33453f2}{study\+ID})
+\begin{DoxyCompactList}\small\item\em Set the value of Study ID, \char`\"{}0020$\vert$0010\char`\"{}. \end{DoxyCompactList}\item 
+Q\+String \hyperlink{class_dicom_dictionary_interface_aff41efeaedec8cf63e1ea211b4a7cbcd}{modality} ()
+\begin{DoxyCompactList}\small\item\em Get the value of Modality, \char`\"{}0008$\vert$0060\char`\"{}. \end{DoxyCompactList}\item 
+bool \hyperlink{class_dicom_dictionary_interface_a6c30ad45495e7739ceaabf866f6147e1}{set\+Modality} (Q\+String \hyperlink{class_dicom_dictionary_interface_aff41efeaedec8cf63e1ea211b4a7cbcd}{modality})
+\begin{DoxyCompactList}\small\item\em Set the value of Modality, \char`\"{}0008$\vert$0060\char`\"{}. \end{DoxyCompactList}\item 
+Q\+String \hyperlink{class_dicom_dictionary_interface_ab52794617227e2b3722dbfea66a00306}{study\+Date} ()
+\begin{DoxyCompactList}\small\item\em Get the value of Study Date, \char`\"{}0008$\vert$0020\char`\"{}. \end{DoxyCompactList}\item 
+bool \hyperlink{class_dicom_dictionary_interface_ac1e6c749f2e192704cf0c9fe09e898ca}{set\+Study\+Date} (Q\+String \hyperlink{class_dicom_dictionary_interface_ab52794617227e2b3722dbfea66a00306}{study\+Date})
+\begin{DoxyCompactList}\small\item\em Set the value of Study Date, \char`\"{}0008$\vert$0020\char`\"{}. \end{DoxyCompactList}\item 
+Q\+String \hyperlink{class_dicom_dictionary_interface_a0b8855598a148d2a15828808dd3f62f3}{study\+Time} ()
+\begin{DoxyCompactList}\small\item\em Get the value of Study Time, \char`\"{}0008$\vert$0030\char`\"{}. \end{DoxyCompactList}\item 
+bool \hyperlink{class_dicom_dictionary_interface_aa89d9c7cc352b77e2c79330935960954}{set\+Study\+Time} (Q\+String \hyperlink{class_dicom_dictionary_interface_a0b8855598a148d2a15828808dd3f62f3}{study\+Time})
+\begin{DoxyCompactList}\small\item\em Set the value of Study Time, \char`\"{}0008$\vert$0030\char`\"{}. \end{DoxyCompactList}\item 
+Q\+String \hyperlink{class_dicom_dictionary_interface_a3aa2b935c914174a816741e7b84107d3}{study\+Instance\+U\+ID} ()
+\begin{DoxyCompactList}\small\item\em Get the value of Study Instance U\+ID, \char`\"{}0020$\vert$000\+D\char`\"{}. \end{DoxyCompactList}\item 
+bool \hyperlink{class_dicom_dictionary_interface_a821babbdf04d1247086dab20c31ebccb}{set\+Study\+Instance\+U\+ID} (Q\+String \hyperlink{class_dicom_dictionary_interface_a3aa2b935c914174a816741e7b84107d3}{study\+Instance\+U\+ID})
+\begin{DoxyCompactList}\small\item\em Set the value of Study Instance U\+ID, \char`\"{}0020$\vert$000\+D\char`\"{}. \end{DoxyCompactList}\item 
+Q\+String \hyperlink{class_dicom_dictionary_interface_a0262904d88f9e9a8dbd30bc112ec4b43}{series\+Number} ()
+\begin{DoxyCompactList}\small\item\em Get the value of Series\+Number, \char`\"{}0020$\vert$0011\char`\"{}. \end{DoxyCompactList}\item 
+bool \hyperlink{class_dicom_dictionary_interface_ad862cf021e628f7534c8bdddf6233e6c}{set\+Series\+Number} (Q\+String \hyperlink{class_dicom_dictionary_interface_a0262904d88f9e9a8dbd30bc112ec4b43}{series\+Number})
+\begin{DoxyCompactList}\small\item\em Set the value of Series Number, \char`\"{}0020$\vert$0011\char`\"{}. \end{DoxyCompactList}\item 
+Q\+String \hyperlink{class_dicom_dictionary_interface_ab083b929999bd78e8428b94dbbe8346a}{series\+Description} ()
+\begin{DoxyCompactList}\small\item\em Get the value of Series Description, \char`\"{}0008$\vert$103\+E\char`\"{}. \end{DoxyCompactList}\item 
+bool \hyperlink{class_dicom_dictionary_interface_a680b7c088d0cb60ca55fd19f5967f7e7}{set\+Series\+Description} (Q\+String \hyperlink{class_dicom_dictionary_interface_ab083b929999bd78e8428b94dbbe8346a}{series\+Description})
+\begin{DoxyCompactList}\small\item\em Set the value of Series Description, \char`\"{}0008$\vert$103\+E\char`\"{}. \end{DoxyCompactList}\item 
+Q\+String \hyperlink{class_dicom_dictionary_interface_a8defce7dd2a8f229371ab0f2a8af39aa}{patient\+Position} ()
+\begin{DoxyCompactList}\small\item\em Get the value of Patient Position, \char`\"{}0018$\vert$5100\char`\"{}. \end{DoxyCompactList}\item 
+bool \hyperlink{class_dicom_dictionary_interface_af19c49b1768625cfb987032e336a0bfd}{set\+Patient\+Position} (Q\+String \hyperlink{class_dicom_dictionary_interface_a8defce7dd2a8f229371ab0f2a8af39aa}{patient\+Position})
+\begin{DoxyCompactList}\small\item\em Set the value of Patient Position, \char`\"{}0018$\vert$5100\char`\"{}. \end{DoxyCompactList}\item 
+Q\+String \hyperlink{class_dicom_dictionary_interface_a6e1bd34428c4b354f997a64f9e854e44}{slice\+Thickness} ()
+\begin{DoxyCompactList}\small\item\em Get the value of Slice Thickness, \char`\"{}0018$\vert$0050\char`\"{}. \end{DoxyCompactList}\item 
+bool \hyperlink{class_dicom_dictionary_interface_a8a12e59b9a2fd11c4113b655dc51ea6c}{set\+Slice\+Thickness} (Q\+String \hyperlink{class_dicom_dictionary_interface_a6e1bd34428c4b354f997a64f9e854e44}{slice\+Thickness})
+\begin{DoxyCompactList}\small\item\em Set the value of Slice Thickness, \char`\"{}0018$\vert$0050\char`\"{}. \end{DoxyCompactList}\item 
+Q\+String \hyperlink{class_dicom_dictionary_interface_a08f8065f6b41b30e660fd1ff23e4fe0f}{spacing\+Between\+Slices} ()
+\begin{DoxyCompactList}\small\item\em Get the value of Spacing Between Slices, \char`\"{}0018$\vert$0088\char`\"{}. \end{DoxyCompactList}\item 
+bool \hyperlink{class_dicom_dictionary_interface_aba913a5b641397061a8166a2a242bf29}{set\+Spacing\+Between\+Slices} (Q\+String \hyperlink{class_dicom_dictionary_interface_a08f8065f6b41b30e660fd1ff23e4fe0f}{spacing\+Between\+Slices})
+\begin{DoxyCompactList}\small\item\em Set the value of Spacing Between Slices, \char`\"{}0018$\vert$0088\char`\"{}. \end{DoxyCompactList}\item 
+Q\+String \hyperlink{class_dicom_dictionary_interface_a0f0cd4f426726af6a6e0ba9d4a4412d0}{image\+Position\+Patient} (\hyperlink{class_dicom_dictionary_interface_a4fde43e0647ab57f29eb2c59c3d051ca}{Dicom\+Dictionary\+Interface\+::\+Size\+Type} slice\+Index)
+\begin{DoxyCompactList}\small\item\em Get the value of Image Position (Patient), \char`\"{}0020$\vert$0032\char`\"{}. \end{DoxyCompactList}\item 
+bool \hyperlink{class_dicom_dictionary_interface_a451997eeb35ef9011b23d8800fe9ce3e}{set\+Image\+Position\+Patient} (Q\+String \hyperlink{class_dicom_dictionary_interface_a0f0cd4f426726af6a6e0ba9d4a4412d0}{image\+Position\+Patient}, \hyperlink{class_dicom_dictionary_interface_a4fde43e0647ab57f29eb2c59c3d051ca}{Dicom\+Dictionary\+Interface\+::\+Size\+Type} slice\+Index)
+\begin{DoxyCompactList}\small\item\em Set the value of Image Position (Patient), \char`\"{}0020$\vert$0032\char`\"{}. \end{DoxyCompactList}\item 
+Q\+String \hyperlink{class_dicom_dictionary_interface_a6dc83ae90c17a9fcf28c9d18f1f0aec8}{image\+Orientation\+Patient} ()
+\begin{DoxyCompactList}\small\item\em Get the value of Image Orientation (Patient), \char`\"{}0020$\vert$0037\char`\"{}. \end{DoxyCompactList}\item 
+bool \hyperlink{class_dicom_dictionary_interface_aefac106ef1ed129d6678df977eef2bbf}{set\+Image\+Orientation\+Patient} (Q\+String \hyperlink{class_dicom_dictionary_interface_a6dc83ae90c17a9fcf28c9d18f1f0aec8}{image\+Orientation\+Patient})
+\begin{DoxyCompactList}\small\item\em Set the value of Image Orientation (Patient), \char`\"{}0020$\vert$0037\char`\"{}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+The \hyperlink{class_dicom_dictionary_interface}{Dicom\+Dictionary\+Interface} class This class provides a convenient to get and set data in an instance of itk\+::\+Meta\+Data\+Dictionary\+Array. 
+
+The method names are taken from the D\+I\+C\+OM standard. \href{http://dicom.nema.org/medical/dicom/current/output/html/part06.html#table_6-1}{\tt http\+://dicom.\+nema.\+org/medical/dicom/current/output/html/part06.\+html\#table\+\_\+6-\/1} 
+
+\subsection{Member Typedef Documentation}
+\mbox{\Hypertarget{class_dicom_dictionary_interface_a4fde43e0647ab57f29eb2c59c3d051ca}\label{class_dicom_dictionary_interface_a4fde43e0647ab57f29eb2c59c3d051ca}} 
+\index{Dicom\+Dictionary\+Interface@{Dicom\+Dictionary\+Interface}!Size\+Type@{Size\+Type}}
+\index{Size\+Type@{Size\+Type}!Dicom\+Dictionary\+Interface@{Dicom\+Dictionary\+Interface}}
+\subsubsection{\texorpdfstring{Size\+Type}{SizeType}}
+{\footnotesize\ttfamily typedef Dictionary\+Array\+Type\+::size\+\_\+type \hyperlink{class_dicom_dictionary_interface_a4fde43e0647ab57f29eb2c59c3d051ca}{Dicom\+Dictionary\+Interface\+::\+Size\+Type}}
+
+
+
+This typedef is created merely to prevent compiler warnings. 
+
+As of writing it describes an unsigned long int. 
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_dicom_dictionary_interface_a8c97276448308399415acccb9608af44}\label{class_dicom_dictionary_interface_a8c97276448308399415acccb9608af44}} 
+\index{Dicom\+Dictionary\+Interface@{Dicom\+Dictionary\+Interface}!Dicom\+Dictionary\+Interface@{Dicom\+Dictionary\+Interface}}
+\index{Dicom\+Dictionary\+Interface@{Dicom\+Dictionary\+Interface}!Dicom\+Dictionary\+Interface@{Dicom\+Dictionary\+Interface}}
+\subsubsection{\texorpdfstring{Dicom\+Dictionary\+Interface()}{DicomDictionaryInterface()}}
+{\footnotesize\ttfamily Dicom\+Dictionary\+Interface\+::\+Dicom\+Dictionary\+Interface (\begin{DoxyParamCaption}\item[{Dicom\+Dictionary\+Interface\+::\+Dictionary\+Array\+Type}]{dictionary\+Array }\end{DoxyParamCaption})}
+
+
+
+Constructor with dictionary array. 
+
+Subsequent operations are performed on the dictionaries pointed to by the array of pointers. 
+\begin{DoxyParams}{Parameters}
+{\em dictionary\+Array} & The array of pointers to the slice dictionaries. \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_dicom_dictionary_interface_a6dc83ae90c17a9fcf28c9d18f1f0aec8}\label{class_dicom_dictionary_interface_a6dc83ae90c17a9fcf28c9d18f1f0aec8}} 
+\index{Dicom\+Dictionary\+Interface@{Dicom\+Dictionary\+Interface}!image\+Orientation\+Patient@{image\+Orientation\+Patient}}
+\index{image\+Orientation\+Patient@{image\+Orientation\+Patient}!Dicom\+Dictionary\+Interface@{Dicom\+Dictionary\+Interface}}
+\subsubsection{\texorpdfstring{image\+Orientation\+Patient()}{imageOrientationPatient()}}
+{\footnotesize\ttfamily Q\+String Dicom\+Dictionary\+Interface\+::image\+Orientation\+Patient (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Get the value of Image Orientation (Patient), \char`\"{}0020$\vert$0037\char`\"{}. 
+
+\begin{DoxyReturn}{Returns}
+The direction cosines of the first row and the first column with respect to the patient. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_dicom_dictionary_interface_a0f0cd4f426726af6a6e0ba9d4a4412d0}\label{class_dicom_dictionary_interface_a0f0cd4f426726af6a6e0ba9d4a4412d0}} 
+\index{Dicom\+Dictionary\+Interface@{Dicom\+Dictionary\+Interface}!image\+Position\+Patient@{image\+Position\+Patient}}
+\index{image\+Position\+Patient@{image\+Position\+Patient}!Dicom\+Dictionary\+Interface@{Dicom\+Dictionary\+Interface}}
+\subsubsection{\texorpdfstring{image\+Position\+Patient()}{imagePositionPatient()}}
+{\footnotesize\ttfamily Q\+String Dicom\+Dictionary\+Interface\+::image\+Position\+Patient (\begin{DoxyParamCaption}\item[{\hyperlink{class_dicom_dictionary_interface_a4fde43e0647ab57f29eb2c59c3d051ca}{Dicom\+Dictionary\+Interface\+::\+Size\+Type}}]{slice\+Index }\end{DoxyParamCaption})}
+
+
+
+Get the value of Image Position (Patient), \char`\"{}0020$\vert$0032\char`\"{}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em slice\+Index} & The index of the slice whose position we want. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The x, y, and z coordinates of the upper left hand corner of the image, in mm, as a string. e.\+g. \char`\"{}0.\+0\textbackslash{}\textbackslash{}0.\+0\textbackslash{}\textbackslash{}0.\+0\char`\"{} 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_dicom_dictionary_interface_aff41efeaedec8cf63e1ea211b4a7cbcd}\label{class_dicom_dictionary_interface_aff41efeaedec8cf63e1ea211b4a7cbcd}} 
+\index{Dicom\+Dictionary\+Interface@{Dicom\+Dictionary\+Interface}!modality@{modality}}
+\index{modality@{modality}!Dicom\+Dictionary\+Interface@{Dicom\+Dictionary\+Interface}}
+\subsubsection{\texorpdfstring{modality()}{modality()}}
+{\footnotesize\ttfamily Q\+String Dicom\+Dictionary\+Interface\+::modality (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Get the value of Modality, \char`\"{}0008$\vert$0060\char`\"{}. 
+
+\begin{DoxyReturn}{Returns}
+The modality. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_dicom_dictionary_interface_a48dbeb476ece87a7d039bb593f907cd6}\label{class_dicom_dictionary_interface_a48dbeb476ece87a7d039bb593f907cd6}} 
+\index{Dicom\+Dictionary\+Interface@{Dicom\+Dictionary\+Interface}!patient\+ID@{patient\+ID}}
+\index{patient\+ID@{patient\+ID}!Dicom\+Dictionary\+Interface@{Dicom\+Dictionary\+Interface}}
+\subsubsection{\texorpdfstring{patient\+I\+D()}{patientID()}}
+{\footnotesize\ttfamily Q\+String Dicom\+Dictionary\+Interface\+::patient\+ID (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Get the value of Patient ID, \char`\"{}0010$\vert$0020\char`\"{}. 
+
+\begin{DoxyReturn}{Returns}
+The patient\textquotesingle{}s ID. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_dicom_dictionary_interface_a8defce7dd2a8f229371ab0f2a8af39aa}\label{class_dicom_dictionary_interface_a8defce7dd2a8f229371ab0f2a8af39aa}} 
+\index{Dicom\+Dictionary\+Interface@{Dicom\+Dictionary\+Interface}!patient\+Position@{patient\+Position}}
+\index{patient\+Position@{patient\+Position}!Dicom\+Dictionary\+Interface@{Dicom\+Dictionary\+Interface}}
+\subsubsection{\texorpdfstring{patient\+Position()}{patientPosition()}}
+{\footnotesize\ttfamily Q\+String Dicom\+Dictionary\+Interface\+::patient\+Position (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Get the value of Patient Position, \char`\"{}0018$\vert$5100\char`\"{}. 
+
+\begin{DoxyReturn}{Returns}
+The patient position as a short string such as \char`\"{}\+H\+F\+S\char`\"{} (head first supine). 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_dicom_dictionary_interface_aad0d067a3af09163b58aadde3feb792f}\label{class_dicom_dictionary_interface_aad0d067a3af09163b58aadde3feb792f}} 
+\index{Dicom\+Dictionary\+Interface@{Dicom\+Dictionary\+Interface}!patients\+Birth\+Date@{patients\+Birth\+Date}}
+\index{patients\+Birth\+Date@{patients\+Birth\+Date}!Dicom\+Dictionary\+Interface@{Dicom\+Dictionary\+Interface}}
+\subsubsection{\texorpdfstring{patients\+Birth\+Date()}{patientsBirthDate()}}
+{\footnotesize\ttfamily Q\+String Dicom\+Dictionary\+Interface\+::patients\+Birth\+Date (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Get the value of Patient\textquotesingle{}s Birth Date, \char`\"{}0010$\vert$0030\char`\"{}. 
+
+\begin{DoxyReturn}{Returns}
+The patient\textquotesingle{}s birth date. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_dicom_dictionary_interface_a1e774258d452b2054b90db885eb7915e}\label{class_dicom_dictionary_interface_a1e774258d452b2054b90db885eb7915e}} 
+\index{Dicom\+Dictionary\+Interface@{Dicom\+Dictionary\+Interface}!patients\+Name@{patients\+Name}}
+\index{patients\+Name@{patients\+Name}!Dicom\+Dictionary\+Interface@{Dicom\+Dictionary\+Interface}}
+\subsubsection{\texorpdfstring{patients\+Name()}{patientsName()}}
+{\footnotesize\ttfamily Q\+String Dicom\+Dictionary\+Interface\+::patients\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Get the value of Patient\textquotesingle{}s Name, \char`\"{}0010$\vert$0010\char`\"{}. 
+
+\begin{DoxyReturn}{Returns}
+The patient\textquotesingle{}s name 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_dicom_dictionary_interface_a73afb9037b49ac5e3c6f7e2eebd7d7d9}\label{class_dicom_dictionary_interface_a73afb9037b49ac5e3c6f7e2eebd7d7d9}} 
+\index{Dicom\+Dictionary\+Interface@{Dicom\+Dictionary\+Interface}!patients\+Sex@{patients\+Sex}}
+\index{patients\+Sex@{patients\+Sex}!Dicom\+Dictionary\+Interface@{Dicom\+Dictionary\+Interface}}
+\subsubsection{\texorpdfstring{patients\+Sex()}{patientsSex()}}
+{\footnotesize\ttfamily Q\+String Dicom\+Dictionary\+Interface\+::patients\+Sex (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Get the value of Patient\textquotesingle{}s Sex, \char`\"{}0010$\vert$0040\char`\"{}. 
+
+\begin{DoxyReturn}{Returns}
+The patient\textquotesingle{}s sex as a string. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_dicom_dictionary_interface_ab083b929999bd78e8428b94dbbe8346a}\label{class_dicom_dictionary_interface_ab083b929999bd78e8428b94dbbe8346a}} 
+\index{Dicom\+Dictionary\+Interface@{Dicom\+Dictionary\+Interface}!series\+Description@{series\+Description}}
+\index{series\+Description@{series\+Description}!Dicom\+Dictionary\+Interface@{Dicom\+Dictionary\+Interface}}
+\subsubsection{\texorpdfstring{series\+Description()}{seriesDescription()}}
+{\footnotesize\ttfamily Q\+String Dicom\+Dictionary\+Interface\+::series\+Description (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Get the value of Series Description, \char`\"{}0008$\vert$103\+E\char`\"{}. 
+
+\begin{DoxyReturn}{Returns}
+The series description. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_dicom_dictionary_interface_a0262904d88f9e9a8dbd30bc112ec4b43}\label{class_dicom_dictionary_interface_a0262904d88f9e9a8dbd30bc112ec4b43}} 
+\index{Dicom\+Dictionary\+Interface@{Dicom\+Dictionary\+Interface}!series\+Number@{series\+Number}}
+\index{series\+Number@{series\+Number}!Dicom\+Dictionary\+Interface@{Dicom\+Dictionary\+Interface}}
+\subsubsection{\texorpdfstring{series\+Number()}{seriesNumber()}}
+{\footnotesize\ttfamily Q\+String Dicom\+Dictionary\+Interface\+::series\+Number (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Get the value of Series\+Number, \char`\"{}0020$\vert$0011\char`\"{}. 
+
+\begin{DoxyReturn}{Returns}
+The series number. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_dicom_dictionary_interface_aefac106ef1ed129d6678df977eef2bbf}\label{class_dicom_dictionary_interface_aefac106ef1ed129d6678df977eef2bbf}} 
+\index{Dicom\+Dictionary\+Interface@{Dicom\+Dictionary\+Interface}!set\+Image\+Orientation\+Patient@{set\+Image\+Orientation\+Patient}}
+\index{set\+Image\+Orientation\+Patient@{set\+Image\+Orientation\+Patient}!Dicom\+Dictionary\+Interface@{Dicom\+Dictionary\+Interface}}
+\subsubsection{\texorpdfstring{set\+Image\+Orientation\+Patient()}{setImageOrientationPatient()}}
+{\footnotesize\ttfamily bool Dicom\+Dictionary\+Interface\+::set\+Image\+Orientation\+Patient (\begin{DoxyParamCaption}\item[{Q\+String}]{image\+Orientation\+Patient }\end{DoxyParamCaption})}
+
+
+
+Set the value of Image Orientation (Patient), \char`\"{}0020$\vert$0037\char`\"{}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em image\+Orientation\+Patient} & The direction cosines of the first row and the first column with respect to the patient. There are six values separated by back slashes, e.\+g. \char`\"{}1.\+0\textbackslash{}\textbackslash{}0.\+0\textbackslash{}\textbackslash{}0.\+0\textbackslash{}\textbackslash{}1.\+0\textbackslash{}\textbackslash{}1.\+0\textbackslash{}\textbackslash{}0.\+0\char`\"{}. Maximum 106 characters enforced by truncation. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if successful, false otherwide. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_dicom_dictionary_interface_a451997eeb35ef9011b23d8800fe9ce3e}\label{class_dicom_dictionary_interface_a451997eeb35ef9011b23d8800fe9ce3e}} 
+\index{Dicom\+Dictionary\+Interface@{Dicom\+Dictionary\+Interface}!set\+Image\+Position\+Patient@{set\+Image\+Position\+Patient}}
+\index{set\+Image\+Position\+Patient@{set\+Image\+Position\+Patient}!Dicom\+Dictionary\+Interface@{Dicom\+Dictionary\+Interface}}
+\subsubsection{\texorpdfstring{set\+Image\+Position\+Patient()}{setImagePositionPatient()}}
+{\footnotesize\ttfamily bool Dicom\+Dictionary\+Interface\+::set\+Image\+Position\+Patient (\begin{DoxyParamCaption}\item[{Q\+String}]{image\+Position\+Patient,  }\item[{\hyperlink{class_dicom_dictionary_interface_a4fde43e0647ab57f29eb2c59c3d051ca}{Dicom\+Dictionary\+Interface\+::\+Size\+Type}}]{slice\+Index }\end{DoxyParamCaption})}
+
+
+
+Set the value of Image Position (Patient), \char`\"{}0020$\vert$0032\char`\"{}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em image\+Position\+Patient} & The x, y, and z coordinates of the upper left hand corner of the image, in mm. e.\+g. \char`\"{}0.\+0\textbackslash{}\textbackslash{}0.\+0\textbackslash{}\textbackslash{}0.\+0\char`\"{}. Maximum length for 3 numbers and 4 \textquotesingle{}\textbackslash{}\textquotesingle{} is 16 $\ast$ 3 + 4 = 23 bytes. \\
+\hline
+{\em slice\+Index} & The index of the slice whose position we want to set. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if successful, false otherwide. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_dicom_dictionary_interface_a6c30ad45495e7739ceaabf866f6147e1}\label{class_dicom_dictionary_interface_a6c30ad45495e7739ceaabf866f6147e1}} 
+\index{Dicom\+Dictionary\+Interface@{Dicom\+Dictionary\+Interface}!set\+Modality@{set\+Modality}}
+\index{set\+Modality@{set\+Modality}!Dicom\+Dictionary\+Interface@{Dicom\+Dictionary\+Interface}}
+\subsubsection{\texorpdfstring{set\+Modality()}{setModality()}}
+{\footnotesize\ttfamily bool Dicom\+Dictionary\+Interface\+::set\+Modality (\begin{DoxyParamCaption}\item[{Q\+String}]{modality }\end{DoxyParamCaption})}
+
+
+
+Set the value of Modality, \char`\"{}0008$\vert$0060\char`\"{}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em modality} & The modality, maximum 16 characters enforced by truncation. Typically \char`\"{}\+M\+R\char`\"{}, \char`\"{}\+C\+T\char`\"{} etc. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if successful, false otherwide. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_dicom_dictionary_interface_aaaf4f3a64da678b7121cea7e1a061eea}\label{class_dicom_dictionary_interface_aaaf4f3a64da678b7121cea7e1a061eea}} 
+\index{Dicom\+Dictionary\+Interface@{Dicom\+Dictionary\+Interface}!set\+Patient\+ID@{set\+Patient\+ID}}
+\index{set\+Patient\+ID@{set\+Patient\+ID}!Dicom\+Dictionary\+Interface@{Dicom\+Dictionary\+Interface}}
+\subsubsection{\texorpdfstring{set\+Patient\+I\+D()}{setPatientID()}}
+{\footnotesize\ttfamily bool Dicom\+Dictionary\+Interface\+::set\+Patient\+ID (\begin{DoxyParamCaption}\item[{Q\+String}]{patient\+ID }\end{DoxyParamCaption})}
+
+
+
+Set the value of Patient ID, \char`\"{}0010$\vert$0020\char`\"{}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em patient\+ID} & The patient\textquotesingle{}s ID. The length limit is 64 characters enforced by truncation. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if successful, false otherwide. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_dicom_dictionary_interface_af19c49b1768625cfb987032e336a0bfd}\label{class_dicom_dictionary_interface_af19c49b1768625cfb987032e336a0bfd}} 
+\index{Dicom\+Dictionary\+Interface@{Dicom\+Dictionary\+Interface}!set\+Patient\+Position@{set\+Patient\+Position}}
+\index{set\+Patient\+Position@{set\+Patient\+Position}!Dicom\+Dictionary\+Interface@{Dicom\+Dictionary\+Interface}}
+\subsubsection{\texorpdfstring{set\+Patient\+Position()}{setPatientPosition()}}
+{\footnotesize\ttfamily bool Dicom\+Dictionary\+Interface\+::set\+Patient\+Position (\begin{DoxyParamCaption}\item[{Q\+String}]{patient\+Position }\end{DoxyParamCaption})}
+
+
+
+Set the value of Patient Position, \char`\"{}0018$\vert$5100\char`\"{}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em patient\+Position} & The patient position as a short string such as \char`\"{}\+H\+F\+S\char`\"{} (head first supine). Only \textquotesingle{}A\textquotesingle{}-\/\textquotesingle{}Z\textquotesingle{}, \textquotesingle{}0\textquotesingle{}-\/\textquotesingle{}9\textquotesingle{}, \textquotesingle{} \textquotesingle{} and \textquotesingle{}\+\_\+\textquotesingle{} allowed. Maximum 16 characters enforced by truncation. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if successful, false otherwide. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_dicom_dictionary_interface_ab119dcc2983350c039c242d5797ac841}\label{class_dicom_dictionary_interface_ab119dcc2983350c039c242d5797ac841}} 
+\index{Dicom\+Dictionary\+Interface@{Dicom\+Dictionary\+Interface}!set\+Patients\+Birth\+Date@{set\+Patients\+Birth\+Date}}
+\index{set\+Patients\+Birth\+Date@{set\+Patients\+Birth\+Date}!Dicom\+Dictionary\+Interface@{Dicom\+Dictionary\+Interface}}
+\subsubsection{\texorpdfstring{set\+Patients\+Birth\+Date()}{setPatientsBirthDate()}}
+{\footnotesize\ttfamily bool Dicom\+Dictionary\+Interface\+::set\+Patients\+Birth\+Date (\begin{DoxyParamCaption}\item[{Q\+String}]{patients\+Birth\+Date }\end{DoxyParamCaption})}
+
+
+
+Set the value of Patient\textquotesingle{}s Birth Date, \char`\"{}0010$\vert$0030\char`\"{}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em patients\+Birth\+Date} & The patient\textquotesingle{}s birth date in the format \char`\"{}\+Y\+Y\+Y\+Y\+M\+M\+D\+D\char`\"{}. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if successful, false otherwide. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_dicom_dictionary_interface_a7f951011d920b735e5945b4641790379}\label{class_dicom_dictionary_interface_a7f951011d920b735e5945b4641790379}} 
+\index{Dicom\+Dictionary\+Interface@{Dicom\+Dictionary\+Interface}!set\+Patients\+Name@{set\+Patients\+Name}}
+\index{set\+Patients\+Name@{set\+Patients\+Name}!Dicom\+Dictionary\+Interface@{Dicom\+Dictionary\+Interface}}
+\subsubsection{\texorpdfstring{set\+Patients\+Name()}{setPatientsName()}}
+{\footnotesize\ttfamily bool Dicom\+Dictionary\+Interface\+::set\+Patients\+Name (\begin{DoxyParamCaption}\item[{Q\+String}]{patients\+Name }\end{DoxyParamCaption})}
+
+
+
+Set the value of Patient\textquotesingle{}s Name, \char`\"{}0010$\vert$0010\char`\"{}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em patients\+Name} & The patient\textquotesingle{}s name. The length limit is 64 characters enforced by truncation. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if successful, false otherwide. 
+
+true if successful, false otherwide. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_dicom_dictionary_interface_a3817ad4c976c14cc74d7e75e86dc0979}\label{class_dicom_dictionary_interface_a3817ad4c976c14cc74d7e75e86dc0979}} 
+\index{Dicom\+Dictionary\+Interface@{Dicom\+Dictionary\+Interface}!set\+Patients\+Sex@{set\+Patients\+Sex}}
+\index{set\+Patients\+Sex@{set\+Patients\+Sex}!Dicom\+Dictionary\+Interface@{Dicom\+Dictionary\+Interface}}
+\subsubsection{\texorpdfstring{set\+Patients\+Sex()}{setPatientsSex()}}
+{\footnotesize\ttfamily bool Dicom\+Dictionary\+Interface\+::set\+Patients\+Sex (\begin{DoxyParamCaption}\item[{Q\+String}]{patients\+Sex }\end{DoxyParamCaption})}
+
+
+
+Set the value of Patient\textquotesingle{}s Sex, \char`\"{}0010$\vert$0040\char`\"{}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em patients\+Sex} & The patient\textquotesingle{}s sex, maximum 16 characters. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if successful, false otherwide. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_dicom_dictionary_interface_a680b7c088d0cb60ca55fd19f5967f7e7}\label{class_dicom_dictionary_interface_a680b7c088d0cb60ca55fd19f5967f7e7}} 
+\index{Dicom\+Dictionary\+Interface@{Dicom\+Dictionary\+Interface}!set\+Series\+Description@{set\+Series\+Description}}
+\index{set\+Series\+Description@{set\+Series\+Description}!Dicom\+Dictionary\+Interface@{Dicom\+Dictionary\+Interface}}
+\subsubsection{\texorpdfstring{set\+Series\+Description()}{setSeriesDescription()}}
+{\footnotesize\ttfamily bool Dicom\+Dictionary\+Interface\+::set\+Series\+Description (\begin{DoxyParamCaption}\item[{Q\+String}]{series\+Description }\end{DoxyParamCaption})}
+
+
+
+Set the value of Series Description, \char`\"{}0008$\vert$103\+E\char`\"{}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em series\+Description} & The study description, maximum 64 characters enforced by truncation. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if successful, false otherwide. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_dicom_dictionary_interface_ad862cf021e628f7534c8bdddf6233e6c}\label{class_dicom_dictionary_interface_ad862cf021e628f7534c8bdddf6233e6c}} 
+\index{Dicom\+Dictionary\+Interface@{Dicom\+Dictionary\+Interface}!set\+Series\+Number@{set\+Series\+Number}}
+\index{set\+Series\+Number@{set\+Series\+Number}!Dicom\+Dictionary\+Interface@{Dicom\+Dictionary\+Interface}}
+\subsubsection{\texorpdfstring{set\+Series\+Number()}{setSeriesNumber()}}
+{\footnotesize\ttfamily bool Dicom\+Dictionary\+Interface\+::set\+Series\+Number (\begin{DoxyParamCaption}\item[{Q\+String}]{series\+Number }\end{DoxyParamCaption})}
+
+
+
+Set the value of Series Number, \char`\"{}0020$\vert$0011\char`\"{}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em series\+Number} & The series number -\/ a 32 bit integer expressed as astring containing only \textquotesingle{}0\textquotesingle{}-\/\textquotesingle{}9\textquotesingle{}, \textquotesingle{}+\textquotesingle{} and \textquotesingle{}-\/\textquotesingle{}. Maximum 16 characters enforced by truncation. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if successful, false otherwide. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_dicom_dictionary_interface_a8a12e59b9a2fd11c4113b655dc51ea6c}\label{class_dicom_dictionary_interface_a8a12e59b9a2fd11c4113b655dc51ea6c}} 
+\index{Dicom\+Dictionary\+Interface@{Dicom\+Dictionary\+Interface}!set\+Slice\+Thickness@{set\+Slice\+Thickness}}
+\index{set\+Slice\+Thickness@{set\+Slice\+Thickness}!Dicom\+Dictionary\+Interface@{Dicom\+Dictionary\+Interface}}
+\subsubsection{\texorpdfstring{set\+Slice\+Thickness()}{setSliceThickness()}}
+{\footnotesize\ttfamily bool Dicom\+Dictionary\+Interface\+::set\+Slice\+Thickness (\begin{DoxyParamCaption}\item[{Q\+String}]{slice\+Thickness }\end{DoxyParamCaption})}
+
+
+
+Set the value of Slice Thickness, \char`\"{}0018$\vert$0050\char`\"{}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em slice\+Thickness} & The slice thickness in mm as a string. Maximum 16 characters enforced by truncation. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if successful, false otherwide. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_dicom_dictionary_interface_aba913a5b641397061a8166a2a242bf29}\label{class_dicom_dictionary_interface_aba913a5b641397061a8166a2a242bf29}} 
+\index{Dicom\+Dictionary\+Interface@{Dicom\+Dictionary\+Interface}!set\+Spacing\+Between\+Slices@{set\+Spacing\+Between\+Slices}}
+\index{set\+Spacing\+Between\+Slices@{set\+Spacing\+Between\+Slices}!Dicom\+Dictionary\+Interface@{Dicom\+Dictionary\+Interface}}
+\subsubsection{\texorpdfstring{set\+Spacing\+Between\+Slices()}{setSpacingBetweenSlices()}}
+{\footnotesize\ttfamily bool Dicom\+Dictionary\+Interface\+::set\+Spacing\+Between\+Slices (\begin{DoxyParamCaption}\item[{Q\+String}]{spacing\+Between\+Slices }\end{DoxyParamCaption})}
+
+
+
+Set the value of Spacing Between Slices, \char`\"{}0018$\vert$0088\char`\"{}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em spacing\+Between\+Slices} & The slice spacing in mm as a string. Maximum 16 characters enforced by truncation. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if successful, false otherwide. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_dicom_dictionary_interface_ac1e6c749f2e192704cf0c9fe09e898ca}\label{class_dicom_dictionary_interface_ac1e6c749f2e192704cf0c9fe09e898ca}} 
+\index{Dicom\+Dictionary\+Interface@{Dicom\+Dictionary\+Interface}!set\+Study\+Date@{set\+Study\+Date}}
+\index{set\+Study\+Date@{set\+Study\+Date}!Dicom\+Dictionary\+Interface@{Dicom\+Dictionary\+Interface}}
+\subsubsection{\texorpdfstring{set\+Study\+Date()}{setStudyDate()}}
+{\footnotesize\ttfamily bool Dicom\+Dictionary\+Interface\+::set\+Study\+Date (\begin{DoxyParamCaption}\item[{Q\+String}]{study\+Date }\end{DoxyParamCaption})}
+
+
+
+Set the value of Study Date, \char`\"{}0008$\vert$0020\char`\"{}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em study\+Date} & The study date in the format \char`\"{}\+Y\+Y\+Y\+Y\+M\+M\+D\+D\char`\"{}. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if successful, false otherwide. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_dicom_dictionary_interface_a9e9f77bd949b1e3b6b31899fd8ad68ec}\label{class_dicom_dictionary_interface_a9e9f77bd949b1e3b6b31899fd8ad68ec}} 
+\index{Dicom\+Dictionary\+Interface@{Dicom\+Dictionary\+Interface}!set\+Study\+Description@{set\+Study\+Description}}
+\index{set\+Study\+Description@{set\+Study\+Description}!Dicom\+Dictionary\+Interface@{Dicom\+Dictionary\+Interface}}
+\subsubsection{\texorpdfstring{set\+Study\+Description()}{setStudyDescription()}}
+{\footnotesize\ttfamily bool Dicom\+Dictionary\+Interface\+::set\+Study\+Description (\begin{DoxyParamCaption}\item[{Q\+String}]{study\+Description }\end{DoxyParamCaption})}
+
+
+
+Set the value of Study Description, \char`\"{}0008$\vert$1030\char`\"{}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em study\+Description} & The study description, maximum 64 characters enforced by truncation. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if successful, false otherwide. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_dicom_dictionary_interface_a12f56660f15526764fd5d1d9e010c453}\label{class_dicom_dictionary_interface_a12f56660f15526764fd5d1d9e010c453}} 
+\index{Dicom\+Dictionary\+Interface@{Dicom\+Dictionary\+Interface}!set\+Study\+ID@{set\+Study\+ID}}
+\index{set\+Study\+ID@{set\+Study\+ID}!Dicom\+Dictionary\+Interface@{Dicom\+Dictionary\+Interface}}
+\subsubsection{\texorpdfstring{set\+Study\+I\+D()}{setStudyID()}}
+{\footnotesize\ttfamily bool Dicom\+Dictionary\+Interface\+::set\+Study\+ID (\begin{DoxyParamCaption}\item[{Q\+String}]{study\+ID }\end{DoxyParamCaption})}
+
+
+
+Set the value of Study ID, \char`\"{}0020$\vert$0010\char`\"{}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em study\+ID} & The study ID, maximum 16 characters enforced by truncation. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if successful, false otherwide. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_dicom_dictionary_interface_a821babbdf04d1247086dab20c31ebccb}\label{class_dicom_dictionary_interface_a821babbdf04d1247086dab20c31ebccb}} 
+\index{Dicom\+Dictionary\+Interface@{Dicom\+Dictionary\+Interface}!set\+Study\+Instance\+U\+ID@{set\+Study\+Instance\+U\+ID}}
+\index{set\+Study\+Instance\+U\+ID@{set\+Study\+Instance\+U\+ID}!Dicom\+Dictionary\+Interface@{Dicom\+Dictionary\+Interface}}
+\subsubsection{\texorpdfstring{set\+Study\+Instance\+U\+I\+D()}{setStudyInstanceUID()}}
+{\footnotesize\ttfamily bool Dicom\+Dictionary\+Interface\+::set\+Study\+Instance\+U\+ID (\begin{DoxyParamCaption}\item[{Q\+String}]{study\+Instance\+U\+ID }\end{DoxyParamCaption})}
+
+
+
+Set the value of Study Instance U\+ID, \char`\"{}0020$\vert$000\+D\char`\"{}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em study\+Instance\+U\+ID} & The study instance U\+ID containing only \textquotesingle{}0\textquotesingle{}-\/\textquotesingle{}9\textquotesingle{} and \textquotesingle{}.\textquotesingle{}. Maximum 16 characters enforced by truncation. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if successful, false otherwide. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_dicom_dictionary_interface_aa89d9c7cc352b77e2c79330935960954}\label{class_dicom_dictionary_interface_aa89d9c7cc352b77e2c79330935960954}} 
+\index{Dicom\+Dictionary\+Interface@{Dicom\+Dictionary\+Interface}!set\+Study\+Time@{set\+Study\+Time}}
+\index{set\+Study\+Time@{set\+Study\+Time}!Dicom\+Dictionary\+Interface@{Dicom\+Dictionary\+Interface}}
+\subsubsection{\texorpdfstring{set\+Study\+Time()}{setStudyTime()}}
+{\footnotesize\ttfamily bool Dicom\+Dictionary\+Interface\+::set\+Study\+Time (\begin{DoxyParamCaption}\item[{Q\+String}]{study\+Time }\end{DoxyParamCaption})}
+
+
+
+Set the value of Study Time, \char`\"{}0008$\vert$0030\char`\"{}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em study\+Time} & The study time in the format \char`\"{}\+H\+H\+M\+M\+S\+S.\+F\+F\+F\+F\+F\+F\char`\"{}. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if successful, false otherwide. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_dicom_dictionary_interface_a6e1bd34428c4b354f997a64f9e854e44}\label{class_dicom_dictionary_interface_a6e1bd34428c4b354f997a64f9e854e44}} 
+\index{Dicom\+Dictionary\+Interface@{Dicom\+Dictionary\+Interface}!slice\+Thickness@{slice\+Thickness}}
+\index{slice\+Thickness@{slice\+Thickness}!Dicom\+Dictionary\+Interface@{Dicom\+Dictionary\+Interface}}
+\subsubsection{\texorpdfstring{slice\+Thickness()}{sliceThickness()}}
+{\footnotesize\ttfamily Q\+String Dicom\+Dictionary\+Interface\+::slice\+Thickness (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Get the value of Slice Thickness, \char`\"{}0018$\vert$0050\char`\"{}. 
+
+\begin{DoxyReturn}{Returns}
+The slice thickness in mm. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_dicom_dictionary_interface_a08f8065f6b41b30e660fd1ff23e4fe0f}\label{class_dicom_dictionary_interface_a08f8065f6b41b30e660fd1ff23e4fe0f}} 
+\index{Dicom\+Dictionary\+Interface@{Dicom\+Dictionary\+Interface}!spacing\+Between\+Slices@{spacing\+Between\+Slices}}
+\index{spacing\+Between\+Slices@{spacing\+Between\+Slices}!Dicom\+Dictionary\+Interface@{Dicom\+Dictionary\+Interface}}
+\subsubsection{\texorpdfstring{spacing\+Between\+Slices()}{spacingBetweenSlices()}}
+{\footnotesize\ttfamily Q\+String Dicom\+Dictionary\+Interface\+::spacing\+Between\+Slices (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Get the value of Spacing Between Slices, \char`\"{}0018$\vert$0088\char`\"{}. 
+
+\begin{DoxyReturn}{Returns}
+The slice spacing in mm. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_dicom_dictionary_interface_ab52794617227e2b3722dbfea66a00306}\label{class_dicom_dictionary_interface_ab52794617227e2b3722dbfea66a00306}} 
+\index{Dicom\+Dictionary\+Interface@{Dicom\+Dictionary\+Interface}!study\+Date@{study\+Date}}
+\index{study\+Date@{study\+Date}!Dicom\+Dictionary\+Interface@{Dicom\+Dictionary\+Interface}}
+\subsubsection{\texorpdfstring{study\+Date()}{studyDate()}}
+{\footnotesize\ttfamily Q\+String Dicom\+Dictionary\+Interface\+::study\+Date (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Get the value of Study Date, \char`\"{}0008$\vert$0020\char`\"{}. 
+
+\begin{DoxyReturn}{Returns}
+The study date. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_dicom_dictionary_interface_a3adae61e4fd6287486b0d30f97e2baa3}\label{class_dicom_dictionary_interface_a3adae61e4fd6287486b0d30f97e2baa3}} 
+\index{Dicom\+Dictionary\+Interface@{Dicom\+Dictionary\+Interface}!study\+Description@{study\+Description}}
+\index{study\+Description@{study\+Description}!Dicom\+Dictionary\+Interface@{Dicom\+Dictionary\+Interface}}
+\subsubsection{\texorpdfstring{study\+Description()}{studyDescription()}}
+{\footnotesize\ttfamily Q\+String Dicom\+Dictionary\+Interface\+::study\+Description (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Get the value of Study Description, \char`\"{}0008$\vert$1030\char`\"{}. 
+
+\begin{DoxyReturn}{Returns}
+The study description. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_dicom_dictionary_interface_a39bf8ab26ca9b98b5eb5e844b33453f2}\label{class_dicom_dictionary_interface_a39bf8ab26ca9b98b5eb5e844b33453f2}} 
+\index{Dicom\+Dictionary\+Interface@{Dicom\+Dictionary\+Interface}!study\+ID@{study\+ID}}
+\index{study\+ID@{study\+ID}!Dicom\+Dictionary\+Interface@{Dicom\+Dictionary\+Interface}}
+\subsubsection{\texorpdfstring{study\+I\+D()}{studyID()}}
+{\footnotesize\ttfamily Q\+String Dicom\+Dictionary\+Interface\+::study\+ID (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Get the value of Study ID, \char`\"{}0020$\vert$0010\char`\"{}. 
+
+\begin{DoxyReturn}{Returns}
+The study ID. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_dicom_dictionary_interface_a3aa2b935c914174a816741e7b84107d3}\label{class_dicom_dictionary_interface_a3aa2b935c914174a816741e7b84107d3}} 
+\index{Dicom\+Dictionary\+Interface@{Dicom\+Dictionary\+Interface}!study\+Instance\+U\+ID@{study\+Instance\+U\+ID}}
+\index{study\+Instance\+U\+ID@{study\+Instance\+U\+ID}!Dicom\+Dictionary\+Interface@{Dicom\+Dictionary\+Interface}}
+\subsubsection{\texorpdfstring{study\+Instance\+U\+I\+D()}{studyInstanceUID()}}
+{\footnotesize\ttfamily Q\+String Dicom\+Dictionary\+Interface\+::study\+Instance\+U\+ID (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Get the value of Study Instance U\+ID, \char`\"{}0020$\vert$000\+D\char`\"{}. 
+
+\begin{DoxyReturn}{Returns}
+The study instance U\+ID. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_dicom_dictionary_interface_a0b8855598a148d2a15828808dd3f62f3}\label{class_dicom_dictionary_interface_a0b8855598a148d2a15828808dd3f62f3}} 
+\index{Dicom\+Dictionary\+Interface@{Dicom\+Dictionary\+Interface}!study\+Time@{study\+Time}}
+\index{study\+Time@{study\+Time}!Dicom\+Dictionary\+Interface@{Dicom\+Dictionary\+Interface}}
+\subsubsection{\texorpdfstring{study\+Time()}{studyTime()}}
+{\footnotesize\ttfamily Q\+String Dicom\+Dictionary\+Interface\+::study\+Time (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Get the value of Study Time, \char`\"{}0008$\vert$0030\char`\"{}. 
+
+\begin{DoxyReturn}{Returns}
+The study time. 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+dicomdictionaryinterface.\+h\item 
+dicomdictionaryinterface.\+cpp\end{DoxyCompactItemize}

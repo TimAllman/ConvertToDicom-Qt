@@ -24,6 +24,7 @@
 #include "imagereader.h"
 #include "seriesinfo.h"
 #include "dicomserieswriter.h"
+#include "imageinfo.h"
 #include "itkheaders.pch.h"
 
 #include <vector>
@@ -114,6 +115,7 @@ ErrorCode SeriesConverter::extractImageParameters()
     imageIO->SetFileName(firstFileName);
     imageIO->ReadImageInformation();
 
+    std::string nameOfClass = imageIO->GetNameOfClass();
     LOG4CPLUS_DEBUG(logger, "ImageIO class name = " << imageIO->GetNameOfClass());
 
     //    if (std::string(imageIO->GetNameOfClass()) == std::string("GDCMImageIO"))
@@ -139,6 +141,7 @@ ErrorCode SeriesConverter::extractImageParameters()
     else
     {
         seriesInfo->setImageNumberOfImages(1);
+        seriesInfo->setImageSlicesPerImage(1);
         // If we have a value use it, otherwise set to 1.0 mm
         if (seriesInfo->imageSliceSpacing() == 0.0)
             seriesInfo->setImageSliceSpacing(1.0);
@@ -177,6 +180,87 @@ ErrorCode SeriesConverter::extractImageParameters()
                     << seriesInfo->imagePositionPatientY() << ", " << seriesInfo->imagePositionPatientZ());
 
     return ErrorCode::SUCCESS;
+}
+
+const std::auto_ptr<ImageInfo> SeriesConverter::imageInfo()
+{
+    std::auto_ptr<ImageInfo> info(new ImageInfo);
+
+    LOG4CPLUS_TRACE(logger, "Enter");
+
+    // Take the information we need from the first image
+    if (loadFileNames() == ErrorCode::ERROR_FILE_NOT_FOUND)
+    {
+        info.release();
+        LOG4CPLUS_ERROR(logger, "Could not find files in " << seriesInfo->inputDir().path().toStdString());
+        return info;
+    }
+
+    std::string firstFileName(fileNames[0].toStdString());
+    itk::ImageIOBase::Pointer imageIO =
+        itk::ImageIOFactory::CreateImageIO(firstFileName.c_str(), itk::ImageIOFactory::ReadMode);
+
+    // If there is a problem, catch it
+    if (imageIO.IsNull())
+    {
+        info.release();
+        LOG4CPLUS_ERROR(logger, "Could not get metadata from file: " << firstFileName);
+        return info;
+    };
+
+    imageIO->SetFileName(firstFileName);
+    imageIO->ReadImageInformation();
+
+    std::string nameOfClass = imageIO->GetNameOfClass();
+    info->setImageTypeName(nameOfClass);
+    LOG4CPLUS_DEBUG(logger, "ImageIO class name = " << imageIO->GetNameOfClass());
+
+    //    if (std::string(imageIO->GetNameOfClass()) == std::string("GDCMImageIO"))
+    //    {
+
+    //        itk::GDCMImageIO::Pointer& p = reinterpret_cast<itk::GDCMImageIO::Pointer&>(imageIO);
+    //        itk::MetaDataDictionary seriesDict = p->GetMetaDataDictionary();
+
+    //    }
+
+    // Get the number of dimensions.
+    unsigned numDims = imageIO->GetNumberOfDimensions();
+    info->setNumDims(numDims);
+    LOG4CPLUS_DEBUG(logger, "dimensions = " << numDims);
+
+    int numFiles = fileNames.length();
+
+    for (unsigned int idx = 0; idx < numDims; ++idx)
+    {
+        info->setSpacing(idx, imageIO->GetSpacing(idx));
+    }
+
+    if (numDims == 3)
+        info->setSlicesPerImage(int(imageIO->GetDimensions(2)));
+    else
+        info->setSlicesPerImage(1);
+
+    info->setNumberOfSlices(numFiles * info->slicesPerImage());
+    info->setNumberOfImages(numFiles / info->slicesPerImage());
+
+    LOG4CPLUS_DEBUG(logger, "slicesPerImage = " << info->slicesPerImage());
+    LOG4CPLUS_DEBUG(logger, "imageSliceSpacing = " << info->spacingStr());
+    LOG4CPLUS_DEBUG(logger, "numberOfImages = " << info->numberOfImages());
+
+    // use for creating strings below.
+    std::ostringstream value;
+
+    // Set the Image Orientation Patient attribute from the image direction info.
+    std::vector<double> dir = imageIO->GetDirection(0);
+    value << dir[0] << "\\" << dir[1] << "\\" << dir[2] << "\\";
+    dir = imageIO->GetDirection(1);
+    value << dir[0] << "\\" << dir[1] << "\\" << dir[2];
+    std::string imageOrientationPatient = value.str();
+    info->setImageOrientationPatient(imageOrientationPatient);
+
+    LOG4CPLUS_DEBUG(logger, "imagePatientOrientation = " << info->imageOrientationPatient());
+
+    return info;
 }
 
 bool SeriesConverter::isValidSourceDir(const QString& dirPath)

@@ -30,6 +30,7 @@
 #include <QVector>
 
 class SeriesInfo;
+class ImageInfo;
 
 /**
  * @brief The SeriesConverter class
@@ -79,6 +80,13 @@ public:
      * @return Suitable code in ErrorCode enum.
      */
     ErrorCode extractImageParameters();
+
+    /**
+     * Extract the information in an image or series. This is a read only operation intended to
+     * support the preview widget in the GUI.
+     * @return A smart pointer to an `ImageInfo` instance
+     */
+    const std::auto_ptr<ImageInfo> imageInfo();
 
     /**
      * Determines whether a directory is a valid souurce directory.

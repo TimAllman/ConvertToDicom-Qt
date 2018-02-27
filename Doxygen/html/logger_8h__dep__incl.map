@@ -1,0 +1,22 @@
+<map id="logger.h" name="logger.h">
+<area shape="rect" id="node2" href="$dicomattributesdialog_8h.html" title="dicomattributesdialog.h" alt="" coords="471,155,596,181"/>
+<area shape="rect" id="node3" href="$dicomattributesdialog_8cpp.html" title="dicomattributesdialog.cpp" alt="" coords="331,229,467,256"/>
+<area shape="rect" id="node4" href="$mainwindow_8cpp.html" title="mainwindow.cpp" alt="" coords="642,229,738,256"/>
+<area shape="rect" id="node5" href="$seriesinfo_8cpp.html" title="seriesinfo.cpp" alt="" coords="492,229,576,256"/>
+<area shape="rect" id="node6" href="$seriesinfo_8h.html" title="seriesinfo.h" alt="" coords="624,80,697,107"/>
+<area shape="rect" id="node7" href="$dicomparametersreader_8h.html" title="dicomparametersreader.h" alt="" coords="772,155,908,181"/>
+<area shape="rect" id="node9" href="$dicomserieswriter_8h.html" title="dicomserieswriter.h" alt="" coords="1042,155,1150,181"/>
+<area shape="rect" id="node11" href="$seriesconverter_8cpp.html" title="seriesconverter.cpp" alt="" coords="1332,229,1442,256"/>
+<area shape="rect" id="node12" href="$mainwindow_8h.html" title="mainwindow.h" alt="" coords="932,155,1018,181"/>
+<area shape="rect" id="node13" href="$main_8cpp.html" title="main.cpp" alt="" coords="946,229,1009,256"/>
+<area shape="rect" id="node14" href="$settings_8cpp.html" title="settings.cpp" alt="" coords="320,155,396,181"/>
+<area shape="rect" id="node15" href="$imageinfo_8h.html" title="imageinfo.h" alt="" coords="1376,80,1449,107"/>
+<area shape="rect" id="node17" href="$imagereader_8h.html" title="imagereader.h" alt="" coords="1529,80,1616,107"/>
+<area shape="rect" id="node19" href="$logger_8cpp.html" title="logger.cpp" alt="" coords="124,155,194,181"/>
+<area shape="rect" id="node20" href="$settings_8h.html" title="settings.h" alt="" coords="249,80,314,107"/>
+<area shape="rect" id="node21" href="$seriesconverter_8h.html" title="seriesconverter.h" alt="" coords="1175,155,1274,181"/>
+<area shape="rect" id="node8" href="$dicomparametersreader_8cpp.html" title="dicomparametersreader.cpp" alt="" coords="767,229,914,256"/>
+<area shape="rect" id="node10" href="$dicomserieswriter_8cpp.html" title="dicomserieswriter.cpp" alt="" coords="1037,229,1156,256"/>
+<area shape="rect" id="node16" href="$imageinfo_8cpp.html" title="imageinfo.cpp" alt="" coords="1450,155,1534,181"/>
+<area shape="rect" id="node18" href="$imagereader_8cpp.html" title="imagereader.cpp" alt="" coords="1610,155,1708,181"/>
+</map>

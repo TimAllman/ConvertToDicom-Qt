@@ -441,7 +441,7 @@ private:
      * @brief logger
      * log4cplus logger for this class.
      */
-    Logger logger;
+    Logger m_logger;
 
     QLocale locale;
 
@@ -478,10 +478,29 @@ private:
     mutable itk::MetaDataDictionary dict;
 
 public:
+    /**
+     * Get the global instance of this class.
+     * @return Pointer to single instance of this class.
+     */
     static SeriesInfo* getInstance()
     {
         static SeriesInfo instance;
         return &instance;
+    }
+
+    /**
+     * Get a tempory instance of this class. The new instance is a copy of the global
+     * instance.
+     * @return Pointer to a temporary instance of this class. It must be <code>delete</code>d
+     * when no longer needed.
+     */
+    static SeriesInfo* getTempInstance()
+    {
+        SeriesInfo *instance = getInstance();
+        SeriesInfo *tempInstance = new SeriesInfo;
+
+        *tempInstance = *instance;
+        return tempInstance;
     }
 
     /**

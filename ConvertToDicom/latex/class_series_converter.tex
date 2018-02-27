@@ -1,0 +1,118 @@
+\hypertarget{class_series_converter}{}\section{Series\+Converter Class Reference}
+\label{class_series_converter}\index{Series\+Converter@{Series\+Converter}}
+
+
+The \hyperlink{class_series_converter}{Series\+Converter} class.  
+
+
+
+
+{\ttfamily \#include $<$seriesconverter.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_series_converter_a807a4cbcfab6044a4635f72b72d6a0d3}\label{class_series_converter_a807a4cbcfab6044a4635f72b72d6a0d3}} 
+\hyperlink{class_series_converter_a807a4cbcfab6044a4635f72b72d6a0d3}{Series\+Converter} ()
+\begin{DoxyCompactList}\small\item\em \hyperlink{class_series_converter}{Series\+Converter} Constructor. \end{DoxyCompactList}\item 
+Error\+Code \hyperlink{class_series_converter_ac8729b482ee4eda39bd6a9e710f4449c}{convert\+Files} ()
+\begin{DoxyCompactList}\small\item\em Read the input files and write the D\+I\+C\+OM files to the output directory. \end{DoxyCompactList}\item 
+Error\+Code \hyperlink{class_series_converter_a1c8cd4b434f931afdbd719375aa64904}{make\+Full\+Output\+Path\+Dir} (const Q\+String \&dir\+Name)
+\begin{DoxyCompactList}\small\item\em Make the full output directory path. \end{DoxyCompactList}\item 
+void \hyperlink{class_series_converter_aeae7772dca9eaa2ad685cb7c3b79dbf0}{set\+Input\+Dir} (const Q\+Dir \&dir)
+\begin{DoxyCompactList}\small\item\em set\+Input\+Dir \end{DoxyCompactList}\item 
+Error\+Code \hyperlink{class_series_converter_af4bcee40f249309b5b153fc951196ddb}{extract\+Image\+Parameters} ()
+\begin{DoxyCompactList}\small\item\em Tries to get as many metadata from the input image files as possible. \end{DoxyCompactList}\item 
+bool \hyperlink{class_series_converter_a88356a78d84c2d3aba7f4a340c4202ed}{is\+Valid\+Source\+Dir} (const Q\+String \&dir\+Path)
+\begin{DoxyCompactList}\small\item\em Determines whether a directory is a valid souurce directory. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+The \hyperlink{class_series_converter}{Series\+Converter} class. 
+
+Class to do the conversion of one series. It reads the image files, converts them to D\+I\+C\+OM and writes them out as D\+I\+C\+OM files. 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_series_converter_ac8729b482ee4eda39bd6a9e710f4449c}\label{class_series_converter_ac8729b482ee4eda39bd6a9e710f4449c}} 
+\index{Series\+Converter@{Series\+Converter}!convert\+Files@{convert\+Files}}
+\index{convert\+Files@{convert\+Files}!Series\+Converter@{Series\+Converter}}
+\subsubsection{\texorpdfstring{convert\+Files()}{convertFiles()}}
+{\footnotesize\ttfamily Error\+Code Series\+Converter\+::convert\+Files (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Read the input files and write the D\+I\+C\+OM files to the output directory. 
+
+A directory tree is formed like this\+: patients\+Name/study\+Description -\/ study\+I\+D/series\+Description -\/ series\+Number. \begin{DoxyReturn}{Returns}
+Suitable code in Error\+Code enum. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_series_converter_af4bcee40f249309b5b153fc951196ddb}\label{class_series_converter_af4bcee40f249309b5b153fc951196ddb}} 
+\index{Series\+Converter@{Series\+Converter}!extract\+Image\+Parameters@{extract\+Image\+Parameters}}
+\index{extract\+Image\+Parameters@{extract\+Image\+Parameters}!Series\+Converter@{Series\+Converter}}
+\subsubsection{\texorpdfstring{extract\+Image\+Parameters()}{extractImageParameters()}}
+{\footnotesize\ttfamily Error\+Code Series\+Converter\+::extract\+Image\+Parameters (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Tries to get as many metadata from the input image files as possible. 
+
+If the image is a D\+I\+C\+OM series the metadata dictionary will be queried. Otherwise the data will likely be limited to dimensions and slice spacing. This must be called after read\+Files(). \begin{DoxyReturn}{Returns}
+Suitable code in Error\+Code enum. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_series_converter_a88356a78d84c2d3aba7f4a340c4202ed}\label{class_series_converter_a88356a78d84c2d3aba7f4a340c4202ed}} 
+\index{Series\+Converter@{Series\+Converter}!is\+Valid\+Source\+Dir@{is\+Valid\+Source\+Dir}}
+\index{is\+Valid\+Source\+Dir@{is\+Valid\+Source\+Dir}!Series\+Converter@{Series\+Converter}}
+\subsubsection{\texorpdfstring{is\+Valid\+Source\+Dir()}{isValidSourceDir()}}
+{\footnotesize\ttfamily bool Series\+Converter\+::is\+Valid\+Source\+Dir (\begin{DoxyParamCaption}\item[{const Q\+String \&}]{dir\+Path }\end{DoxyParamCaption})}
+
+
+
+Determines whether a directory is a valid souurce directory. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dir\+Path} & The path of the directory. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if we can use dir\+Path, false otherwise. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_series_converter_a1c8cd4b434f931afdbd719375aa64904}\label{class_series_converter_a1c8cd4b434f931afdbd719375aa64904}} 
+\index{Series\+Converter@{Series\+Converter}!make\+Full\+Output\+Path\+Dir@{make\+Full\+Output\+Path\+Dir}}
+\index{make\+Full\+Output\+Path\+Dir@{make\+Full\+Output\+Path\+Dir}!Series\+Converter@{Series\+Converter}}
+\subsubsection{\texorpdfstring{make\+Full\+Output\+Path\+Dir()}{makeFullOutputPathDir()}}
+{\footnotesize\ttfamily Error\+Code Series\+Converter\+::make\+Full\+Output\+Path\+Dir (\begin{DoxyParamCaption}\item[{const Q\+String \&}]{dir\+Name }\end{DoxyParamCaption})}
+
+
+
+Make the full output directory path. 
+
+This is the directory into which the D\+I\+C\+OM series will be placed. 
+\begin{DoxyParams}{Parameters}
+{\em dir\+Name} & The output directory name that will be expanded by make\+Output\+Path\+Name(). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Error\+Code S\+U\+C\+C\+E\+SS if successful, E\+R\+R\+O\+R\+\_\+\+C\+R\+E\+A\+T\+I\+N\+G\+\_\+\+D\+I\+R\+E\+C\+T\+O\+RY or E\+R\+R\+O\+R\+\_\+\+D\+I\+R\+E\+C\+T\+O\+R\+Y\+\_\+\+N\+O\+T\+\_\+\+E\+M\+P\+TY if not. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_series_converter_aeae7772dca9eaa2ad685cb7c3b79dbf0}\label{class_series_converter_aeae7772dca9eaa2ad685cb7c3b79dbf0}} 
+\index{Series\+Converter@{Series\+Converter}!set\+Input\+Dir@{set\+Input\+Dir}}
+\index{set\+Input\+Dir@{set\+Input\+Dir}!Series\+Converter@{Series\+Converter}}
+\subsubsection{\texorpdfstring{set\+Input\+Dir()}{setInputDir()}}
+{\footnotesize\ttfamily void Series\+Converter\+::set\+Input\+Dir (\begin{DoxyParamCaption}\item[{const Q\+Dir \&}]{dir }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+set\+Input\+Dir 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dir} & The directory containing the files to be read. Tells us where the files are. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+seriesconverter.\+h\item 
+seriesconverter.\+cpp\end{DoxyCompactItemize}

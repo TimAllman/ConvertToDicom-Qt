@@ -1,0 +1,65 @@
+\hypertarget{class_dicom_series_writer}{}\section{Dicom\+Series\+Writer Class Reference}
+\label{class_dicom_series_writer}\index{Dicom\+Series\+Writer@{Dicom\+Series\+Writer}}
+
+
+Class to write a D\+I\+C\+OM series.  
+
+
+
+
+{\ttfamily \#include $<$dicomserieswriter.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_dicom_series_writer_aeb69662aad2901c6118417d364656ebf}{Dicom\+Series\+Writer} (Q\+Vector$<$ Image2\+D\+Type\+::\+Pointer $>$ \&images, const Q\+String \&output\+Directory\+Name)
+\begin{DoxyCompactList}\small\item\em Class constructor. \end{DoxyCompactList}\item 
+Error\+Code \hyperlink{class_dicom_series_writer_ade0edd641e1c84ed8659205c78d772e1}{Write\+File\+Series} ()
+\begin{DoxyCompactList}\small\item\em Do the file writing. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Class to write a D\+I\+C\+OM series. 
+
+This class uses itk\+::\+Image\+Series\+Writer and its arguments to write a D\+I\+C\+OM series. The series is always written as 2D slices. The logical order of the slices is the same as the alphabetical order of the files which contain them. 
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_dicom_series_writer_aeb69662aad2901c6118417d364656ebf}\label{class_dicom_series_writer_aeb69662aad2901c6118417d364656ebf}} 
+\index{Dicom\+Series\+Writer@{Dicom\+Series\+Writer}!Dicom\+Series\+Writer@{Dicom\+Series\+Writer}}
+\index{Dicom\+Series\+Writer@{Dicom\+Series\+Writer}!Dicom\+Series\+Writer@{Dicom\+Series\+Writer}}
+\subsubsection{\texorpdfstring{Dicom\+Series\+Writer()}{DicomSeriesWriter()}}
+{\footnotesize\ttfamily Dicom\+Series\+Writer\+::\+Dicom\+Series\+Writer (\begin{DoxyParamCaption}\item[{Q\+Vector$<$ Image2\+D\+Type\+::\+Pointer $>$ \&}]{images,  }\item[{const Q\+String \&}]{output\+Directory\+Name }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+
+
+
+Class constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em images} & The D\+I\+C\+OM images to write. \\
+\hline
+{\em output\+Directory\+Name} & The output directory. This the deepest directory in the tree and is the place into which the files will be written. \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_dicom_series_writer_ade0edd641e1c84ed8659205c78d772e1}\label{class_dicom_series_writer_ade0edd641e1c84ed8659205c78d772e1}} 
+\index{Dicom\+Series\+Writer@{Dicom\+Series\+Writer}!Write\+File\+Series@{Write\+File\+Series}}
+\index{Write\+File\+Series@{Write\+File\+Series}!Dicom\+Series\+Writer@{Dicom\+Series\+Writer}}
+\subsubsection{\texorpdfstring{Write\+File\+Series()}{WriteFileSeries()}}
+{\footnotesize\ttfamily Error\+Code Dicom\+Series\+Writer\+::\+Write\+File\+Series (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Do the file writing. 
+
+\begin{DoxyReturn}{Returns}
+Suitable value in Error\+Code enum. 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+dicomserieswriter.\+h\item 
+dicomserieswriter.\+cpp\end{DoxyCompactItemize}
