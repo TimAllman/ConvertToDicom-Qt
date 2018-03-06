@@ -89,12 +89,12 @@ void MainWindow::saveWidgetInfo()
 
 bool MainWindow::isValidSourceDirectory(const QString& dirPath)
 {
-    bool valid = seriesConverter->isValidSourceDir(dirPath);
+    bool isValid = seriesConverter->isValidSourceDir(dirPath);
 
-    std::string valStr = valid ? "valid" : "invalid";
+    std::string valStr = isValid ? "valid" : "invalid";
     LOG4CPLUS_DEBUG(logger, "Source directory " << dirPath.toStdString() << " " << valStr);
 
-    return valid;
+    return isValid;
 }
 
 void MainWindow::updatePreview()

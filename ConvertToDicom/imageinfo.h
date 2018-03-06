@@ -74,9 +74,9 @@ public:
      * @param dim The dimension of interest (0..2).
      * @return The pixel spacing for dimension <code>dim</code>
      */
-    double spacing(int dim)
+    double spacing(unsigned int dim)
     {
-        if (dim < 0 || dim > m_numDims - 1)
+        if (dim > m_numDims - 1)
         {
             LOG4CPLUS_FATAL(m_logger, "Argument dim out of range: " << dim
                             << ". Range is 0 to " << m_numDims - 1);
@@ -92,7 +92,7 @@ public:
     std::string spacingStr()
     {
         std::stringstream sstr;
-        for (int idx = 0; idx < m_numDims; ++idx)
+        for (unsigned int idx = 0; idx < m_numDims; ++idx)
         {
             sstr << m_spacing[static_cast<std::vector<double>::size_type>(idx)];
             if (idx < m_numDims - 1)
@@ -113,12 +113,13 @@ public:
 
     /**
      * Get the origin for the image as a string.
-     * @return The origin for each dimension for the image as a string, separated by slashes.
+     * @return The origin for each dimension for the image as a string, separated by
+     * slashes.
      */
     std::string originStr()
     {
         std::stringstream sstr;
-        for (int idx = 0; idx < m_numDims; ++idx)
+        for (unsigned int idx = 0; idx < m_numDims; ++idx)
         {
             sstr << m_origin[static_cast<std::vector<double>::size_type>(idx)];
             if (idx < m_numDims - 1)
@@ -149,8 +150,8 @@ public:
     void setImageTypeName(const std::string& imageTypeName);
 
     /**
-     *
-     * @param numDims
+     * Set the number of dimensions in this image.
+     * @param numDims The number of dimensions (2 or 3).
      */
     void setNumDims(unsigned int numDims)
     {

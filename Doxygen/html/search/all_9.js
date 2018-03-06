@@ -13,7 +13,7 @@ var searchData=
   ['m_5flogger',['m_logger',['../class_image_info.html#a6e55f0e5aad096b6d8ada35fb814631d',1,'ImageInfo::m_logger()'],['../class_series_info.html#a2d23f56f37393556478d6382841f82b9',1,'SeriesInfo::m_logger()']]],
   ['m_5fnumberofimages',['m_numberOfImages',['../class_image_info.html#a59058b83ced488c90a4a754bd4d77d7a',1,'ImageInfo']]],
   ['m_5fnumberofslices',['m_numberOfSlices',['../class_image_info.html#afaa9f3e5737fc578a45c79401f115c65',1,'ImageInfo']]],
-  ['m_5fnumdims',['m_numDims',['../class_image_info.html#a9e6b75ec5bc26267593c5742d05e1075',1,'ImageInfo']]],
+  ['m_5fnumdims',['m_numDims',['../class_image_info.html#a9147476cc1863ab57f48bdb787663153',1,'ImageInfo']]],
   ['m_5forigin',['m_origin',['../class_image_info.html#a9c58235fc102113cedec38d99fda1562',1,'ImageInfo']]],
   ['m_5foutputdir',['m_outputDir',['../class_series_info.html#aae15d8164c5961c3990159cdb6e112ab',1,'SeriesInfo']]],
   ['m_5foutputpath',['m_outputPath',['../class_series_info.html#a354af26b75b8cbdcff7b65f0e623249a',1,'SeriesInfo']]],

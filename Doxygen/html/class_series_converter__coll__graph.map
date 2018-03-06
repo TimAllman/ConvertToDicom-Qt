@@ -1,4 +1,3 @@
 <map id="SeriesConverter" name="SeriesConverter">
-<area shape="rect" id="node2" href="$class_series_info.html" title="The SeriesInfo class This class contains all of the DICOM and other information needed to do the conv..." alt="" coords="5,5,72,32"/>
-<area shape="rect" id="node3" href="$class_image_info.html" title="ImageInfo" alt="" coords="96,5,163,32"/>
+<area shape="rect" id="node2" href="$class_series_info.html" title="The SeriesInfo class This class contains all of the DICOM and other information needed to do the conv..." alt="" coords="19,5,86,32"/>
 </map>

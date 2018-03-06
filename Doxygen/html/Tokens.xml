@@ -1661,7 +1661,18 @@
       <Scope>ImageInfo</Scope>
     </TokenIdentifier>
     <Path>class_image_info.html</Path>
-    <Anchor>a20f3e140ae48bcda571f77c48c269770</Anchor>
+    <Anchor>a9db22736200acc162cc9e62aaecedb94</Anchor>
+    <DeclaredIn>imageinfo.h</DeclaredIn>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>slicesPerImage</Name>
+      <APILanguage>cpp</APILanguage>
+      <Type>instm</Type>
+      <Scope>ImageInfo</Scope>
+    </TokenIdentifier>
+    <Path>class_image_info.html</Path>
+    <Anchor>a28dddb748c360e05f5bf977156570829</Anchor>
     <DeclaredIn>imageinfo.h</DeclaredIn>
   </Token>
   <Token>
@@ -1672,7 +1683,7 @@
       <Scope>ImageInfo</Scope>
     </TokenIdentifier>
     <Path>class_image_info.html</Path>
-    <Anchor>aa0636d1627e4a8aed30701a9bbfb6cc7</Anchor>
+    <Anchor>a7e44d1ceb603d907104d8d344f58ff84</Anchor>
     <DeclaredIn>imageinfo.h</DeclaredIn>
   </Token>
   <Token>
@@ -1710,6 +1721,28 @@
   </Token>
   <Token>
     <TokenIdentifier>
+      <Name>numberOfImages</Name>
+      <APILanguage>cpp</APILanguage>
+      <Type>instm</Type>
+      <Scope>ImageInfo</Scope>
+    </TokenIdentifier>
+    <Path>class_image_info.html</Path>
+    <Anchor>af31220853d2dcc01788c0dabdd57155a</Anchor>
+    <DeclaredIn>imageinfo.h</DeclaredIn>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>imageOrientationPatient</Name>
+      <APILanguage>cpp</APILanguage>
+      <Type>instm</Type>
+      <Scope>ImageInfo</Scope>
+    </TokenIdentifier>
+    <Path>class_image_info.html</Path>
+    <Anchor>aa30705f3337cf8f22e6eaadfcc2d12ea</Anchor>
+    <DeclaredIn>imageinfo.h</DeclaredIn>
+  </Token>
+  <Token>
+    <TokenIdentifier>
       <Name>setImageTypeName</Name>
       <APILanguage>cpp</APILanguage>
       <Type>instm</Type>
@@ -1727,7 +1760,7 @@
       <Scope>ImageInfo</Scope>
     </TokenIdentifier>
     <Path>class_image_info.html</Path>
-    <Anchor>a0abded07b6e093364fb0f93974848ef5</Anchor>
+    <Anchor>ac63e7e78b0fd28ffa137883e278d952c</Anchor>
     <DeclaredIn>imageinfo.h</DeclaredIn>
   </Token>
   <Token>
@@ -1738,7 +1771,7 @@
       <Scope>ImageInfo</Scope>
     </TokenIdentifier>
     <Path>class_image_info.html</Path>
-    <Anchor>a1f598fb85896d33fc9460966977c39b6</Anchor>
+    <Anchor>ae802f071c0b00b6d5b59bbef4a2d7111</Anchor>
     <DeclaredIn>imageinfo.h</DeclaredIn>
   </Token>
   <Token>
@@ -1749,7 +1782,7 @@
       <Scope>ImageInfo</Scope>
     </TokenIdentifier>
     <Path>class_image_info.html</Path>
-    <Anchor>aa5dabee00488a6826270350f216d92d1</Anchor>
+    <Anchor>acd68a1efc684517497ed34412d5b225a</Anchor>
     <DeclaredIn>imageinfo.h</DeclaredIn>
   </Token>
   <Token>
@@ -1760,7 +1793,7 @@
       <Scope>ImageInfo</Scope>
     </TokenIdentifier>
     <Path>class_image_info.html</Path>
-    <Anchor>a30699962d1f342ad9551ac69bbb6d43d</Anchor>
+    <Anchor>a6dc8e96219ae47bdfd895d5ca9a44595</Anchor>
     <DeclaredIn>imageinfo.h</DeclaredIn>
   </Token>
   <Token>
@@ -1837,7 +1870,7 @@
       <Scope>ImageInfo</Scope>
     </TokenIdentifier>
     <Path>class_image_info.html</Path>
-    <Anchor>a9e6b75ec5bc26267593c5742d05e1075</Anchor>
+    <Anchor>a9147476cc1863ab57f48bdb787663153</Anchor>
     <Abstract>Number of dimensions. </Abstract>
   </Token>
   <Token>
@@ -2323,7 +2356,7 @@
       <Scope>SeriesConverter</Scope>
     </TokenIdentifier>
     <Path>class_series_converter.html</Path>
-    <Anchor>a099853722598f6528930492d146f27f0</Anchor>
+    <Anchor>ac3c74c2b188e3b6038a34ef3902f0abf</Anchor>
     <DeclaredIn>seriesconverter.h</DeclaredIn>
   </Token>
   <Token>
@@ -2447,16 +2480,6 @@
     <Path>class_series_converter.html</Path>
     <Anchor>aa4e4f96ecc1a6042b609191ad8dd8072</Anchor>
     <Abstract>Information about the series. </Abstract>
-  </Token>
-  <Token>
-    <TokenIdentifier>
-      <Name>imageInfo</Name>
-      <APILanguage>cpp</APILanguage>
-      <Type>data</Type>
-      <Scope>SeriesConverter</Scope>
-    </TokenIdentifier>
-    <Path>class_series_converter.html</Path>
-    <Anchor>a4ca9df483c465d7b9f78466756d6ce93</Anchor>
   </Token>
   <Token>
     <TokenIdentifier>

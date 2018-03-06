@@ -1,11 +1,11 @@
 var searchData=
 [
-  ['imageinfo',['ImageInfo',['../class_image_info.html#a4ee4ba104016ea6bd76240ca9942e105',1,'ImageInfo::ImageInfo()'],['../class_series_converter.html#a099853722598f6528930492d146f27f0',1,'SeriesConverter::imageInfo()']]],
+  ['imageinfo',['ImageInfo',['../class_image_info.html#a4ee4ba104016ea6bd76240ca9942e105',1,'ImageInfo::ImageInfo()'],['../class_series_converter.html#ac3c74c2b188e3b6038a34ef3902f0abf',1,'SeriesConverter::imageInfo()']]],
   ['imagenumberofimages',['imageNumberOfImages',['../class_series_info.html#ab6e94bbff402e228a7b680d32d2d1a66',1,'SeriesInfo']]],
   ['imagenumberofimagesstr',['imageNumberOfImagesStr',['../class_series_info.html#a2f21da996a318aec02438d5f7d7dd350',1,'SeriesInfo']]],
   ['imagenumberofslices',['imageNumberOfSlices',['../class_series_info.html#ae7a7057c7d20f59650077dfa52dec97d',1,'SeriesInfo']]],
   ['imagenumberofslicesstr',['imageNumberOfSlicesStr',['../class_series_info.html#ac8697c73a137e9047033e33b6352568b',1,'SeriesInfo']]],
-  ['imageorientationpatient',['imageOrientationPatient',['../class_dicom_dictionary_interface.html#a6dc83ae90c17a9fcf28c9d18f1f0aec8',1,'DicomDictionaryInterface']]],
+  ['imageorientationpatient',['imageOrientationPatient',['../class_dicom_dictionary_interface.html#a6dc83ae90c17a9fcf28c9d18f1f0aec8',1,'DicomDictionaryInterface::imageOrientationPatient()'],['../class_image_info.html#aa30705f3337cf8f22e6eaadfcc2d12ea',1,'ImageInfo::imageOrientationPatient()']]],
   ['imagepatientorientation',['imagePatientOrientation',['../class_series_info.html#ab31237968717e9c71d21d20a3929d115',1,'SeriesInfo']]],
   ['imagepositionpatient',['imagePositionPatient',['../class_dicom_dictionary_interface.html#a0f0cd4f426726af6a6e0ba9d4a4412d0',1,'DicomDictionaryInterface']]],
   ['imagepositionpatientstring',['imagePositionPatientString',['../class_series_info.html#ae0d61a82f9fe9caed2832478c2a2ed35',1,'SeriesInfo::imagePositionPatientString() const'],['../class_series_info.html#ae1484c1360ac3b7590eb938d8d5489ce',1,'SeriesInfo::imagePositionPatientString(int sliceIdx) const']]],

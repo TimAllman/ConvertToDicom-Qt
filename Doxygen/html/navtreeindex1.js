@@ -1,5 +1,7 @@
 var NAVTREEINDEX1 =
 {
+"class_series_info.html#aaf70f9c7458a9f83582bb760ac0569ef":[1,0,8,82],
+"class_series_info.html#ab2155c8d4e9540eacb43d29900b4489f":[1,0,8,81],
 "class_series_info.html#ab30b8c01a3413b913f00203b2ef5a117":[1,0,8,23],
 "class_series_info.html#ab31237968717e9c71d21d20a3929d115":[1,0,8,10],
 "class_series_info.html#ab3b25c2ce92d14065d54ea1d5a1ff270":[1,0,8,108],
@@ -121,8 +123,8 @@ var NAVTREEINDEX1 =
 "errorcodes_8h.html#af06f64a38affc720587dc1e1c72e1615":[2,0,11,1],
 "errorcodes_8h_source.html":[2,0,11],
 "files.html":[2,0],
-"functions.html":[1,3,0],
 "functions.html":[1,3,0,0],
+"functions.html":[1,3,0],
 "functions_0x7e.html":[1,3,0,18],
 "functions_c.html":[1,3,0,1],
 "functions_d.html":[1,3,0,2],

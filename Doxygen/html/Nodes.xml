@@ -528,14 +528,24 @@
               <Anchor>a4ee4ba104016ea6bd76240ca9942e105</Anchor>
              </Node>
              <Node>
+              <Name>imageOrientationPatient</Name>
+              <Path>class_image_info.html</Path>
+              <Anchor>aa30705f3337cf8f22e6eaadfcc2d12ea</Anchor>
+             </Node>
+             <Node>
               <Name>imageTypeName</Name>
               <Path>class_image_info.html</Path>
               <Anchor>a7c6be5d7c443ca2ea80c1be8c922e127</Anchor>
              </Node>
              <Node>
+              <Name>numberOfImages</Name>
+              <Path>class_image_info.html</Path>
+              <Anchor>af31220853d2dcc01788c0dabdd57155a</Anchor>
+             </Node>
+             <Node>
               <Name>numDims</Name>
               <Path>class_image_info.html</Path>
-              <Anchor>a20f3e140ae48bcda571f77c48c269770</Anchor>
+              <Anchor>a9db22736200acc162cc9e62aaecedb94</Anchor>
              </Node>
              <Node>
               <Name>origin</Name>
@@ -550,7 +560,7 @@
              <Node>
               <Name>setDimension</Name>
               <Path>class_image_info.html</Path>
-              <Anchor>a30699962d1f342ad9551ac69bbb6d43d</Anchor>
+              <Anchor>a6dc8e96219ae47bdfd895d5ca9a44595</Anchor>
              </Node>
              <Node>
               <Name>setImageOrientationPatient</Name>
@@ -575,12 +585,12 @@
              <Node>
               <Name>setNumDims</Name>
               <Path>class_image_info.html</Path>
-              <Anchor>a0abded07b6e093364fb0f93974848ef5</Anchor>
+              <Anchor>ac63e7e78b0fd28ffa137883e278d952c</Anchor>
              </Node>
              <Node>
               <Name>setOrigin</Name>
               <Path>class_image_info.html</Path>
-              <Anchor>aa5dabee00488a6826270350f216d92d1</Anchor>
+              <Anchor>acd68a1efc684517497ed34412d5b225a</Anchor>
              </Node>
              <Node>
               <Name>setPixelType</Name>
@@ -595,12 +605,17 @@
              <Node>
               <Name>setSpacing</Name>
               <Path>class_image_info.html</Path>
-              <Anchor>a1f598fb85896d33fc9460966977c39b6</Anchor>
+              <Anchor>ae802f071c0b00b6d5b59bbef4a2d7111</Anchor>
+             </Node>
+             <Node>
+              <Name>slicesPerImage</Name>
+              <Path>class_image_info.html</Path>
+              <Anchor>a28dddb748c360e05f5bf977156570829</Anchor>
              </Node>
              <Node>
               <Name>spacing</Name>
               <Path>class_image_info.html</Path>
-              <Anchor>aa0636d1627e4a8aed30701a9bbfb6cc7</Anchor>
+              <Anchor>a7e44d1ceb603d907104d8d344f58ff84</Anchor>
              </Node>
              <Node>
               <Name>spacingStr</Name>
@@ -640,7 +655,7 @@
              <Node>
               <Name>m_numDims</Name>
               <Path>class_image_info.html</Path>
-              <Anchor>a9e6b75ec5bc26267593c5742d05e1075</Anchor>
+              <Anchor>a9147476cc1863ab57f48bdb787663153</Anchor>
              </Node>
              <Node>
               <Name>m_origin</Name>
@@ -838,7 +853,7 @@
              <Node>
               <Name>imageInfo</Name>
               <Path>class_series_converter.html</Path>
-              <Anchor>a099853722598f6528930492d146f27f0</Anchor>
+              <Anchor>ac3c74c2b188e3b6038a34ef3902f0abf</Anchor>
              </Node>
              <Node>
               <Name>inputImagesConsistent</Name>
@@ -884,11 +899,6 @@
               <Name>fileNames</Name>
               <Path>class_series_converter.html</Path>
               <Anchor>a8c59cf3401147287488597aad73de9a6</Anchor>
-             </Node>
-             <Node>
-              <Name>imageInfo</Name>
-              <Path>class_series_converter.html</Path>
-              <Anchor>a4ca9df483c465d7b9f78466756d6ce93</Anchor>
              </Node>
              <Node>
               <Name>imageStack</Name>
@@ -2586,14 +2596,24 @@
                 <Anchor>a4ee4ba104016ea6bd76240ca9942e105</Anchor>
                </Node>
                <Node>
+                <Name>imageOrientationPatient</Name>
+                <Path>class_image_info.html</Path>
+                <Anchor>aa30705f3337cf8f22e6eaadfcc2d12ea</Anchor>
+               </Node>
+               <Node>
                 <Name>imageTypeName</Name>
                 <Path>class_image_info.html</Path>
                 <Anchor>a7c6be5d7c443ca2ea80c1be8c922e127</Anchor>
                </Node>
                <Node>
+                <Name>numberOfImages</Name>
+                <Path>class_image_info.html</Path>
+                <Anchor>af31220853d2dcc01788c0dabdd57155a</Anchor>
+               </Node>
+               <Node>
                 <Name>numDims</Name>
                 <Path>class_image_info.html</Path>
-                <Anchor>a20f3e140ae48bcda571f77c48c269770</Anchor>
+                <Anchor>a9db22736200acc162cc9e62aaecedb94</Anchor>
                </Node>
                <Node>
                 <Name>origin</Name>
@@ -2608,7 +2628,7 @@
                <Node>
                 <Name>setDimension</Name>
                 <Path>class_image_info.html</Path>
-                <Anchor>a30699962d1f342ad9551ac69bbb6d43d</Anchor>
+                <Anchor>a6dc8e96219ae47bdfd895d5ca9a44595</Anchor>
                </Node>
                <Node>
                 <Name>setImageOrientationPatient</Name>
@@ -2633,12 +2653,12 @@
                <Node>
                 <Name>setNumDims</Name>
                 <Path>class_image_info.html</Path>
-                <Anchor>a0abded07b6e093364fb0f93974848ef5</Anchor>
+                <Anchor>ac63e7e78b0fd28ffa137883e278d952c</Anchor>
                </Node>
                <Node>
                 <Name>setOrigin</Name>
                 <Path>class_image_info.html</Path>
-                <Anchor>aa5dabee00488a6826270350f216d92d1</Anchor>
+                <Anchor>acd68a1efc684517497ed34412d5b225a</Anchor>
                </Node>
                <Node>
                 <Name>setPixelType</Name>
@@ -2653,12 +2673,17 @@
                <Node>
                 <Name>setSpacing</Name>
                 <Path>class_image_info.html</Path>
-                <Anchor>a1f598fb85896d33fc9460966977c39b6</Anchor>
+                <Anchor>ae802f071c0b00b6d5b59bbef4a2d7111</Anchor>
+               </Node>
+               <Node>
+                <Name>slicesPerImage</Name>
+                <Path>class_image_info.html</Path>
+                <Anchor>a28dddb748c360e05f5bf977156570829</Anchor>
                </Node>
                <Node>
                 <Name>spacing</Name>
                 <Path>class_image_info.html</Path>
-                <Anchor>aa0636d1627e4a8aed30701a9bbfb6cc7</Anchor>
+                <Anchor>a7e44d1ceb603d907104d8d344f58ff84</Anchor>
                </Node>
                <Node>
                 <Name>spacingStr</Name>
@@ -2698,7 +2723,7 @@
                <Node>
                 <Name>m_numDims</Name>
                 <Path>class_image_info.html</Path>
-                <Anchor>a9e6b75ec5bc26267593c5742d05e1075</Anchor>
+                <Anchor>a9147476cc1863ab57f48bdb787663153</Anchor>
                </Node>
                <Node>
                 <Name>m_origin</Name>
@@ -3061,7 +3086,7 @@
                <Node>
                 <Name>imageInfo</Name>
                 <Path>class_series_converter.html</Path>
-                <Anchor>a099853722598f6528930492d146f27f0</Anchor>
+                <Anchor>ac3c74c2b188e3b6038a34ef3902f0abf</Anchor>
                </Node>
                <Node>
                 <Name>inputImagesConsistent</Name>
@@ -3107,11 +3132,6 @@
                 <Name>fileNames</Name>
                 <Path>class_series_converter.html</Path>
                 <Anchor>a8c59cf3401147287488597aad73de9a6</Anchor>
-               </Node>
-               <Node>
-                <Name>imageInfo</Name>
-                <Path>class_series_converter.html</Path>
-                <Anchor>a4ca9df483c465d7b9f78466756d6ce93</Anchor>
                </Node>
                <Node>
                 <Name>imageStack</Name>

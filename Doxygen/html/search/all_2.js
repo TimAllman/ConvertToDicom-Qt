@@ -2,7 +2,7 @@ var searchData=
 [
   ['dateformat',['DateFormat',['../class_series_info.html#a740aca02e4f3e89c1bdcd59091c51f3e',1,'SeriesInfo']]],
   ['datetimeformat',['DateTimeFormat',['../class_series_info.html#aea0b7fce01358da310e37265a5a82f87',1,'SeriesInfo']]],
-  ['dicomattributesdialog',['DicomAttributesDialog',['../class_dicom_attributes_dialog.html',1,'DicomAttributesDialog'],['../class_main_window.html#a22af1af529a9805b2615950a3d5c2139',1,'MainWindow::dicomAttributesDialog()'],['../class_dicom_attributes_dialog.html#a9d229081ef7e02c39d70b9550ca67871',1,'DicomAttributesDialog::DicomAttributesDialog()']]],
+  ['dicomattributesdialog',['DicomAttributesDialog',['../class_dicom_attributes_dialog.html',1,'DicomAttributesDialog'],['../class_dicom_attributes_dialog.html#a9d229081ef7e02c39d70b9550ca67871',1,'DicomAttributesDialog::DicomAttributesDialog()'],['../class_main_window.html#a22af1af529a9805b2615950a3d5c2139',1,'MainWindow::dicomAttributesDialog()']]],
   ['dicomattributesdialog_2ecpp',['dicomattributesdialog.cpp',['../dicomattributesdialog_8cpp.html',1,'']]],
   ['dicomattributesdialog_2eh',['dicomattributesdialog.h',['../dicomattributesdialog_8h.html',1,'']]],
   ['dicomdateformat',['DicomDateFormat',['../class_series_info.html#a8ec5de259063cefab88e1262950843c0',1,'SeriesInfo']]],

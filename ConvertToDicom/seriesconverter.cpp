@@ -284,13 +284,6 @@ bool SeriesConverter::isValidSourceDir(const QString& dirPath)
 
     inputDir = dirPath;
 
-    //    ErrorCode errCode = loadFileNames();
-    //    if (errCode != ErrorCode::SUCCESS)
-    //    {
-    //        LOG4CPLUS_DEBUG(logger, "    Failed to load file names.");
-    //        return false;
-    //    }
-
     ErrorCode errCode = extractImageParameters();
     if (errCode != ErrorCode::SUCCESS)
     {
