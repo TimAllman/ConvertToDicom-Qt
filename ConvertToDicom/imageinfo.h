@@ -44,6 +44,24 @@ public:
      */
     ImageInfo();
 
+    /**
+     * Copy constructor
+     * @param other The other instance.
+     */
+    ImageInfo(const ImageInfo& other);
+
+    /**
+     * Copy assignment operator.
+     * @param other The other instance
+     * @return Reference to *this.
+     */
+    ImageInfo& operator=(const ImageInfo& other);
+
+    /**
+     * Initialises tthe instance.
+     */
+    void init();
+
     //Getters
     /**
      * Get the type of source image as a string. The string is derived from the string returned by

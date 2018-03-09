@@ -25,9 +25,25 @@
 #include <log4cplus/loggingmacros.h>
 
 ImageInfo::ImageInfo()
-    : m_spacing(3), m_origin(3), m_dimensions(3),
+    : m_numDims(0), m_spacing(3, 0.0), m_origin(3, 0.0), m_dimensions(3, 0),
+      m_slicesPerImage(0), m_numberOfSlices(0), m_numberOfImages(0),
       m_logger(log4cplus::Logger::getInstance(std::string(LOGGER_NAME) + ".ImageInfo"))
 {
+
+}
+
+void ImageInfo::init()
+{
+    m_imageTypeName = "";
+    m_numDims = 0;
+    m_spacing.assign(3, 0.0);
+    m_origin.assign(3, 0.0);
+    m_dimensions.assign(3, 0);
+    m_slicesPerImage = 0;
+    m_numberOfSlices = 0;
+    m_numberOfImages = 0;
+    m_imageOrientationPatient = "";
+    m_pixelType = "";
 
 }
 

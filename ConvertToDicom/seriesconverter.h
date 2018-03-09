@@ -82,11 +82,12 @@ public:
     ErrorCode extractImageParameters();
 
     /**
-     * Extract the information in an image or series. This is a read only operation intended to
-     * support the preview widget in the GUI.
-     * @return A smart pointer to an `ImageInfo` instance
+     * Extract the information in an image or series. This is intended to be a read only operation
+     * intended to support the preview widget in the GUI.
+     * @param Reference to an ImageInfo instance to fill with data.
+     * @return A const reference to an `ImageInfo` instance
      */
-    const std::auto_ptr<ImageInfo> imageInfo();
+    ErrorCode getImageInfo(const QString inputDir, ImageInfo& info);
 
     /**
      * Determines whether a directory is a valid souurce directory.

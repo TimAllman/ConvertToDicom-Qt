@@ -182,18 +182,18 @@ ErrorCode SeriesConverter::extractImageParameters()
     return ErrorCode::SUCCESS;
 }
 
-const std::auto_ptr<ImageInfo> SeriesConverter::imageInfo()
+ErrorCode SeriesConverter::getImageInfo(const QString* inputDir, ImageInfo& info)
 {
-    std::auto_ptr<ImageInfo> info(new ImageInfo);
-
     LOG4CPLUS_TRACE(logger, "Enter");
 
+    info.init();
+    std::string inDir = seriesInfo->inputDir().path().toStdString();
+
     // Take the information we need from the first image
-    if (loadFileNames() == ErrorCode::ERROR_FILE_NOT_FOUND)
+    //if (loadFileNames() == ErrorCode::ERROR_FILE_NOT_FOUND)
     {
-        info.release();
-        LOG4CPLUS_ERROR(logger, "Could not find files in " << seriesInfo->inputDir().path().toStdString());
-        return info;
+        LOG4CPLUS_ERROR(logger, "Could not find files in " << intDir().path().toStdString());
+        return ErrorCode::ERROR;
     }
 
     std::string firstFileName(fileNames[0].toStdString());
@@ -203,16 +203,15 @@ const std::auto_ptr<ImageInfo> SeriesConverter::imageInfo()
     // If there is a problem, catch it
     if (imageIO.IsNull())
     {
-        info.release();
         LOG4CPLUS_ERROR(logger, "Could not get metadata from file: " << firstFileName);
-        return info;
+        return ErrorCode::ERROR;
     };
 
     imageIO->SetFileName(firstFileName);
     imageIO->ReadImageInformation();
 
     std::string nameOfClass = imageIO->GetNameOfClass();
-    info->setImageTypeName(nameOfClass);
+    info.setImageTypeName(nameOfClass);
     LOG4CPLUS_DEBUG(logger, "ImageIO class name = " << imageIO->GetNameOfClass());
 
     //    if (std::string(imageIO->GetNameOfClass()) == std::string("GDCMImageIO"))
@@ -225,27 +224,27 @@ const std::auto_ptr<ImageInfo> SeriesConverter::imageInfo()
 
     // Get the number of dimensions.
     unsigned numDims = imageIO->GetNumberOfDimensions();
-    info->setNumDims(numDims);
+    info.setNumDims(numDims);
     LOG4CPLUS_DEBUG(logger, "dimensions = " << numDims);
 
     int numFiles = fileNames.length();
 
     for (unsigned int idx = 0; idx < numDims; ++idx)
     {
-        info->setSpacing(idx, imageIO->GetSpacing(idx));
+        info.setSpacing(idx, imageIO->GetSpacing(idx));
     }
 
     if (numDims == 3)
-        info->setSlicesPerImage(int(imageIO->GetDimensions(2)));
+        info.setSlicesPerImage(int(imageIO->GetDimensions(2)));
     else
-        info->setSlicesPerImage(1);
+        info.setSlicesPerImage(1);
 
-    info->setNumberOfSlices(numFiles * info->slicesPerImage());
-    info->setNumberOfImages(numFiles / info->slicesPerImage());
+    info.setNumberOfSlices(numFiles * info.slicesPerImage());
+    info.setNumberOfImages(numFiles / info.slicesPerImage());
 
-    LOG4CPLUS_DEBUG(logger, "slicesPerImage = " << info->slicesPerImage());
-    LOG4CPLUS_DEBUG(logger, "imageSliceSpacing = " << info->spacingStr());
-    LOG4CPLUS_DEBUG(logger, "numberOfImages = " << info->numberOfImages());
+    LOG4CPLUS_DEBUG(logger, "slicesPerImage = " << info.slicesPerImage());
+    LOG4CPLUS_DEBUG(logger, "imageSliceSpacing = " << info.spacingStr());
+    LOG4CPLUS_DEBUG(logger, "numberOfImages = " << info.numberOfImages());
 
     // use for creating strings below.
     std::ostringstream value;
@@ -256,11 +255,11 @@ const std::auto_ptr<ImageInfo> SeriesConverter::imageInfo()
     dir = imageIO->GetDirection(1);
     value << dir[0] << "\\" << dir[1] << "\\" << dir[2];
     std::string imageOrientationPatient = value.str();
-    info->setImageOrientationPatient(imageOrientationPatient);
+    info.setImageOrientationPatient(imageOrientationPatient);
 
-    LOG4CPLUS_DEBUG(logger, "imagePatientOrientation = " << info->imageOrientationPatient());
+    LOG4CPLUS_DEBUG(logger, "imagePatientOrientation = " << info.imageOrientationPatient());
 
-    return info;
+    return ErrorCode::SUCCESS;
 }
 
 bool SeriesConverter::isValidSourceDir(const QString& dirPath)
@@ -284,7 +283,8 @@ bool SeriesConverter::isValidSourceDir(const QString& dirPath)
 
     inputDir = dirPath;
 
-    ErrorCode errCode = extractImageParameters();
+    ImageInfo info;
+    ErrorCode errCode = getImageInfo(dir.path(), info);
     if (errCode != ErrorCode::SUCCESS)
     {
         LOG4CPLUS_DEBUG(logger, "    Failed to extract image metadata.");
