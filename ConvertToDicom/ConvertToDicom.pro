@@ -37,7 +37,8 @@ SOURCES += main.cpp\
     logger.cpp \
     dicomdictionaryinterface.cpp \
     dicomparametersreader.cpp \
-    imageinfo.cpp
+    imageinfo.cpp \
+    fileutils.cpp
 
 HEADERS += mainwindow.h \
     seriesinfo.h \
@@ -52,7 +53,8 @@ HEADERS += mainwindow.h \
     dicomdictionaryinterface.h \
     dicomparametersreader.h \
     itktypedefs.h \
-    imageinfo.h
+    imageinfo.h \
+    fileutils.h
 
 # Precompile the ITK headers
 CONFIG += precompile_header

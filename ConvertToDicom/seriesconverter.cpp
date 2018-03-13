@@ -182,7 +182,7 @@ ErrorCode SeriesConverter::extractImageParameters()
     return ErrorCode::SUCCESS;
 }
 
-ErrorCode SeriesConverter::getImageInfo(const QString* inputDir, ImageInfo& info)
+ErrorCode SeriesConverter::getImageInfo(ImageInfo& info)
 {
     LOG4CPLUS_TRACE(logger, "Enter");
 

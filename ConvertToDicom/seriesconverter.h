@@ -84,10 +84,11 @@ public:
     /**
      * Extract the information in an image or series. This is intended to be a read only operation
      * intended to support the preview widget in the GUI.
+     * @param inputDirPath Path to the directory containing the image series.
      * @param Reference to an ImageInfo instance to fill with data.
      * @return A const reference to an `ImageInfo` instance
      */
-    ErrorCode getImageInfo(const QString inputDir, ImageInfo& info);
+    ErrorCode getImageInfo(const QString& inputDirPath, ImageInfo& info);
 
     /**
      * Determines whether a directory is a valid souurce directory.
